@@ -36,12 +36,14 @@ use WPS_Plugin\App\Admin\PostMetaboxes\HTSAProfileSocialHandlesMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\WPSPostMetabox;
 use WPS_Plugin\App\Admin\Settings\WPSSetting;
 use WPS_Plugin\App\Admin\TaxonomyFormFields\WPSTaxonomyFormField;
+use WPS_Plugin\App\Public\AjaxRequests\HTSAContactFormRequest;
 use WPS_Plugin\App\Public\AjaxRequests\WPSPublicAjaxRequest;
 use WPS_Plugin\App\Public\PostTypes\HTSABranch;
 use WPS_Plugin\App\Public\PostTypes\HTSAOfficers;
 use WPS_Plugin\App\Public\PostTypes\HTSAPenalty;
 use WPS_Plugin\App\Public\PostTypes\HTSAProfile;
 use WPS_Plugin\App\Public\PostTypes\WPSPostType;
+use WPS_Plugin\App\Public\Shortcodes\HTSAContactFormShortcode;
 use WPS_Plugin\App\Public\Shortcodes\WPSShortcode;
 use WPS_Plugin\App\Public\Taxonomies\WPSTaxonomy;
 
@@ -148,6 +150,7 @@ if ( ! class_exists( 'Bindings' ) ) {
          */
         public static array $shortcodes = array(
             // WPSShortcode::class,
+            HTSAContactFormShortcode::class,
         );
 
         /**
@@ -228,6 +231,7 @@ if ( ! class_exists( 'Bindings' ) ) {
          */
         public static array $public_ajax_requests = array(
             // WPSPublicAjaxRequest::class,
+            HTSAContactFormRequest::class,
         );
 
         /**

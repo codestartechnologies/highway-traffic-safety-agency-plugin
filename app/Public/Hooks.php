@@ -68,15 +68,16 @@ if ( ! class_exists( 'Hooks' ) ) {
         {
             if ( ! is_admin() && $query->is_main_query() ) {
 
-                if (
-                    is_search() ||
-                    is_post_type_archive( array( HTSA_PENALTIES_POST_TYPE, HTSA_BRANCHES_POST_TYPE, HTSA_OFFICERS_POST_TYPE ) )
-                ) {
-                    $query->set( 'posts_per_page', 20 );
+                if ( is_search() ) {
+                    $query->set( 'posts_per_page', 10 );
+                }
 
-                    if ( is_search() || is_post_type_archive( array( HTSA_PENALTIES_POST_TYPE, HTSA_BRANCHES_POST_TYPE ) ) ) {
-                        $query->set( 'order', 'ASC' );
-                    }
+                if ( is_post_type_archive( array( HTSA_PENALTIES_POST_TYPE, HTSA_OFFICERS_POST_TYPE ) ) ) {
+                    $query->set( 'posts_per_page', 15 );
+                }
+
+                if ( is_search() || is_post_type_archive( array( HTSA_PENALTIES_POST_TYPE, HTSA_BRANCHES_POST_TYPE ) ) ) {
+                    $query->set( 'order', 'ASC' );
                 }
 
                 if ( is_post_type_archive( 'wps_post' ) ) {

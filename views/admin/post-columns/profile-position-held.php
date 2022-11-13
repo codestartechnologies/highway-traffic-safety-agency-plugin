@@ -5,8 +5,6 @@
  * $meta_value      - The meta value. Passed to the view by default
  */
 
-echo ( $meta_value )
-    ? sprintf( '<a style="text-transform: uppercase;">%s</a>', $meta_value )
-    : '<b>----</b>';
+echo ( $meta_value ) ? sprintf( '<a style="text-transform: uppercase;">%s</a>', $meta_value ) : '<b>----</b>';
 
 ?>

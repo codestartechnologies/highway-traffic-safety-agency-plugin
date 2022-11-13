@@ -134,6 +134,21 @@ if ( ! class_exists( 'WPSConstants' ) ) {
             if ( ! defined( 'HTSA_PENALTIES_POST_TYPE' ) ) {
                 define( 'HTSA_PENALTIES_POST_TYPE', 'htsa_penalty' );
             }
+
+            /**
+             * Theme directory uri
+             */
+            if ( ! defined( 'WTS_THEME_URI' ) ) {
+                define( 'WTS_THEME_URI', trailingslashit( get_theme_file_uri() ) );
+            }
+
+            /**
+             * Contact Form Shortcode Tag
+             */
+            if ( ! defined( 'HTSA_CONTACT_FORM_SHORTCODE' ) ) {
+                define( 'HTSA_CONTACT_FORM_SHORTCODE', 'htsa_contact_form' );
+            }
+
         }
     }
 }
