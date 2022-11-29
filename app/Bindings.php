@@ -13,6 +13,7 @@ namespace WPS_Plugin\App;
 
 use WPS_Plugin\App\Admin\AdminNotices\WPSAdminNotice;
 use WPS_Plugin\App\Admin\AjaxRequests\WPSAdminAjaxRequest;
+use WPS_Plugin\App\Admin\Menus\HTSAEmailSettingMenu;
 use WPS_Plugin\App\Admin\Menus\WPSMenu;
 use WPS_Plugin\App\Admin\Menus\WPSPluginMenu;
 use WPS_Plugin\App\Admin\Menus\WPSSettingMenu;
@@ -34,6 +35,7 @@ use WPS_Plugin\App\Admin\PostMetaboxes\HTSAPenaltyVehicleCategoriesMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSAProfilePositionHeldMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSAProfileSocialHandlesMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\WPSPostMetabox;
+use WPS_Plugin\App\Admin\Settings\HTSAEmailSetting;
 use WPS_Plugin\App\Admin\Settings\WPSSetting;
 use WPS_Plugin\App\Admin\TaxonomyFormFields\WPSTaxonomyFormField;
 use WPS_Plugin\App\Public\AjaxRequests\HTSAContactFormRequest;
@@ -98,6 +100,7 @@ if ( ! class_exists( 'Bindings' ) ) {
          */
         public static array $setting_menus = array(
             // WPSSettingMenu::class,
+            HTSAEmailSettingMenu::class,
         );
 
         /**
@@ -195,6 +198,7 @@ if ( ! class_exists( 'Bindings' ) ) {
          */
         public static array $settings = array(
             // WPSSetting::class,
+            HTSAEmailSetting::class,
         );
 
         /**

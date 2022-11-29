@@ -12,6 +12,7 @@
 namespace WPS_Plugin\App\Public\AjaxRequests;
 
 use Codestartechnologies\WordpressPluginStarter\Abstracts\PublicAjax;
+use WPS_Plugin\App\HTSA\Mailer;
 
 /**
  * Exit if accessed directly
@@ -55,14 +56,44 @@ if ( ! class_exists( 'HTSAContactFormRequest' ) ) {
             $post_arr = array();
             parse_str( $data, $post_arr );
 
-            $name = $post_arr['name'] ?? null;
-            $email = $post_arr['email'] ?? null;
-            $message = $post_arr['message'] ?? null;
+            $email = sanitize_email( $post_arr['email'] ?? '' );
+            $name = sanitize_text_field( $post_arr['name'] ?? '' );
+            $message = sanitize_textarea_field( $post_arr['message'] ?? '' );
 
-            $response_msg = esc_html__( 'We are yet to start processing contact requests, retry in a week time. Thank you!');
-            wp_send_json_success( array(
-                'msg'  => $response_msg,
-            ) );
+            $db_receipents = \get_option( 'htsa_smtp_receipents' );
+            $receiver = $db_receipents['htsa_email_receiver'] ?? '';
+            $sender = $db_receipents['htsa_email_sender'] ?? '';
+
+            $mailer                     = new Mailer();
+            // $mailer->debug_mode         = 'dev_client_server';
+            $mailer->encryption_mode    = 'ssl';
+            $mailer->is_html            = false;
+            $mailer->subject            = 'New Contact Request From ' . $name;
+            $mailer->body               = $message;
+            $mailer->alt_body           = esc_html( $message );
+
+            $status = $mailer->from( $sender, get_bloginfo( 'name' ) )->to( $receiver )->reply_to( $email, $name )->send();
+
+            if ( $status ) {
+                $response_msg = esc_html__( 'We have received your message, and will get back to you shortly.', 'htsa' );
+
+                $message = 'We have received your message, and will get back to you shortly.';
+
+                $mailer                     = new Mailer();
+                // $mailer->debug_mode         = 'dev_client_server';
+                $mailer->encryption_mode    = 'ssl';
+                $mailer->is_html            = false;
+                $mailer->subject            = 'We have received your message!';
+                $mailer->body               = $message;
+                $mailer->alt_body           = esc_html( $message );
+
+                $mailer->from( $sender, get_bloginfo( 'name' ) )->to( $email )->send();
+
+            } else {
+                $response_msg = esc_html__( 'An error prevented your message from being sent. Please refresh the page and try again.', 'htsa' );
+            }
+
+            wp_send_json_success( array( 'msg'  => $response_msg, ) );
         }
     }
 }

@@ -30,5 +30,7 @@
     "support": {
         "email": "codestartechng@gmail.com"
     },
-    "require": {}
+    "require": {
+        "phpmailer/phpmailer": "^6.6"
+    }
 }
