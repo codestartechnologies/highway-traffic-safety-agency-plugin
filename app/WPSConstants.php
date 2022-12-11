@@ -101,10 +101,17 @@ if ( ! class_exists( 'WPSConstants' ) ) {
             }
 
             /**
-             * Branch Direction Meta Key ID
+             * Vehicle Category Meta Key ID
              */
             if ( ! defined( 'HTSA_PENALTY_VEHICLE_CATRGORIES_META_KEY' ) ) {
                 define( 'HTSA_PENALTY_VEHICLE_CATRGORIES_META_KEY', 'htsa_penalty_vehicle_categories' );
+            }
+
+            /**
+             * Currency Symbol Meta Key ID
+             */
+            if ( ! defined( 'HTSA_PENALTY_CURRENCY_SYMBOL_META_KEY' ) ) {
+                define( 'HTSA_PENALTY_CURRENCY_SYMBOL_META_KEY', 'htsa_penalty_currency_symbol' );
             }
 
             /**

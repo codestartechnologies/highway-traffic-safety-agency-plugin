@@ -31,6 +31,7 @@ use WPS_Plugin\App\Admin\PostMetaboxes\HTSABranchLocationMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSAFeaturedMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSAOfficerContactMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSAOfficerZoneMetabox;
+use WPS_Plugin\App\Admin\PostMetaboxes\HTSAPenaltyCurrencySymbolMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSAPenaltyVehicleCategoriesMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSAProfilePositionHeldMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSAProfileSocialHandlesMetabox;
@@ -174,6 +175,7 @@ if ( ! class_exists( 'Bindings' ) ) {
             HTSABranchLocationMetabox::class,
             HTSABranchDirectionMetabox::class,
             HTSAPenaltyVehicleCategoriesMetabox::class,
+            HTSAPenaltyCurrencySymbolMetabox::class,
         );
 
         /**
