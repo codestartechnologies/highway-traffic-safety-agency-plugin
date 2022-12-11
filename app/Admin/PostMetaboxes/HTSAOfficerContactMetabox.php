@@ -30,6 +30,11 @@ if ( ! class_exists( 'HTSAOfficerContactMetabox' ) ) {
      */
     final class HTSAOfficerContactMetabox extends PostMetaboxes {
         /**
+         * Metadata key.
+         */
+        protected string $meta_key = HTSA_OFFICER_CONTACT_META_KEY;
+
+        /**
          * HTSAOfficerContactMetabox constructor
          */
         public function __construct()
@@ -39,7 +44,7 @@ if ( ! class_exists( 'HTSAOfficerContactMetabox' ) ) {
             $this->screens = array( HTSA_OFFICERS_POST_TYPE, );
             $this->context = 'side';
             $this->priority = 'high';
-            $this->meta_key = HTSA_OFFICER_CONTACT_META_KEY;
+            // $this->meta_key = HTSA_OFFICER_CONTACT_META_KEY;
             $this->is_single_key = true;
             $this->nonce_action = 'handle htsa officer contact metabox';
             $this->nonce_name = 'htsa_officer_contact_metabox_nonce';

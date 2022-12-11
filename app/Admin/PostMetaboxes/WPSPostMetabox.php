@@ -30,6 +30,11 @@ if ( ! class_exists( 'WPSPostMetabox' ) ) {
      */
     final class WPSPostMetabox extends PostMetaboxes {
         /**
+         * Metadata key.
+         */
+        protected string $meta_key = 'wps_post_text';
+
+        /**
          * WPSPostMetabox constructor
          */
         public function __construct()
@@ -39,7 +44,7 @@ if ( ! class_exists( 'WPSPostMetabox' ) ) {
             $this->screens = array( 'wps_post', );
             $this->context = 'side';
             $this->priority = 'high';
-            $this->meta_key = 'wps_post_text';
+            // $this->meta_key = 'wps_post_text';
             $this->is_single_key = true;
             $this->nonce_action = 'handle wps post metabox';
             $this->nonce_name = 'wps_post_metabox_nonce';

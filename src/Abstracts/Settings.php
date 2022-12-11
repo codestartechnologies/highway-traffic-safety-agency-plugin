@@ -217,10 +217,11 @@ if ( ! class_exists( 'Settings' ) ) {
          *
          * @abstract
          * @access public
+         * @static
          * @return array
          * @since 1.0.0
          */
-        abstract public function get_settings() : array;
+        abstract public static function get_settings() : array;
 
         /**
          * Arrays of arguements to add the fields associated with the section.

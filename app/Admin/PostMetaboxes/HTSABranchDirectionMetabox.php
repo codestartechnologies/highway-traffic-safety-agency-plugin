@@ -30,6 +30,11 @@ if ( ! class_exists( 'HTSABranchDirectionMetabox' ) ) {
      */
     final class HTSABranchDirectionMetabox extends PostMetaboxes {
         /**
+         * Metadata key.
+         */
+        protected string $meta_key = HTSA_BRANCH_DIRECTION_META_KEY;
+
+        /**
          * HTSABranchDirectionMetabox constructor
          */
         public function __construct()
@@ -39,7 +44,7 @@ if ( ! class_exists( 'HTSABranchDirectionMetabox' ) ) {
             $this->screens = array( HTSA_BRANCHES_POST_TYPE, );
             $this->context = 'normal';
             $this->priority = 'high';
-            $this->meta_key = HTSA_BRANCH_DIRECTION_META_KEY;
+            // $this->meta_key = HTSA_BRANCH_DIRECTION_META_KEY;
             $this->is_single_key = true;
             $this->nonce_action = 'handle htsa branch direction metabox';
             $this->nonce_name = 'htsa_branch_direction_metabox_nonce';

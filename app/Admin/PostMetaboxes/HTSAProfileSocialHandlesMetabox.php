@@ -30,6 +30,11 @@ if ( ! class_exists( 'HTSAProfileSocialHandlesMetabox' ) ) {
      */
     final class HTSAProfileSocialHandlesMetabox extends PostMetaboxes {
         /**
+         * Metadata key.
+         */
+        protected string $meta_key = HTSA_PROFILE_SOCIAL_HANDLES_META_KEY;
+
+        /**
          * HTSAProfileSocialHandlesMetabox constructor
          */
         public function __construct()
@@ -39,7 +44,7 @@ if ( ! class_exists( 'HTSAProfileSocialHandlesMetabox' ) ) {
             $this->screens = array( HTSA_PROFILE_POST_TYPE, );
             $this->context = 'side';
             $this->priority = 'high';
-            $this->meta_key = HTSA_PROFILE_SOCIAL_HANDLES_META_KEY;
+            // $this->meta_key = HTSA_PROFILE_SOCIAL_HANDLES_META_KEY;
             $this->is_single_key = true;
             $this->nonce_action = 'handle htsa profile social handles metabox';
             $this->nonce_name = 'htsa_profile_social_handles_metabox_nonce';

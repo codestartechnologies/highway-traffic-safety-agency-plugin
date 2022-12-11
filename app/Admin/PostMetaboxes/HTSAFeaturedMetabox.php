@@ -30,6 +30,11 @@ if ( ! class_exists( 'HTSAFeaturedMetabox' ) ) {
      */
     final class HTSAFeaturedMetabox extends PostMetaboxes {
         /**
+         * Metadata key.
+         */
+        protected string $meta_key = HTSA_FEATURED_META_KEY;
+
+        /**
          * HTSAFeaturedMetabox constructor
          */
         public function __construct()
@@ -39,7 +44,7 @@ if ( ! class_exists( 'HTSAFeaturedMetabox' ) ) {
             $this->screens = array( 'post', );
             $this->context = 'side';
             $this->priority = 'high';
-            $this->meta_key = HTSA_FEATURED_META_KEY;
+            // $this->meta_key = HTSA_FEATURED_META_KEY;
             $this->is_single_key = true;
             $this->nonce_action = 'handle htsa post featured metabox';
             $this->nonce_name = 'htsa_post_featured_metabox_nonce';

@@ -4,7 +4,7 @@ Plugin Name: Highway Traffic Security Agency Plugin
 Plugin URI:
 Description: A plugin for Highway Traffic Security Agency WordPress Theme
 Version: 0.1.0
-Requires at least: 5.7
+Requires at least: 5.6
 Requires PHP: 8.0
 Author: Codestar Technologies
 Author URI: https://codestar.com.ng

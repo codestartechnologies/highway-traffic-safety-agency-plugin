@@ -30,6 +30,11 @@ if ( ! class_exists( 'HTSAPenaltyVehicleCategoriesMetabox' ) ) {
      */
     final class HTSAPenaltyVehicleCategoriesMetabox extends PostMetaboxes {
         /**
+         * Metadata key.
+         */
+        protected string $meta_key = HTSA_PENALTY_VEHICLE_CATRGORIES_META_KEY;
+
+        /**
          * HTSAPenaltyVehicleCategoriesMetabox constructor
          */
         public function __construct()
@@ -39,7 +44,7 @@ if ( ! class_exists( 'HTSAPenaltyVehicleCategoriesMetabox' ) ) {
             $this->screens = array( HTSA_PENALTIES_POST_TYPE, );
             $this->context = 'normal';
             $this->priority = 'high';
-            $this->meta_key = HTSA_PENALTY_VEHICLE_CATRGORIES_META_KEY;
+            // $this->meta_key = HTSA_PENALTY_VEHICLE_CATRGORIES_META_KEY;
             $this->is_single_key = true;
             $this->nonce_action = 'handle penalty vehicle categories metabox';
             $this->nonce_name = 'htsa_penalty_vehicle_categories_metabox_nonce';

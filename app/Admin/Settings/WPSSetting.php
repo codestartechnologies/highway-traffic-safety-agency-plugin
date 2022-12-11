@@ -57,7 +57,7 @@ if ( ! class_exists( 'WPSSetting' ) ) {
          *
          * @return array
          */
-        public function get_settings() : array
+        public static function get_settings() : array
         {
             return array(
                 'author_setting' => array(

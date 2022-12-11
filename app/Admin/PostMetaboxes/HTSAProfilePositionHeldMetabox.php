@@ -30,6 +30,11 @@ if ( ! class_exists( 'HTSAProfilePositionHeldMetabox' ) ) {
      */
     final class HTSAProfilePositionHeldMetabox extends PostMetaboxes {
         /**
+         * Metadata key.
+         */
+        protected string $meta_key = HTSA_PROFILE_POSITION_HELD_META_KEY;
+
+        /**
          * HTSAProfilePositionHeldMetabox constructor
          */
         public function __construct()
@@ -39,7 +44,7 @@ if ( ! class_exists( 'HTSAProfilePositionHeldMetabox' ) ) {
             $this->screens = array( HTSA_PROFILE_POST_TYPE, );
             $this->context = 'side';
             $this->priority = 'high';
-            $this->meta_key = HTSA_PROFILE_POSITION_HELD_META_KEY;
+            // $this->meta_key = HTSA_PROFILE_POSITION_HELD_META_KEY;
             $this->is_single_key = true;
             $this->nonce_action = 'handle htsa position held metabox';
             $this->nonce_name = 'htsa_position_held_metabox_nonce';
