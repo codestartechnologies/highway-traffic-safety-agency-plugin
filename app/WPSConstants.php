@@ -6,6 +6,7 @@
  *
  * @package    WordpressPluginStarter
  * @author     Chijindu Nzeako <chijindunzeako517@gmail.com>
+ * @link       https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since      1.0.0
  */
 
@@ -115,6 +116,27 @@ if ( ! class_exists( 'WPSConstants' ) ) {
             }
 
             /**
+             * Review Name Meta Key ID
+             */
+            if ( ! defined( 'HTSA_REVIEW_NAME_META_KEY' ) ) {
+                define( 'HTSA_REVIEW_NAME_META_KEY', 'htsa_review_name' );
+            }
+
+            /**
+             * Review Rating Meta Key ID
+             */
+            if ( ! defined( 'HTSA_REVIEW_RATING_META_KEY' ) ) {
+                define( 'HTSA_REVIEW_RATING_META_KEY', 'htsa_review_rating' );
+            }
+
+            /**
+             * Review Content Meta Key ID
+             */
+            if ( ! defined( 'HTSA_REVIEW_CONTENT_META_KEY' ) ) {
+                define( 'HTSA_REVIEW_CONTENT_META_KEY', 'htsa_review_content' );
+            }
+
+            /**
              * Profiles Post Type ID
              */
             if ( ! defined( 'HTSA_PROFILE_POST_TYPE' ) ) {
@@ -140,6 +162,13 @@ if ( ! class_exists( 'WPSConstants' ) ) {
              */
             if ( ! defined( 'HTSA_PENALTIES_POST_TYPE' ) ) {
                 define( 'HTSA_PENALTIES_POST_TYPE', 'htsa_penalty' );
+            }
+
+            /**
+             * Reviews Post Type ID
+             */
+            if ( ! defined( 'HTSA_REVIEWS_POST_TYPE' ) ) {
+                define( 'HTSA_REVIEWS_POST_TYPE', 'htsa_reviews' );
             }
 
             /**

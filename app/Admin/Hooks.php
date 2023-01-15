@@ -51,7 +51,7 @@ if ( ! class_exists( 'Hooks' ) ) {
          */
         public function register_add_filter() : void
         {
-            //
+            add_filter( "manage_posts_columns", array( $this, 'filter_manage_posts_columns' ), 10, 2 );
         }
 
         /**
@@ -89,7 +89,12 @@ if ( ! class_exists( 'Hooks' ) ) {
 
             }
 
-            if ( $screen->post_type === HTSA_BRANCHES_POST_TYPE && $screen->base === 'post' ) {
+            $post_types_with_editor_arr = array(
+                HTSA_BRANCHES_POST_TYPE,
+                HTSA_REVIEWS_POST_TYPE,
+            );
+
+            if ( in_array( $screen->post_type, $post_types_with_editor_arr, true )  && $screen->base === 'post' ) {
                 wp_enqueue_editor();
                 $data = 'jQuery( function ( $ ) { $.each( jQuery( ".htsa-textarea" ), function ( index, editor ) { wp.editor.initialize( jQuery( editor ).attr( "id" ), { tinymce: true } ); } ); } );';
                 wp_add_inline_script( 'editor', $data );
@@ -103,10 +108,30 @@ if ( ! class_exists( 'Hooks' ) ) {
          *
          * @return void
          */
-        public function action_init() : void {
+        public function action_init() : void
+        {
             add_post_type_support( 'wps_post', 'page-attributes' );
             remove_post_type_support( 'page', 'thumbnail' );
             remove_post_type_support( 'page', 'comments' );
         }
+
+        /**
+         * Filters the columns displayed in the Posts list table.
+         *
+         * @param string[] $post_columns An associative array of column headings.
+         * @param string   $post_type    The post type slug.
+         * @return string[] An associative array of column headings.
+         */
+        public function filter_manage_posts_columns( array $post_columns, string $post_type ) : array
+        {
+            $screen = get_current_screen();
+
+            if ( $screen->post_type === HTSA_REVIEWS_POST_TYPE ) {
+                unset( $post_columns['title'] );
+            }
+
+        	return $post_columns;
+        }
+
     }
 }

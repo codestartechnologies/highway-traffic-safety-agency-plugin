@@ -6,6 +6,7 @@
  *
  * @package    WordpressPluginStarter
  * @author     Chijindu Nzeako <chijindunzeako517@gmail.com>
+ * @link       https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since      1.0.0
  */
 
@@ -25,6 +26,8 @@ use WPS_Plugin\App\Admin\PostColumns\HTSAOfficerThumbnailColumn;
 use WPS_Plugin\App\Admin\PostColumns\HTSAOfficerZoneColumn;
 use WPS_Plugin\App\Admin\PostColumns\HTSAProfilePositionHeldColumn;
 use WPS_Plugin\App\Admin\PostColumns\HTSAProfileThumbnailColumn;
+use WPS_Plugin\App\Admin\PostColumns\HTSAReviewNameColumn;
+use WPS_Plugin\App\Admin\PostColumns\HTSAReviewRatingColumn;
 use WPS_Plugin\App\Admin\PostColumns\WPSPostColumn;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSABranchDirectionMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSABranchLocationMetabox;
@@ -35,6 +38,9 @@ use WPS_Plugin\App\Admin\PostMetaboxes\HTSAPenaltyCurrencySymbolMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSAPenaltyVehicleCategoriesMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSAProfilePositionHeldMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSAProfileSocialHandlesMetabox;
+use WPS_Plugin\App\Admin\PostMetaboxes\HTSAReviewContentMetabox;
+use WPS_Plugin\App\Admin\PostMetaboxes\HTSAReviewNameMetabox;
+use WPS_Plugin\App\Admin\PostMetaboxes\HTSAReviewRatingMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\WPSPostMetabox;
 use WPS_Plugin\App\Admin\Settings\HTSAEmailSetting;
 use WPS_Plugin\App\Admin\Settings\WPSSetting;
@@ -45,6 +51,7 @@ use WPS_Plugin\App\Public\PostTypes\HTSABranch;
 use WPS_Plugin\App\Public\PostTypes\HTSAOfficers;
 use WPS_Plugin\App\Public\PostTypes\HTSAPenalty;
 use WPS_Plugin\App\Public\PostTypes\HTSAProfile;
+use WPS_Plugin\App\Public\PostTypes\HTSAReview;
 use WPS_Plugin\App\Public\PostTypes\WPSPostType;
 use WPS_Plugin\App\Public\Shortcodes\HTSAContactFormShortcode;
 use WPS_Plugin\App\Public\Shortcodes\WPSShortcode;
@@ -130,6 +137,7 @@ if ( ! class_exists( 'Bindings' ) ) {
             HTSAOfficers::class,
             HTSABranch::class,
             HTSAPenalty::class,
+            HTSAReview::class,
         );
 
         /**
@@ -176,6 +184,9 @@ if ( ! class_exists( 'Bindings' ) ) {
             HTSABranchDirectionMetabox::class,
             HTSAPenaltyVehicleCategoriesMetabox::class,
             HTSAPenaltyCurrencySymbolMetabox::class,
+            HTSAReviewNameMetabox::class,
+            HTSAReviewRatingMetabox::class,
+            HTSAReviewContentMetabox::class,
         );
 
         /**
@@ -256,6 +267,8 @@ if ( ! class_exists( 'Bindings' ) ) {
             HTSAOfficerZoneColumn::class,
             HTSAOfficerThumbnailColumn::class,
             HTSABranchLocationColumn::class,
+            HTSAReviewNameColumn::class,
+            HTSAReviewRatingColumn::class,
         );
 
         /**
