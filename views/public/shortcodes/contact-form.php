@@ -2,7 +2,7 @@
 <div class="ui section divider"></div>
 <h4 class="text-uppercase mb-3"> <?php esc_html_e( 'Contact us and we will reply you as soon as possible', 'htsa-plugin' ); ?> </h4>
 <div class="col-lg-6 mx-auto-">
-    <form action="" method="post" class="ui form" data-htsa-id="contactForm_">
+    <form action="" method="post" class="ui form" data-htsa-id="contactForm">
         <div class="required field">
             <label for="htsaContactFormName"> <?php esc_html_e( 'Name', 'htsa-plugin' ); ?> </label>
             <input type="text" name="name" id="htsaContactFormName" class="border-secondary rounded-4" />
