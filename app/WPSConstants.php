@@ -185,6 +185,13 @@ if ( ! class_exists( 'WPSConstants' ) ) {
                 define( 'HTSA_CONTACT_FORM_SHORTCODE', 'htsa_contact_form' );
             }
 
+            /**
+             * Newsletter Form Shortcode Tag
+             */
+            if ( ! defined( 'HTSA_NEWSLETTER_FORM_SHORTCODE' ) ) {
+                define( 'HTSA_NEWSLETTER_FORM_SHORTCODE', 'htsa_newsletter_form' );
+            }
+
         }
     }
 }

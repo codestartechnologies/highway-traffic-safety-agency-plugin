@@ -54,6 +54,7 @@ use WPS_Plugin\App\Public\PostTypes\HTSAProfile;
 use WPS_Plugin\App\Public\PostTypes\HTSAReview;
 use WPS_Plugin\App\Public\PostTypes\WPSPostType;
 use WPS_Plugin\App\Public\Shortcodes\HTSAContactFormShortcode;
+use WPS_Plugin\App\Public\Shortcodes\HTSANewsletterFormShortcode;
 use WPS_Plugin\App\Public\Shortcodes\WPSShortcode;
 use WPS_Plugin\App\Public\Taxonomies\WPSTaxonomy;
 
@@ -163,6 +164,7 @@ if ( ! class_exists( 'Bindings' ) ) {
         public static array $shortcodes = array(
             // WPSShortcode::class,
             HTSAContactFormShortcode::class,
+            HTSANewsletterFormShortcode::class,
         );
 
         /**
