@@ -11,7 +11,7 @@ use Codestartechnologies\WordpressPluginStarter\Core\Constants;
 use Codestartechnologies\WordpressPluginStarter\Core\Deactivator;
 use Codestartechnologies\WordpressPluginStarter\Core\Router;
 use Codestartechnologies\WordpressPluginStarter\Core\Uninstaller;
-
+use Dotenv\Dotenv;
 
 /**
  * Exit if accessed directly
@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @package WordpressPluginStarter
  * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link https://codestar.com.ng
+ * @link https://github.com/codestartechnologies/wordpress-plugin-starter
  * @license GNU/AGPLv3
  * @since 0.1.0
  */
@@ -63,6 +63,12 @@ final class WPSPlugin {
         require_once trailingslashit( plugin_dir_path( WPS_FILE ) ) . 'vendor/autoload.php';
 
         require_once trailingslashit( plugin_dir_path( WPS_FILE ) ) . 'autoload.php';
+
+        /**
+         * Load .env inside the application
+         */
+        $dotenv = Dotenv::createImmutable( __DIR__ );
+        $dotenv->safeLoad();
 
         Constants::define_core_constants();
 
