@@ -46,6 +46,13 @@ if ( ! class_exists( 'WPSConstants' ) ) {
             }
 
             /**
+             * Plugin short name
+             */
+            if ( ! defined( 'HTSA_PLUGIN_SNAME' ) ) {
+                define( 'HTSA_PLUGIN_SNAME', 'HTSA Plugin' );
+            }
+
+            /**
              * Plugin version
              */
             if ( ! defined( 'HTSA_PLUGIN_VERSION' ) ) {

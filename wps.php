@@ -12,6 +12,7 @@ use Codestartechnologies\WordpressPluginStarter\Core\Deactivator;
 use Codestartechnologies\WordpressPluginStarter\Core\Router;
 use Codestartechnologies\WordpressPluginStarter\Core\Uninstaller;
 use Dotenv\Dotenv;
+use WPS_Plugin\App\HTSA\PluginUpdate;
 
 /**
  * Exit if accessed directly
@@ -184,6 +185,7 @@ final class WPSPlugin {
             new Hooks,
             new AdminHooks(),
             new PublicHooks(),
+            new PluginUpdate(),
             self::boot( Bindings::$menus ),
             self::boot( Bindings::$sub_menus ),
             self::boot( Bindings::$setting_menus ),

@@ -6,7 +6,7 @@
  *
  * @package    WordpressPluginStarter
  * @author     Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link       https://codestar.com.ng
+ * @link       https://github.com/codestartechnologies/wordpress-plugin-starter
  * @license    https://www.gnu.org/licenses/agpl-3.0.txt GNU/AGPLv3
  * @since      1.0.0
  */
@@ -33,6 +33,7 @@ use Codestartechnologies\WordpressPluginStarter\Abstracts\Taxonomies;
 use Codestartechnologies\WordpressPluginStarter\Abstracts\TaxonomyFormFields;
 use Codestartechnologies\WordpressPluginStarter\Interfaces\ActionHook;
 use Codestartechnologies\WordpressPluginStarter\Traits\Validator;
+use WPS_Plugin\App\HTSA\PluginUpdate;
 
 /**
  * Prevent direct access to this file.
@@ -88,6 +89,15 @@ if ( ! class_exists( 'Bootstrap' ) ) {
          * @since 1.0.0
          */
         protected PublicHooks $public_hooks;
+
+        /**
+         * Plugin Update
+         *
+         * @access protected
+         * @var PluginUpdate
+         * @since 1.0.0
+         */
+        protected $plugin_update;
 
         /**
          * Bindings for classes that register admin menus
@@ -232,6 +242,7 @@ if ( ! class_exists( 'Bootstrap' ) ) {
          * @param Hooks|null $hooks
          * @param AdminHooks|null $admin_hooks
          * @param PublicHooks|null $public_hooks
+         * @param PluginUpdate $plugin_update
          * @param array|null $menu_pages
          * @param array|null $sub_menu_pages
          * @param array|null $options_pages
@@ -254,6 +265,7 @@ if ( ! class_exists( 'Bootstrap' ) ) {
             Hooks $hooks = null,
             AdminHooks $admin_hooks = null,
             PublicHooks $public_hooks = null,
+            PluginUpdate $plugin_update = null,
             array $menu_pages = null,
             array $sub_menu_pages = null,
             array $options_pages = null,
@@ -286,6 +298,10 @@ if ( ! class_exists( 'Bootstrap' ) ) {
 
             if ( ! is_null( $public_hooks ) ) {
                 $this->public_hooks = $public_hooks;
+            }
+
+            if ( ! is_null( $plugin_update ) ) {
+                $this->plugin_update = $plugin_update;
             }
 
             if ( ! is_null( $menu_pages ) ) {
@@ -360,6 +376,10 @@ if ( ! class_exists( 'Bootstrap' ) ) {
         {
             $this->register_add_action();
 
+            $this->set_plugin_updater();
+
+            $this->set_hooks();
+
             $this->set_post_types();
 
             $this->set_taxonomies();
@@ -367,21 +387,6 @@ if ( ! class_exists( 'Bootstrap' ) ) {
             $this->set_shortcodes();
 
             $this->set_ajax_handlers();
-        }
-
-        /**
-         * Register add_action() and remove_action().
-         *
-         * @access public
-         * @return void
-         * @since 1.0.0
-         */
-        public function register_add_action() : void
-        {
-            if ( isset( $this->hooks ) ) {
-                $this->hooks->register_add_action();
-                $this->hooks->register_add_filter();
-            }
 
             if ( is_admin() ) {
 
@@ -393,26 +398,131 @@ if ( ! class_exists( 'Bootstrap' ) ) {
 
                 $this->set_post_columns();
 
+                $this->set_taxonomy_form_fields();
+
+                $this->set_admin_hooks();
+            } else {
+
+                $this->set_public_hooks();
+
+                $this->set_routes();
+            }
+        }
+
+        /**
+         * Register add_action() and remove_action().
+         *
+         * @access public
+         * @return void
+         * @since 1.0.0
+         */
+        public function register_add_action() : void
+        {
+            if ( is_admin() ) {
+
                 add_action( 'load-post.php', array( $this, 'set_posts_metaboxes' ) );
 
                 add_action( 'load-post-new.php', array( $this, 'set_posts_metaboxes' ) );
 
                 add_action( 'load-nav-menus.php', array( $this, 'set_nav_menus_metaboxes' ) );
+            }
+        }
 
-                $this->set_taxonomy_form_fields();
+        /**
+         * Set plugin update
+         *
+         * @access private
+         * @return void
+         * @since 1.0.0
+         */
+        private function set_plugin_updater() : void
+        {
+            if ( isset( $this->plugin_update ) ) {
+                $this->plugin_update->register_add_filter();
+            }
+        }
 
-                if ( isset( $this->admin_hooks ) ) {
-                    $this->admin_hooks->register_add_action();
-                    $this->admin_hooks->register_add_filter();
+        /**
+         * Set hooks that will run at both the admin and public site area
+         *
+         * @access private
+         * @return void
+         * @since 1.0.0
+         */
+        private function set_hooks() : void
+        {
+            if ( isset( $this->hooks ) ) {
+                $this->hooks->register_add_action();
+                $this->hooks->register_add_filter();
+            }
+        }
+
+        /**
+         * Method to set post types.
+         *
+         * @access private
+         * @return void
+         * @since 1.0.0
+         */
+        private function set_post_types() : void
+        {
+            if ( isset( $this->post_types ) ) {
+                foreach ( $this->post_types as $post_type ) {
+                    $post_type->register_add_action();
                 }
-            } else {
+            }
+        }
 
-                $this->router->register_add_action();
-                $this->router->register_add_filter();
+        /**
+         * Method to set taxonomies.
+         *
+         * @access private
+         * @return void
+         * @since 1.0.0
+         */
+        private function set_taxonomies() : void
+        {
+            if ( isset( $this->taxonomies ) ) {
+                foreach ( $this->taxonomies as $taxonomy ) {
+                    $taxonomy->register_add_action();
+                }
+            }
+        }
 
-                if ( isset( $this->public_hooks ) ) {
-                    $this->public_hooks->register_add_action();
-                    $this->public_hooks->register_add_filter();
+        /**
+         * Method to set shortcodes.
+         *
+         * @access private
+         * @return void
+         * @since 1.0.0
+         */
+        private function set_shortcodes() : void
+        {
+            if ( isset( $this->shortcodes ) ) {
+                foreach ( $this->shortcodes as $shortcode ) {
+                    $shortcode->register_add_action();
+                }
+            }
+        }
+
+        /**
+         * Method to set AJAX request that will be made to the admin and public end.
+         *
+         * @access public
+         * @return void
+         * @since 1.0.0
+         */
+        public function set_ajax_handlers() : void
+        {
+            if ( isset( $this->admin_ajax_requests ) ) {
+                foreach ( $this->admin_ajax_requests as $ajax_request ) {
+                    $ajax_request->register_add_action();
+                }
+            }
+
+            if ( isset( $this->public_ajax_requests ) ) {
+                foreach ( $this->public_ajax_requests as $ajax_request ) {
+                    $ajax_request->register_add_action();
                 }
             }
         }
@@ -504,50 +614,63 @@ if ( ! class_exists( 'Bootstrap' ) ) {
         }
 
         /**
-         * Method to set post types.
+         * Method to set taxonomy form fields.
          *
-         * @access private
+         * @access public
          * @return void
          * @since 1.0.0
          */
-        private function set_post_types() : void
+        public function set_taxonomy_form_fields() : void
         {
-            if ( isset( $this->post_types ) ) {
-                foreach ( $this->post_types as $post_type ) {
-                    $post_type->register_add_action();
+            if ( isset( $this->taxonomy_form_fields ) ) {
+                foreach ( $this->taxonomy_form_fields as $form_field ) {
+                    $form_field->register_add_action();
                 }
             }
         }
 
         /**
-         * Method to set taxonomies.
+         * Set hooks that will run only at the admin area
          *
          * @access private
          * @return void
          * @since 1.0.0
          */
-        private function set_taxonomies() : void
+        private function set_admin_hooks() : void
         {
-            if ( isset( $this->taxonomies ) ) {
-                foreach ( $this->taxonomies as $taxonomy ) {
-                    $taxonomy->register_add_action();
-                }
+            if ( isset( $this->admin_hooks ) ) {
+                $this->admin_hooks->register_add_action();
+                $this->admin_hooks->register_add_filter();
             }
         }
 
         /**
-         * Method to set shortcodes.
+         * Set hooks that will run only at the public site area
          *
          * @access private
          * @return void
          * @since 1.0.0
          */
-        private function set_shortcodes() : void
+        private function set_public_hooks() : void
         {
-            if ( isset( $this->shortcodes ) ) {
-                foreach ( $this->shortcodes as $shortcode ) {
-                    $shortcode->register_add_action();
-                }
+            if ( isset( $this->public_hooks ) ) {
+                $this->public_hooks->register_add_action();
+                $this->public_hooks->register_add_filter();
+            }
+        }
+
+        /**
+         * Set custom routes that will accessible at the site front end
+         *
+         * @access private
+         * @return void
+         * @since 1.0.0
+         */
+        private function set_routes() : void
+        {
+            if ( isset( $this->router ) ) {
+                $this->router->register_add_action();
+                $this->router->register_add_filter();
             }
         }
 
@@ -579,44 +702,6 @@ if ( ! class_exists( 'Bootstrap' ) ) {
             if ( isset( $this->nav_menu_metaboxes ) ) {
                 foreach ( $this->nav_menu_metaboxes as $metabox ) {
                     $metabox->metabox();
-                }
-            }
-        }
-
-        /**
-         * Method to set taxonomy form fields.
-         *
-         * @access public
-         * @return void
-         * @since 1.0.0
-         */
-        public function set_taxonomy_form_fields() : void
-        {
-            if ( isset( $this->taxonomy_form_fields ) ) {
-                foreach ( $this->taxonomy_form_fields as $form_field ) {
-                    $form_field->register_add_action();
-                }
-            }
-        }
-
-        /**
-         * Method to set AJAX request that will be made to the admin and public end.
-         *
-         * @access public
-         * @return void
-         * @since 1.0.0
-         */
-        public function set_ajax_handlers() : void
-        {
-            if ( isset( $this->admin_ajax_requests ) ) {
-                foreach ( $this->admin_ajax_requests as $ajax_request ) {
-                    $ajax_request->register_add_action();
-                }
-            }
-
-            if ( isset( $this->public_ajax_requests ) ) {
-                foreach ( $this->public_ajax_requests as $ajax_request ) {
-                    $ajax_request->register_add_action();
                 }
             }
         }
