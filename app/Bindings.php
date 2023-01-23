@@ -21,7 +21,6 @@ use WPS_Plugin\App\Admin\Menus\WPSPluginMenu;
 use WPS_Plugin\App\Admin\Menus\WPSSettingMenu;
 use WPS_Plugin\App\Admin\Menus\WPSSubMenu;
 use WPS_Plugin\App\Admin\NavMenuMetaboxes\WPSNavMenuMetabox;
-use WPS_Plugin\App\Admin\PostColumns\HTSABranchLocationColumn;
 use WPS_Plugin\App\Admin\PostColumns\HTSAFeaturedPostColumn;
 use WPS_Plugin\App\Admin\PostColumns\HTSAOfficerThumbnailColumn;
 use WPS_Plugin\App\Admin\PostColumns\HTSAProfilePositionHeldColumn;
@@ -30,7 +29,6 @@ use WPS_Plugin\App\Admin\PostColumns\HTSAReviewNameColumn;
 use WPS_Plugin\App\Admin\PostColumns\HTSAReviewRatingColumn;
 use WPS_Plugin\App\Admin\PostColumns\WPSPostColumn;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSABranchDirectionMetabox;
-use WPS_Plugin\App\Admin\PostMetaboxes\HTSABranchLocationMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSAFeaturedMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSAOfficerContactMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSAPenaltyCurrencySymbolMetabox;
@@ -57,6 +55,7 @@ use WPS_Plugin\App\Public\Shortcodes\HTSAContactFormShortcode;
 use WPS_Plugin\App\Public\Shortcodes\HTSANewsletterFormShortcode;
 use WPS_Plugin\App\Public\Shortcodes\WPSShortcode;
 use WPS_Plugin\App\Public\Taxonomies\HTSADepartment;
+use WPS_Plugin\App\Public\Taxonomies\HTSALocation;
 use WPS_Plugin\App\Public\Taxonomies\WPSTaxonomy;
 
 /**
@@ -154,6 +153,7 @@ if ( ! class_exists( 'Bindings' ) ) {
         public static array $taxonomies = array(
             // WPSTaxonomy::class,
             HTSADepartment::class,
+            HTSALocation::class,
         );
 
         /**
@@ -184,7 +184,6 @@ if ( ! class_exists( 'Bindings' ) ) {
             HTSAProfilePositionHeldMetabox::class,
             HTSAProfileSocialHandlesMetabox::class,
             HTSAOfficerContactMetabox::class,
-            HTSABranchLocationMetabox::class,
             HTSABranchDirectionMetabox::class,
             HTSAPenaltyVehicleCategoriesMetabox::class,
             HTSAPenaltyCurrencySymbolMetabox::class,
@@ -270,7 +269,6 @@ if ( ! class_exists( 'Bindings' ) ) {
             HTSAProfilePositionHeldColumn::class,
             HTSAProfileThumbnailColumn::class,
             HTSAOfficerThumbnailColumn::class,
-            HTSABranchLocationColumn::class,
             HTSAReviewNameColumn::class,
             HTSAReviewRatingColumn::class,
         );

@@ -88,13 +88,6 @@ if ( ! class_exists( 'Constants' ) ) {
             }
 
             /**
-             * Branch Location Meta Key ID
-             */
-            if ( ! defined( 'HTSA_BRANCH_LOCATION_META_KEY' ) ) {
-                define( 'HTSA_BRANCH_LOCATION_META_KEY', 'htsa_branch_location' );
-            }
-
-            /**
              * Branch Direction Meta Key ID
              */
             if ( ! defined( 'HTSA_BRANCH_DIRECTION_META_KEY' ) ) {
@@ -165,6 +158,13 @@ if ( ! class_exists( 'Constants' ) ) {
             }
 
             /**
+             * Reviews Post Type ID
+             */
+            if ( ! defined( 'HTSA_REVIEWS_POST_TYPE' ) ) {
+                define( 'HTSA_REVIEWS_POST_TYPE', 'htsa_reviews' );
+            }
+
+            /**
              * Department Taxonomy ID
              */
             if ( ! defined( 'HTSA_DEPARTMENT_TAXONOMY' ) ) {
@@ -172,10 +172,10 @@ if ( ! class_exists( 'Constants' ) ) {
             }
 
             /**
-             * Reviews Post Type ID
+             * Location Taxonomy ID
              */
-            if ( ! defined( 'HTSA_REVIEWS_POST_TYPE' ) ) {
-                define( 'HTSA_REVIEWS_POST_TYPE', 'htsa_reviews' );
+            if ( ! defined( 'HTSA_LOCATION_TAXONOMY' ) ) {
+                define( 'HTSA_LOCATION_TAXONOMY', 'htsa_location' );
             }
 
             /**
