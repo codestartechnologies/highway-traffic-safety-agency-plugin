@@ -88,13 +88,6 @@ if ( ! class_exists( 'Constants' ) ) {
             }
 
             /**
-             * Officer Zone Meta Key ID
-             */
-            if ( ! defined( 'HTSA_OFFICER_ZONE_META_KEY' ) ) {
-                define( 'HTSA_OFFICER_ZONE_META_KEY', 'htsa_officer_zone' );
-            }
-
-            /**
              * Branch Location Meta Key ID
              */
             if ( ! defined( 'HTSA_BRANCH_LOCATION_META_KEY' ) ) {
@@ -169,6 +162,13 @@ if ( ! class_exists( 'Constants' ) ) {
              */
             if ( ! defined( 'HTSA_PENALTIES_POST_TYPE' ) ) {
                 define( 'HTSA_PENALTIES_POST_TYPE', 'htsa_penalty' );
+            }
+
+            /**
+             * Department Taxonomy ID
+             */
+            if ( ! defined( 'HTSA_DEPARTMENT_TAXONOMY' ) ) {
+                define( 'HTSA_DEPARTMENT_TAXONOMY', 'htsa_department' );
             }
 
             /**

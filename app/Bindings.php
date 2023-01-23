@@ -24,7 +24,6 @@ use WPS_Plugin\App\Admin\NavMenuMetaboxes\WPSNavMenuMetabox;
 use WPS_Plugin\App\Admin\PostColumns\HTSABranchLocationColumn;
 use WPS_Plugin\App\Admin\PostColumns\HTSAFeaturedPostColumn;
 use WPS_Plugin\App\Admin\PostColumns\HTSAOfficerThumbnailColumn;
-use WPS_Plugin\App\Admin\PostColumns\HTSAOfficerZoneColumn;
 use WPS_Plugin\App\Admin\PostColumns\HTSAProfilePositionHeldColumn;
 use WPS_Plugin\App\Admin\PostColumns\HTSAProfileThumbnailColumn;
 use WPS_Plugin\App\Admin\PostColumns\HTSAReviewNameColumn;
@@ -34,7 +33,6 @@ use WPS_Plugin\App\Admin\PostMetaboxes\HTSABranchDirectionMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSABranchLocationMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSAFeaturedMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSAOfficerContactMetabox;
-use WPS_Plugin\App\Admin\PostMetaboxes\HTSAOfficerZoneMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSAPenaltyCurrencySymbolMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSAPenaltyVehicleCategoriesMetabox;
 use WPS_Plugin\App\Admin\PostMetaboxes\HTSAProfilePositionHeldMetabox;
@@ -58,6 +56,7 @@ use WPS_Plugin\App\Public\PostTypes\WPSPostType;
 use WPS_Plugin\App\Public\Shortcodes\HTSAContactFormShortcode;
 use WPS_Plugin\App\Public\Shortcodes\HTSANewsletterFormShortcode;
 use WPS_Plugin\App\Public\Shortcodes\WPSShortcode;
+use WPS_Plugin\App\Public\Taxonomies\HTSADepartment;
 use WPS_Plugin\App\Public\Taxonomies\WPSTaxonomy;
 
 /**
@@ -154,6 +153,7 @@ if ( ! class_exists( 'Bindings' ) ) {
          */
         public static array $taxonomies = array(
             // WPSTaxonomy::class,
+            HTSADepartment::class,
         );
 
         /**
@@ -183,7 +183,6 @@ if ( ! class_exists( 'Bindings' ) ) {
             HTSAFeaturedMetabox::class,
             HTSAProfilePositionHeldMetabox::class,
             HTSAProfileSocialHandlesMetabox::class,
-            HTSAOfficerZoneMetabox::class,
             HTSAOfficerContactMetabox::class,
             HTSABranchLocationMetabox::class,
             HTSABranchDirectionMetabox::class,
@@ -270,7 +269,6 @@ if ( ! class_exists( 'Bindings' ) ) {
             HTSAFeaturedPostColumn::class,
             HTSAProfilePositionHeldColumn::class,
             HTSAProfileThumbnailColumn::class,
-            HTSAOfficerZoneColumn::class,
             HTSAOfficerThumbnailColumn::class,
             HTSABranchLocationColumn::class,
             HTSAReviewNameColumn::class,
