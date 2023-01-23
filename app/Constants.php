@@ -1,8 +1,8 @@
 <?php
 /**
- * WPSConstants class file.
+ * Constants class file.
  *
- * This file contains WPSConstants class which defines needed constants that will be used in your plugin development.
+ * This file contains Constants class which defines needed constants that will be used in your plugin development.
  *
  * @package    WordpressPluginStarter
  * @author     Chijindu Nzeako <chijindunzeako517@gmail.com>
@@ -19,16 +19,16 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! class_exists( 'WPSConstants' ) ) {
+if ( ! class_exists( 'Constants' ) ) {
     /**
-     * Class WPSConstants
+     * Class Constants
      *
      * This class defines needed constants that will be used in your plugin development.
      *
      * @package WordpressPluginStarter
      * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
-    final class WPSConstants {
+    final class Constants {
         /**
          * Define core constants.
          *
