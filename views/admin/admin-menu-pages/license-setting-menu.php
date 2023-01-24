@@ -55,9 +55,9 @@ htsa_plugin_destroy_session_data( 'htsa_plugin_license_api' );
     <br>
 
     <div>
-        <a href="<?php echo $refresh_link; ?>" class="button">Refresh License</a>
-        <a href="<?php echo $activation_link; ?>" class="button button-primary" <?php echo ( $activation_status === true ) ? 'disabled' : null ?>>Activate License</a>
-        <a href="<?php echo $deactivation_link; ?>" class="button button-primary" <?php echo ( $deactivation_status === true ) ? 'disabled' : null ?>>Deactivate License</a>
+        <a href="<?php echo $refresh_link; ?>" class="button"> <?php esc_html_e( 'Refresh License', 'htsa' ); ?> </a>
+        <a href="<?php echo $activation_link; ?>" class="button button-primary" <?php echo ( $activation_status === true ) ? 'disabled' : null ?>> <?php esc_html_e( 'Activate License', 'htsa' ); ?> </a>
+        <a href="<?php echo $deactivation_link; ?>" class="button button-primary" <?php echo ( $deactivation_status === true ) ? 'disabled' : null ?>> <?php esc_html_e( 'Deactivate License', 'htsa' ); ?> </a>
     </div>
 
 </div>
