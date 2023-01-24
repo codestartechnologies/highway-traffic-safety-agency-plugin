@@ -72,14 +72,39 @@ if ( ! function_exists( 'htsa_plugin_get_license_api_response' ) ) {
 
         switch ( $response ) {
             case 'invalid user credentials':
-            case 'unknown license key':
                 $message['type'] = 'error';
                 $message['message'] = sprintf( __( '<b>%s</b>: License settings are invalid! Check your license key and access key', 'htsa-plugin' ), HTSA_PLUGIN_NAME );
                 break;
 
+            case 'unknown license key':
+            case 'invalid license key':
+                $message['type'] = 'error';
+                $message['message'] = sprintf( __( '<b>%s</b>: License key is invalid! Contact support', 'htsa-plugin' ), HTSA_PLUGIN_NAME );
+                break;
+
             case 'unactivated license key':
                 $message['type'] = 'error';
-                $message['message'] = sprintf( __( '<b>%s</b>: License key has not yet been activated! Activate license key before deactivation', 'htsa-plugin' ), HTSA_PLUGIN_NAME );
+                $message['message'] = sprintf( __( '<b>%s</b>: License key has not yet been activated!', 'htsa-plugin' ), HTSA_PLUGIN_NAME );
+                break;
+
+            case 'expired license key':
+                $message['type'] = 'error';
+                $message['message'] = sprintf( __( '<b>%s</b>: License key is expired! Contact support', 'htsa-plugin' ), HTSA_PLUGIN_NAME );
+                break;
+
+            case 'valid license key':
+                $message['type'] = 'success';
+                $message['message'] = sprintf( __( '<b>%s</b>: License key is valid', 'htsa-plugin' ), HTSA_PLUGIN_NAME );
+                break;
+
+            case 'license key activated':
+                $message['type'] = 'success';
+                $message['message'] = sprintf( __( '<b>%s</b>: License key activated successfully', 'htsa-plugin' ), HTSA_PLUGIN_NAME );
+                break;
+
+            case 'license key deactivated':
+                $message['type'] = 'success';
+                $message['message'] = sprintf( __( '<b>%s</b>: License key deactivated successfully', 'htsa-plugin' ), HTSA_PLUGIN_NAME );
                 break;
 
             case 'invalid license key domain':
@@ -128,6 +153,6 @@ if ( ! function_exists( 'htsa_plugin_license_api_notice' ) ) {
     function htsa_plugin_license_api_notice( mixed $response ) : void
     {
         $message = htsa_plugin_get_license_api_response( $response );
-        printf( '<div class="%1$s"><p>%2$s</p></div>', $message['type'], $message['message'] );
+        printf( '<div class="notice notice-%1$s"><p>%2$s</p></div>', $message['type'], $message['message'] );
     }
 }

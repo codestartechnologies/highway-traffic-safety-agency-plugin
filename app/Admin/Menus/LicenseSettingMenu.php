@@ -69,7 +69,7 @@ if ( ! class_exists( 'LicenseSettingMenu' ) ) {
                 1 === wp_verify_nonce( $nonce, 'htsa-plugin-license-api' )
             ) {
                 if ( 'license-status' === $action ) {
-                    if ( CodestarAPI::is_api_error( $response = CodestarAPI::get_license_info() ) ) {
+                    if ( CodestarAPI::is_api_error( $response = CodestarAPI::validate_license() ) ) {
                         update_option( 'htsa_plugin_license_valid', false );
                     } else {
                         update_option( 'htsa_plugin_license_valid', true );

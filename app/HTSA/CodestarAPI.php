@@ -127,22 +127,22 @@ if ( ! class_exists( 'CodestarAPI' ) ) {
         }
 
         /**
-         * API call for getting product license information
+         * API call for validating product license
          *
          * @static
          * @return mixed
          * @since 1.0.0
          */
-        public static function get_license_info() : mixed
+        public static function validate_license() : mixed
         {
-            if ( false === ( $response = get_transient( 'htsa_plugin_license_key_info' ) ) ) {
-                $response = self::call_api( 'info', array( 'license_key' => self::get_license_setting()['license_key'] ), 'GET' );
-                if ( ! self::is_api_error( $response ) ) {
-                    set_transient( 'htsa_plugin_license_key_info', $response, 5 * HOUR_IN_SECONDS );
-                }
-            }
-
-            return $response;
+            return self::call_api(
+                'validate',
+                array(
+                    'product_id'    => $_ENV['HTSA_PLUGIN_API_PRODUCT_ID'],
+                    'license_key' => self::get_license_setting()['license_key']
+                ),
+                'GET'
+            );
         }
 
         /**
@@ -183,6 +183,25 @@ if ( ! class_exists( 'CodestarAPI' ) ) {
                 ),
                 'POST'
             );
+        }
+
+        /**
+         * API call for getting product license information
+         *
+         * @static
+         * @return mixed
+         * @since 1.0.0
+         */
+        public static function get_license_info() : mixed
+        {
+            if ( false === ( $response = get_transient( 'htsa_plugin_license_key_info' ) ) ) {
+                $response = self::call_api( 'info', array( 'license_key' => self::get_license_setting()['license_key'] ), 'GET' );
+                if ( ! self::is_api_error( $response ) ) {
+                    set_transient( 'htsa_plugin_license_key_info', $response, 5 * HOUR_IN_SECONDS );
+                }
+            }
+
+            return $response;
         }
 
         /**
