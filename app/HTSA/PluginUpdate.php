@@ -13,6 +13,7 @@
 namespace WPS_Plugin\App\HTSA;
 
 use Codestartechnologies\WordpressPluginStarter\Interfaces\FilterHook;
+use Codestartechnologies\WordpressPluginStarter\Traits\Logger;
 
 /**
  * Prevent direct access to this file.
@@ -30,6 +31,9 @@ if ( ! class_exists( 'PluginUpdate' ) ) {
      */
     final class PluginUpdate implements FilterHook
     {
+
+        use Logger;
+
         /**
          * Register filter hooks
          *
@@ -44,7 +48,7 @@ if ( ! class_exists( 'PluginUpdate' ) ) {
         }
 
         /**
-         * Fetch details for latest version of plugin from Codestar API
+         * Fetch plugin data from Codestar API
          *
          * @access private
          * @return mixed
@@ -52,12 +56,19 @@ if ( ! class_exists( 'PluginUpdate' ) ) {
          */
         private function get_product_info() : mixed
         {
-            $product_info = CodestarAPI::get_product_info();
-            return ( CodestarAPI::is_api_error( $product_info ) ) ? false : $product_info;
+            $response = CodestarAPI::get_product_info();
+
+            if ( CodestarAPI::is_api_error( $response ) ) {
+                $this->log( __FILE__, 'API call to codestar.com.ng for plugin update failed' );
+                $this->log( __FILE__, $response->message ?? $response );
+                return false;
+            }
+
+            return $response;
         }
 
         /**
-         * Check if there is an available update for the theme
+         * Check if there is an available update for the plugin
          *
          * @access private
          * @return false|object

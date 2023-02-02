@@ -86,7 +86,7 @@ if ( ! class_exists( 'LicenseSetting' ) ) {
                 ),
                 array(
                     'id'            => 'access_key',
-                    'title'         => esc_html__( 'Plugin Access Key', 'htsa-plugin' ),
+                    'title'         => esc_html__( 'User Access Key', 'htsa-plugin' ),
                     'callback'      => 'access_key_field_cb',
                     'setting_key'   => 'license_setting',
                 ),

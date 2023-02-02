@@ -73,7 +73,8 @@ if ( ! class_exists( 'CodestarAPI' ) ) {
                 return "invalid license setting";
             }
 
-            $url = trailingslashit( $_ENV['HTSA_PLUGIN_API_ENDPOINT'] ) . $action;
+            $endpoint = ( $_ENV['HTSA_PLUGIN_ENV'] === 'production' ) ? $_ENV['HTSA_PLUGIN_API_ENDPOINT_PROD'] : $_ENV['HTSA_PLUGIN_API_ENDPOINT_DEV'];
+            $url = trailingslashit( $endpoint ) . $action;
             $setting = self::get_license_setting();
             $access_key = $setting['access_key'];
 
@@ -183,25 +184,6 @@ if ( ! class_exists( 'CodestarAPI' ) ) {
                 ),
                 'POST'
             );
-        }
-
-        /**
-         * API call for getting product license information
-         *
-         * @static
-         * @return mixed
-         * @since 1.0.0
-         */
-        public static function get_license_info() : mixed
-        {
-            if ( false === ( $response = get_transient( 'htsa_plugin_license_key_info' ) ) ) {
-                $response = self::call_api( 'info', array( 'license_key' => self::get_license_setting()['license_key'] ), 'GET' );
-                if ( ! self::is_api_error( $response ) ) {
-                    set_transient( 'htsa_plugin_license_key_info', $response, 5 * HOUR_IN_SECONDS );
-                }
-            }
-
-            return $response;
         }
 
         /**

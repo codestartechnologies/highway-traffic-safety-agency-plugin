@@ -12,6 +12,7 @@
 namespace WPS_Plugin\App\Admin\Menus;
 
 use Codestartechnologies\WordpressPluginStarter\Abstracts\OptionsMenus;
+use Codestartechnologies\WordpressPluginStarter\Traits\Logger;
 use WPS_Plugin\App\HTSA\CodestarAPI;
 
 /**
@@ -30,6 +31,9 @@ if ( ! class_exists( 'LicenseSettingMenu' ) ) {
      * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class LicenseSettingMenu extends OptionsMenus {
+
+        use Logger;
+
         /**
          * LicenseSettingMenu Constructor
          */
@@ -70,30 +74,34 @@ if ( ! class_exists( 'LicenseSettingMenu' ) ) {
             ) {
                 if ( 'license-status' === $action ) {
                     if ( CodestarAPI::is_api_error( $response = CodestarAPI::validate_license() ) ) {
-                        update_option( 'htsa_plugin_license_valid', false );
+                        update_option( 'htsa_plugin_license_valid', 0 );
+                        $this->log( __FILE__, 'API call to codestar.com.ng for license status failed' );
+                        $this->log( __FILE__, $response->message ?? $response );
                     } else {
-                        update_option( 'htsa_plugin_license_valid', true );
+                        update_option( 'htsa_plugin_license_valid', 1 );
                     }
                 }
 
                 if ( 'activate-license' === $action ) {
                     if ( CodestarAPI::is_api_error( $response = CodestarAPI::activate_license() ) ) {
-                        update_option( 'htsa_plugin_license_activated', false );
+                        update_option( 'htsa_plugin_license_activated', 0 );
                     } else {
-                        update_option( 'htsa_plugin_license_activated', true );
+                        update_option( 'htsa_plugin_license_deactivated', 0 );
+                        update_option( 'htsa_plugin_license_activated', 1 );
                     }
                 }
 
                 if ( 'deactivate-license' === $action ) {
                     if ( CodestarAPI::is_api_error( $response = CodestarAPI::deactivate_license() ) ) {
-                        update_option( 'htsa_plugin_license_deactivated', false );
+                        update_option( 'htsa_plugin_license_deactivated', 0 );
                     } else {
-                        update_option( 'htsa_plugin_license_deactivated', true );
+                        update_option( 'htsa_plugin_license_activated', 0 );
+                        update_option( 'htsa_plugin_license_deactivated', 1 );
                     }
                 }
 
                 $response = ( isset( $response->success ) ) ? $response->message : 'error';
-                htsa_plugin_store_session_data( 'htsa_plugin_license_api', $response, strtotime( '+1 minute' ) );
+                htsa_plugin_store_session_data( 'htsa_plugin_license_api', $response, strtotime( '+2 minutes' ) );
                 wp_safe_redirect( admin_url( 'options-general.php?page=htsa-plugin-license-setting' ) );
             }
         }
