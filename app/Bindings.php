@@ -12,6 +12,7 @@
 
 namespace WPS_Plugin\App;
 
+use WPS_Plugin\App\Admin\AdminNotices\LicenseKeyNotice;
 use WPS_Plugin\App\Admin\AdminNotices\WPSAdminNotice;
 use WPS_Plugin\App\Admin\AjaxRequests\WPSAdminAjaxRequest;
 use WPS_Plugin\App\Admin\Menus\HTSAEmailSettingMenu;
@@ -228,6 +229,7 @@ if ( ! class_exists( 'Bindings' ) ) {
          */
         public static array $admin_notices = array(
             // WPSAdminNotice::class,
+            LicenseKeyNotice::class,
         );
 
         /**

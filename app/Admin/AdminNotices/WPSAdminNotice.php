@@ -5,7 +5,7 @@
  * This file contains WPSAdminNotice class that will register a custom admin notification.
  *
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since       1.0.0
  */
 
@@ -34,19 +34,17 @@ if ( ! class_exists( 'WPSAdminNotice' ) ) {
          */
         public function __construct()
         {
-            $this->view = 'admin-notices.wps-admin-notice';
+            $this->type = 'info';
         }
 
         /**
-         * The arguements to pass to the view
+         * The notification message
          *
          * @return array
          */
-        public function view_args() : array
+        public function get_message() : string
         {
-            return array(
-                'message'   => esc_html__( 'Thanks for using WordPress Plugin Starter!', 'wps' ),
-            );
+            return esc_html__( 'Thanks for using WordPress Plugin Starter!', 'wps' );
         }
     }
 }
