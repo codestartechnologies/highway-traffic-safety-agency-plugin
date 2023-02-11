@@ -5,7 +5,7 @@
  * This file contains HTSAContactFormShortcode class that will register a custom shortcode.
  *
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/highway-traffic-security-agency-plugin
  * @since       1.0.0
  */
 
@@ -69,7 +69,7 @@ if ( ! class_exists( 'HTSAContactFormShortcode' ) ) {
          */
         public function display( array $filtered_attributes, string $content, string $tag ) : void
         {
-            $this->load_view( 'shortcodes.contact-form', array(), 'public' );
+            $this->load_view( 'shortcodes.contact-form', array(), 'public', false );
         }
     }
 }

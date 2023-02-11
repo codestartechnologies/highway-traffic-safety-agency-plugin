@@ -69,7 +69,7 @@ if ( ! class_exists( 'HTSANewsletterFormShortcode' ) ) {
          */
         public function display( array $filtered_attributes, string $content, string $tag ) : void
         {
-            $this->load_view( 'shortcodes.newsletter-form', array(), 'public' );
+            $this->load_view( 'shortcodes.newsletter-form', array(), 'public', false );
         }
     }
 }
