@@ -6,7 +6,7 @@
  *
  * @package    WordpressPluginStarter
  * @author     Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link       https://codestar.com.ng
+ * @link       https://github.com/codestartechnologies/wordpress-plugin-starter
  * @license    https://www.gnu.org/licenses/agpl-3.0.txt GNU/AGPLv3
  * @since      1.0.0
  */
@@ -113,11 +113,14 @@ if ( ! class_exists( 'Router' ) ) {
         {
             if ( $this->route_exists() ) {
                 $route_handler = $this->get_route_handler( $this->get_current_route() );
+                $check = ( isset( $route_handler['capability'] ) ) ? current_user_can( $route_handler['capability'] ) : true;
 
-                if ( isset( $route_handler['view'] ) ) {
-                    $this->load_view( $route_handler['view'], array(), 'public' );
+                if ( ! isset( $route_handler['view'] ) ) {
+                    _e( '<br /><br /> <h1><center>No view found! Set a default view for this page.</center></h1>', 'wps' );
+                } elseif ( ! $check  ) {
+                    _e( '<br /><br /> <h1><center>You do not have permission to view this page!</center></h1>', 'wps' );
                 } else {
-                    _e( '<br /><br /> <h1><center>Empty Page! <br /> No view found!</center></h1>', 'wps' );
+                    $this->load_view( $route_handler['view'], array(), 'public' );
                 }
 
                 exit;
