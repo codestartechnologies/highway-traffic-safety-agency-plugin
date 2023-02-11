@@ -6,7 +6,7 @@
  *
  * @package    WordpressPluginStarter
  * @author     Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link       https://codestar.com.ng
+ * @link       https://github.com/codestartechnologies/wordpress-plugin-starter
  * @license    https://www.gnu.org/licenses/agpl-3.0.txt GNU/AGPLv3
  * @since      1.0.0
  */
@@ -98,6 +98,10 @@ if ( ! class_exists( 'Hooks' ) ) {
                 wp_enqueue_editor();
                 $data = 'jQuery( function ( $ ) { $.each( jQuery( ".htsa-textarea" ), function ( index, editor ) { wp.editor.initialize( jQuery( editor ).attr( "id" ), { tinymce: true } ); } ); } );';
                 wp_add_inline_script( 'editor', $data );
+            }
+
+            if ( $hook_suffix === 'toplevel_page_htsa-plugin-menu' ) {
+                wp_enqueue_style( 'htsa-plugin-htsa-menu', HTSA_PLUGIN_HTSA_MENU_CSS, array(), HTSA_PLUGIN_VERSION );
             }
         }
 

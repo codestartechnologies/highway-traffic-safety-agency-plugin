@@ -1,0 +1,112 @@
+/*
+    htsa-menu.css
+    https://github.com/codestartechnologies/highway-traffic-security-agency-plugin
+
+    Copyright 2022 Codestar Technologies
+    Released under AGPL-3.0-or-later
+    https://www.gnu.org/licenses/agpl-3.0.en.html
+*/
+
+div.wrap > * {
+    box-sizing: border-box;
+}
+
+img {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+}
+
+.d-flex {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.htsa-panel-top {
+    flex-direction: column;
+    align-items: center;
+    background-color: #e7ebfd;
+}
+
+.htsa-panel-top .left,
+.htsa-panel-top .right {
+    width: 100%;
+    padding: 0.5rem 1rem;
+}
+
+.htsa-panel-top .left h3 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: normal;
+    color: #302f2f;
+}
+
+.htsa-panel-top .left h4 {
+    font-size: 1.4rem;
+}
+
+.htsa-panel-top .left p {
+    font-size: 17px;
+}
+
+.htsa-panel-content {
+    background-color: #ffffff;
+}
+
+.htsa-panel-content > div.d-flex {
+    flex-direction: column;
+}
+
+.htsa-panel-content > div.d-flex > div {
+    width: 100%;
+    padding: 0.6rem 1rem;
+}
+
+.htsa-panel-content > div.d-flex > div h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.htsa-panel-content > div.d-flex > div p,
+.htsa-panel-content > div.d-flex > div ul {
+    font-size: 16px;
+}
+
+.htsa-panel-content > div.d-flex > div .link {
+    font-size: 17px;
+}
+
+.htsa-panel-content > div.d-flex > div ul {
+    list-style-type: disc;
+    margin-left: 14px;
+}
+
+.htsa-panel-content > div.d-flex > div ul li {
+    margin-bottom: 8px;
+}
+
+@media screen and (min-width: 768px) {
+
+    .htsa-panel-top {
+        flex-direction: row;
+    }
+
+    .htsa-panel-top .left {
+        width: 60%;
+    }
+
+    .htsa-panel-top .right {
+        width: 40%;
+    }
+
+    .htsa-panel-content > div.d-flex {
+        flex-direction: row;
+    }
+
+    .htsa-panel-content > div.d-flex > div {
+        width: 30%;
+    }
+
+}

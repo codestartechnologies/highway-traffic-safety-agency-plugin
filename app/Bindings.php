@@ -16,6 +16,7 @@ use WPS_Plugin\App\Admin\AdminNotices\LicenseKeyNotice;
 use WPS_Plugin\App\Admin\AdminNotices\WPSAdminNotice;
 use WPS_Plugin\App\Admin\AjaxRequests\WPSAdminAjaxRequest;
 use WPS_Plugin\App\Admin\Menus\HTSAEmailSettingMenu;
+use WPS_Plugin\App\Admin\Menus\HTSAMenu;
 use WPS_Plugin\App\Admin\Menus\LicenseSettingMenu;
 use WPS_Plugin\App\Admin\Menus\WPSMenu;
 use WPS_Plugin\App\Admin\Menus\WPSPluginMenu;
@@ -86,6 +87,7 @@ if ( ! class_exists( 'Bindings' ) ) {
          */
         public static array $menus = array(
             // WPSMenu::class,
+            HTSAMenu::class,
         );
 
         /**

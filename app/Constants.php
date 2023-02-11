@@ -60,6 +60,20 @@ if ( ! class_exists( 'Constants' ) ) {
             }
 
             /**
+             * Plugin support url
+             */
+            if ( ! defined( 'HTSA_PLUGIN_SUPPORT_URL' ) ) {
+                define( 'HTSA_PLUGIN_SUPPORT_URL', 'https://codestar.com.ng/support-plans' );
+            }
+
+            /**
+             * Plugin recommended theme url
+             */
+            if ( ! defined( 'HTSA_PLUGIN_RECOMMENDED_THEME_URL' ) ) {
+                define( 'HTSA_PLUGIN_RECOMMENDED_THEME_URL', 'https://codestar.com.ng/shop/highway-traffic-security-agency' );
+            }
+
+            /**
              * Featured Post Meta Key ID
              */
             if ( ! defined( 'HTSA_FEATURED_META_KEY' ) ) {
@@ -197,6 +211,13 @@ if ( ! class_exists( 'Constants' ) ) {
              */
             if ( ! defined( 'HTSA_NEWSLETTER_FORM_SHORTCODE' ) ) {
                 define( 'HTSA_NEWSLETTER_FORM_SHORTCODE', 'htsa_newsletter_form' );
+            }
+
+            /**
+             * Define path to htsa-menu.css
+             */
+            if ( ! defined( 'HTSA_PLUGIN_HTSA_MENU_CSS' ) ) {
+                define( 'HTSA_PLUGIN_HTSA_MENU_CSS', WPS_CSS_BASE_URL . 'htsa-menu.css' );
             }
 
         }
