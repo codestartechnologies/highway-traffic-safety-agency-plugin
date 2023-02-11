@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Highway Traffic Security Agency Plugin
-Plugin URI:
-Description: A plugin for Highway Traffic Security Agency WordPress Theme
+Plugin URI: https://codestar.com.ng/shop/highway-traffic-security-agency-plugin
+Description: WordPress plugin for <a href="https://codestar.com.ng/shop/highway-traffic-security-agency">Highway Traffic Security Agency WordPress Theme</a>. It registers post types, taxonomies, and shortcodes needed by the theme.
 Version: 0.1.0
 Requires at least: 5.6
 Requires PHP: 8.0
