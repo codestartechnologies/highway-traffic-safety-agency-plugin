@@ -195,8 +195,8 @@ if ( ! class_exists( 'Constants' ) ) {
             /**
              * Theme directory uri
              */
-            if ( ! defined( 'WTS_THEME_URI' ) ) {
-                define( 'WTS_THEME_URI', trailingslashit( get_theme_file_uri() ) );
+            if ( ! defined( 'HTSA_PLUGIN_ACTIVE_THEME_URI' ) ) {
+                define( 'HTSA_PLUGIN_ACTIVE_THEME_URI', trailingslashit( get_theme_file_uri() ) );
             }
 
             /**
