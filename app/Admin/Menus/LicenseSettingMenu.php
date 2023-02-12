@@ -4,16 +4,17 @@
  *
  * This file contains LicenseSettingMenu class that will register a menu page that displays plugin license settings.
  *
+ * @package     HighwayTrafficSecurityAgencyPlugin
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
  * @link        https://github.com/codestartechnologies/highway-traffic-security-agency-plugin
  * @since       1.0.0
  */
 
-namespace WPS_Plugin\App\Admin\Menus;
+namespace HTSA_Plugin\WPS_Plugin\App\Admin\Menus;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\OptionsMenus;
-use Codestartechnologies\WordpressPluginStarter\Traits\Logger;
-use WPS_Plugin\App\HTSA\CodestarAPI;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\OptionsMenus;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Traits\Logger;
+use HTSA_Plugin\WPS_Plugin\App\HTSA\CodestarAPI;
 
 /**
  * Prevent direct access to this file.
@@ -28,7 +29,8 @@ if ( ! class_exists( 'LicenseSettingMenu' ) ) {
      *
      * This class registers a custom admin setting menu page.
      *
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package HighwayTrafficSecurityAgencyPlugin
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class LicenseSettingMenu extends OptionsMenus {
 

@@ -4,14 +4,15 @@
  *
  * This file contains WPSTaxonomy class that will register a custom taxonomy.
  *
+ * @package     WordpressPluginStarter
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since       1.0.0
  */
 
-namespace WPS_Plugin\App\Public\Taxonomies;
+namespace HTSA_Plugin\WPS_Plugin\App\Public\Taxonomies;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\Taxonomies;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\Taxonomies;
 
 /**
  * Exit if accessed directly
@@ -26,7 +27,8 @@ if ( ! class_exists( 'WPSTaxonomy' ) ) {
      *
      * This class registers a custom taxonomy.
      *
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package WordpressPluginStarter
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class WPSTaxonomy extends Taxonomies {
         /**

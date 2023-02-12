@@ -4,14 +4,15 @@
  *
  * This file contains WPSAdminAjaxRequest class that will register a custom admin ajax request.
  *
+ * @package     WordpressPluginStarter
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since       1.0.0
  */
 
-namespace WPS_Plugin\App\Admin\AjaxRequests;
+namespace HTSA_Plugin\WPS_Plugin\App\Admin\AjaxRequests;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\AdminAjax;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\AdminAjax;
 
 /**
  * Exit if accessed directly
@@ -26,7 +27,8 @@ if ( ! class_exists( 'WPSAdminAjaxRequest' ) ) {
      *
      * This class registers a custom admin ajax request.
      *
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package WordpressPluginStarter
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class WPSAdminAjaxRequest extends AdminAjax {
         /**

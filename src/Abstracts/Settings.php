@@ -6,14 +6,14 @@
  *
  * @package     WordpressPluginStarter
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since       1.0.0
  */
 
-namespace Codestartechnologies\WordpressPluginStarter\Abstracts;
+namespace HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts;
 
-use Codestartechnologies\WordpressPluginStarter\Interfaces\ActionHook;
-use Codestartechnologies\WordpressPluginStarter\Traits\Callbacks;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Interfaces\ActionHook;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Traits\Callbacks;
 
 /**
  * Exit if accessed directly
@@ -29,7 +29,7 @@ if ( ! class_exists( 'Settings' ) ) {
      * This class contains contracts that will be used to register settings.
      *
      * @package WordpressPluginStarter
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     abstract class Settings implements ActionHook {
         use Callbacks;

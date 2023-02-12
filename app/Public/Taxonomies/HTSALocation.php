@@ -4,14 +4,15 @@
  *
  * This file contains HTSALocation class that will register a custom taxonomy.
  *
+ * @package     HighwayTrafficSecurityAgencyPlugin
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
  * @link        https://github.com/codestartechnologies/highway-traffic-security-agency-plugin
  * @since       1.0.0
  */
 
-namespace WPS_Plugin\App\Public\Taxonomies;
+namespace HTSA_Plugin\WPS_Plugin\App\Public\Taxonomies;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\Taxonomies;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\Taxonomies;
 
 /**
  * Exit if accessed directly
@@ -26,7 +27,8 @@ if ( ! class_exists( 'HTSALocation' ) ) {
      *
      * This class registers a custom taxonomy.
      *
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package HighwayTrafficSecurityAgencyPlugin
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class HTSALocation extends Taxonomies {
         /**

@@ -4,14 +4,15 @@
  *
  * This file contains WPSAdminNotice class that will register a custom admin notification.
  *
+ * @package     WordpressPluginStarter
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
  * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since       1.0.0
  */
 
-namespace WPS_Plugin\App\Admin\AdminNotices;
+namespace HTSA_Plugin\WPS_Plugin\App\Admin\AdminNotices;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\AdminNotices;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\AdminNotices;
 
 /**
  * Exit if accessed directly
@@ -26,7 +27,8 @@ if ( ! class_exists( 'WPSAdminNotice' ) ) {
      *
      * This class registers a custom admin notification.
      *
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package WordpressPluginStarter
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class WPSAdminNotice extends AdminNotices {
         /**

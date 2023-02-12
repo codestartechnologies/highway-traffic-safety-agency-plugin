@@ -10,10 +10,10 @@
  * @since      1.0.0
  */
 
-namespace WPS_Plugin\App\HTSA;
+namespace HTSA_Plugin\WPS_Plugin\App\HTSA;
 
-use Codestartechnologies\WordpressPluginStarter\Interfaces\FilterHook;
-use Codestartechnologies\WordpressPluginStarter\Traits\Logger;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Interfaces\FilterHook;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Traits\Logger;
 
 /**
  * Prevent direct access to this file.
@@ -26,8 +26,8 @@ if ( ! class_exists( 'PluginUpdate' ) ) {
     /**
      * PluginUpdate Class
      *
-     * @package     HighwayTrafficSecurityAgencyPlugin
-     * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package HighwayTrafficSecurityAgencyPlugin
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class PluginUpdate implements FilterHook
     {

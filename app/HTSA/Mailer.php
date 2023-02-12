@@ -6,14 +6,14 @@
  *
  * @package    HighwayTrafficSecurityAgencyPlugin
  * @author     Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link       https://codestar.com.ng
+ * @link       https://github.com/codestartechnologies/highway-traffic-security-agency-plugin
  * @license    https://www.gnu.org/licenses/agpl-3.0.txt GNU/AGPLv3
  * @since      1.0.0
  */
 
-namespace WPS_Plugin\App\HTSA;
+namespace HTSA_Plugin\WPS_Plugin\App\HTSA;
 
-use Codestartechnologies\WordpressPluginStarter\Traits\Logger;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Traits\Logger;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -32,7 +32,7 @@ if ( ! class_exists( 'Mailer' ) ) {
      * This class is used to send SMTP emails using PHPMailer.
      *
      * @package HighwayTrafficSecurityAgencyPlugin
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class Mailer {
         use Logger;

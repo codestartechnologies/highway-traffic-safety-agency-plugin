@@ -10,7 +10,7 @@
  * @since      1.0.0
  */
 
-namespace WPS_Plugin\App\HTSA;
+namespace HTSA_Plugin\WPS_Plugin\App\HTSA;
 
 /**
  * Prevent direct access to this file.
@@ -23,8 +23,8 @@ if ( ! class_exists( 'CodestarAPI' ) ) {
     /**
      * CodestarAPI Class
      *
-     * @package     HighwayTrafficSecurityAgencyPlugin
-     * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package HighwayTrafficSecurityAgencyPlugin
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class CodestarAPI
     {

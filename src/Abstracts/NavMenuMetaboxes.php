@@ -6,13 +6,13 @@
  *
  * @package     WordpressPluginStarter
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since       1.0.0
  */
 
-namespace Codestartechnologies\WordpressPluginStarter\Abstracts;
+namespace HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts;
 
-use Codestartechnologies\WordpressPluginStarter\Traits\ViewLoader;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Traits\ViewLoader;
 use Walker_Nav_Menu_Checklist;
 
 /**
@@ -29,7 +29,7 @@ if ( ! class_exists( 'NavMenuMetaboxes' ) ) {
      * This class contains contracts that will be used to register navigation menu metaboxes.
      *
      * @package WordpressPluginStarter
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     abstract class NavMenuMetaboxes {
         use ViewLoader;

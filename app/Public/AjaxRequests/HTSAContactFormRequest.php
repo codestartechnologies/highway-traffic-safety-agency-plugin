@@ -4,15 +4,16 @@
  *
  * This file contains HTSAContactFormRequest class that will register a custom public ajax request.
  *
+ * @package     HighwayTrafficSecurityAgencyPlugin
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/highway-traffic-security-agency-plugin
  * @since       1.0.0
  */
 
-namespace WPS_Plugin\App\Public\AjaxRequests;
+namespace HTSA_Plugin\WPS_Plugin\App\Public\AjaxRequests;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\PublicAjax;
-use WPS_Plugin\App\HTSA\Mailer;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\PublicAjax;
+use HTSA_Plugin\WPS_Plugin\App\HTSA\Mailer;
 
 /**
  * Exit if accessed directly
@@ -27,7 +28,8 @@ if ( ! class_exists( 'HTSAContactFormRequest' ) ) {
      *
      * This class registers a custom admin public request.
      *
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package HighwayTrafficSecurityAgencyPlugin
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class HTSAContactFormRequest extends PublicAjax {
         /**

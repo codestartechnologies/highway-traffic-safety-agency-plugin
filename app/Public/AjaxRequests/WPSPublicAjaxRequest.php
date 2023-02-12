@@ -4,14 +4,15 @@
  *
  * This file contains WPSPublicAjaxRequest class that will register a custom public ajax request.
  *
+ * @package     WordpressPluginStarter
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since       1.0.0
  */
 
-namespace WPS_Plugin\App\Public\AjaxRequests;
+namespace HTSA_Plugin\WPS_Plugin\App\Public\AjaxRequests;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\PublicAjax;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\PublicAjax;
 
 /**
  * Exit if accessed directly
@@ -26,7 +27,8 @@ if ( ! class_exists( 'WPSPublicAjaxRequest' ) ) {
      *
      * This class registers a custom admin public request.
      *
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package WordpressPluginStarter
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class WPSPublicAjaxRequest extends PublicAjax {
         /**

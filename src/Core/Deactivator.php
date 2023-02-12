@@ -6,16 +6,16 @@
  *
  * @package    WordpressPluginStarter
  * @author     Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link       https://codestar.com.ng
+ * @link       https://github.com/codestartechnologies/wordpress-plugin-starter
  * @license    https://www.gnu.org/licenses/agpl-3.0.txt GNU/AGPLv3
  * @since      1.0.0
  */
 
-namespace Codestartechnologies\WordpressPluginStarter\Core;
+namespace HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Core;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\PostTypes;
-use Codestartechnologies\WordpressPluginStarter\Abstracts\Taxonomies;
-use Codestartechnologies\WordpressPluginStarter\Traits\Logger;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\PostTypes;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\Taxonomies;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Traits\Logger;
 
 /**
  * Prevent direct access to this file.
@@ -31,7 +31,7 @@ if ( ! class_exists( 'Deactivator' ) ) {
      * This class handles functionalities that run when plugin is deactivated.
      *
      * @package WordpressPluginStarter
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class Deactivator {
         use Logger;

@@ -4,16 +4,17 @@
  *
  * This file contains HTSAEmailSetting class that will register a custom setting.
  *
+ * @package     HighwayTrafficSecurityAgencyPlugin
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/highway-traffic-security-agency-plugin
  * @since       1.0.0
  */
 
-namespace WPS_Plugin\App\Admin\Settings;
+namespace HTSA_Plugin\WPS_Plugin\App\Admin\Settings;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\Settings;
-use Codestartechnologies\WordpressPluginStarter\Traits\Logger;
-use Codestartechnologies\WordpressPluginStarter\Traits\ViewLoader;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\Settings;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Traits\Logger;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Traits\ViewLoader;
 
 /**
  * Exit if accessed directly
@@ -28,7 +29,8 @@ if ( ! class_exists( 'HTSAEmailSetting' ) ) {
      *
      * This class registers a custom setting.
      *
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package HighwayTrafficSecurityAgencyPlugin
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class HTSAEmailSetting extends Settings {
         use ViewLoader, Logger;

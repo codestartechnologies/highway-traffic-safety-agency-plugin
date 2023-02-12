@@ -1,27 +1,108 @@
 <?php
-
-spl_autoload_register( 'wps_autoloader' );
+/**
+ * This file contains functions for loading classes and files
+ *
+ * @link https://github.com/codestartechnologies/wordpress-plugin-starter
+ */
 
 /**
- * Function to autoload classes starting with WTS_Theme namespace
- *
- * @param string $class
- * @return void
- * @since 1.0.0
+ * Prevent direct access to this file.
  */
-function wps_autoloader( string $class ) : void
-{
-    $namespace = 'WPS_Plugin\App';
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
-    if ( strpos( $class, $namespace ) !== 0 ) {
-        return;
-    }
+if ( ! class_exists( 'WPSAutoLoader' ) ) {
+    /**
+     * WPSAutoLoader class
+     *
+     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     */
+    final class WPSAutoLoader
+    {
+        /**
+         * Prefix to add to namespace
+         *
+         * @access protected
+         * @static
+         * @var string|null
+         * @since 1.0.0
+         */
+        protected static ?string $prefix = 'HTSA_Plugin';
 
-    $class = str_replace( $namespace, '', $class );
-    $class = str_replace( '\\', DIRECTORY_SEPARATOR, $class ) . '.php';
-    $path = plugin_dir_path( WPS_FILE ) . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . $class;
+        /**
+         * Auto load class mappings
+         *
+         * @access protected
+         * @static
+         * @var array
+         * @since 1.0.0
+         */
+        protected static array $class_autoloads = array(
+            "WPS_Plugin\\App" => "app",
+            "Codestartechnologies\\WordpressPluginStarter" => "src",
+        );
 
-    if ( is_readable( $path ) ) {
-        require_once( $path );
+        /**
+         * Auto load file mappings
+         *
+         * @access protected
+         * @static
+         * @var array
+         * @since 1.0.0
+         */
+        protected static array $file_autoloads = array(
+            "src/functions.php",
+            "app/helpers.php",
+        );
+
+        /**
+         * handles autoloading for classes and files
+         *
+         * @static
+         * @return void
+         * @since 1.0.0
+         */
+        public static function autoload() : void
+        {
+            spl_autoload_register( array( __CLASS__, 'wps_autoloader' ) );
+
+            $path = trailingslashit( plugin_dir_path( __FILE__ ) );
+
+            foreach ( self::$file_autoloads as $file ) {
+                if ( is_readable( $path . $file ) ) {
+                    require_once( $path . $file );
+                }
+            }
+        }
+
+        /**
+         * handles autoloading for classes
+         *
+         * @static
+         * @param string $class
+         * @return void
+         * @since 1.0.0
+         */
+        public static function wps_autoloader( string $class ) : void
+        {
+            $prefix = isset( self::$prefix ) ? self::$prefix . "\\" : '';
+
+            foreach ( self::$class_autoloads as $namespace => $dir ) {
+                $namespace = $prefix . $namespace;
+
+                if ( strpos( $class, $namespace ) === 0 ) {
+                    $class = str_replace( $namespace, '', $class );
+                    $class = str_replace( '\\', DIRECTORY_SEPARATOR, $class ) . '.php';
+                    $path = trailingslashit( plugin_dir_path( __FILE__ ) ) . $dir . DIRECTORY_SEPARATOR . $class;
+
+                    if ( is_readable( $path ) ) {
+                        require_once( $path );
+                    }
+                }
+            }
+        }
     }
 }
+
+WPSAutoLoader::autoload();

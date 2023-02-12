@@ -4,15 +4,16 @@
  *
  * This file contains HTSANewsletterFormShortcode class that will register a custom shortcode.
  *
+ * @package     HighwayTrafficSecurityAgencyPlugin
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
  * @link        https://github.com/codestartechnologies/highway-traffic-security-agency-plugin
  * @since       1.0.0
  */
 
-namespace WPS_Plugin\App\Public\Shortcodes;
+namespace HTSA_Plugin\WPS_Plugin\App\Public\Shortcodes;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\Shortcodes;
-use Codestartechnologies\WordpressPluginStarter\Traits\ViewLoader;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\Shortcodes;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Traits\ViewLoader;
 
 /**
  * Exit if accessed directly
@@ -27,7 +28,8 @@ if ( ! class_exists( 'HTSANewsletterFormShortcode' ) ) {
      *
      * This class registers a contact form shortcode.
      *
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package HighwayTrafficSecurityAgencyPlugin
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class HTSANewsletterFormShortcode extends Shortcodes {
         use ViewLoader;

@@ -6,15 +6,15 @@
  *
  * @package    WordpressPluginStarter
  * @author     Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link       https://codestar.com.ng
+ * @link       https://github.com/codestartechnologies/wordpress-plugin-starter
  * @license    https://www.gnu.org/licenses/agpl-3.0.txt GNU/AGPLv3
  * @since      1.0.0
  */
 
-namespace WPS_Plugin\App;
+namespace HTSA_Plugin\WPS_Plugin\App;
 
-use Codestartechnologies\WordpressPluginStarter\Interfaces\ActionHook;
-use Codestartechnologies\WordpressPluginStarter\Interfaces\FilterHook;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Interfaces\ActionHook;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Interfaces\FilterHook;
 use WP_Query;
 
 /**
@@ -31,7 +31,7 @@ if ( ! class_exists( 'Hooks' ) ) {
      * This class registers hooks that will run at the fornt-end and admin area.
      *
      * @package WordpressPluginStarter
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     class Hooks implements ActionHook, FilterHook {
         /**

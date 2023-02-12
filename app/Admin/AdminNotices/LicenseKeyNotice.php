@@ -4,14 +4,15 @@
  *
  * This file contains LicenseKeyNotice class for adding admin notification for the plugin license key status.
  *
+ * @package     HighwayTrafficSecurityAgencyPlugin
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
  * @link        https://github.com/codestartechnologies/highway-traffic-security-agency-plugin
  * @since       1.0.0
  */
 
-namespace WPS_Plugin\App\Admin\AdminNotices;
+namespace HTSA_Plugin\WPS_Plugin\App\Admin\AdminNotices;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\AdminNotices;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\AdminNotices;
 
 /**
  * Exit if accessed directly
@@ -26,7 +27,8 @@ if ( ! class_exists( 'LicenseKeyNotice' ) ) {
      *
      * This class registers a custom admin notification.
      *
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package HighwayTrafficSecurityAgencyPlugin
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class LicenseKeyNotice extends AdminNotices {
         /**

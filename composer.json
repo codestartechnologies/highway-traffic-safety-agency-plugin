@@ -3,7 +3,7 @@
     "description": "A boiler-plate for a wordpress plugin",
     "type": "project",
     "keywords": [
-        "wordpress",
+        "wordpress plugin",
         "wordpress plugin boilerplate",
         "boilerplate for wordpress plugin",
         "wordpress plugin generator",
@@ -13,15 +13,6 @@
     ],
     "readme": "README.MD",
     "license": "AGPL-3.0-or-later",
-    "autoload": {
-        "psr-4": {
-            "Codestartechnologies\\WordpressPluginStarter\\": "src/"
-        },
-        "files": [
-            "src/functions.php",
-            "app/helpers.php"
-        ]
-    },
     "authors": [
         {
             "name": "Chijindu G. Nzeako",

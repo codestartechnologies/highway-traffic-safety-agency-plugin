@@ -4,15 +4,16 @@
  *
  * This file contains WPSShortcode class that will register a custom shortcode.
  *
+ * @package     WordpressPluginStarter
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since       1.0.0
  */
 
-namespace WPS_Plugin\App\Public\Shortcodes;
+namespace HTSA_Plugin\WPS_Plugin\App\Public\Shortcodes;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\Shortcodes;
-use Codestartechnologies\WordpressPluginStarter\Traits\ViewLoader;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\Shortcodes;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Traits\ViewLoader;
 
 /**
  * Exit if accessed directly
@@ -27,7 +28,8 @@ if ( ! class_exists( 'WPSShortcode' ) ) {
      *
      * This class registers a custom shortcode.
      *
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package WordpressPluginStarter
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class WPSShortcode extends Shortcodes {
         use ViewLoader;

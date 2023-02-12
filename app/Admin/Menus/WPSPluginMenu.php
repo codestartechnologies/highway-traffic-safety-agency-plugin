@@ -4,14 +4,15 @@
  *
  * This file contains WPSPluginMenu class that will register a custom admin plugin menu page.
  *
+ * @package     WordpressPluginStarter
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since       1.0.0
  */
 
-namespace WPS_Plugin\App\Admin\Menus;
+namespace HTSA_Plugin\WPS_Plugin\App\Admin\Menus;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\PluginMenus;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\PluginMenus;
 
 /**
  * Prevent direct access to this file.
@@ -26,7 +27,8 @@ if ( ! class_exists( 'WPSPluginMenu' ) ) {
      *
      * This class registers a custom admin plugin menu page.
      *
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package WordpressPluginStarter
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class WPSPluginMenu extends PluginMenus {
         /**

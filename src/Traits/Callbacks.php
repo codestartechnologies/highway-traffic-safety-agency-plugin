@@ -7,11 +7,11 @@
  * @package    WordpressPluginStarter
  * @author     Chijindu Nzeako <chijindunzeako517@gmail.com>
  * @license    https://www.gnu.org/licenses/agpl-3.0.txt GNU/AGPLv3
- * @link       https://codestar.com.ng
+ * @link       https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since      1.0.0
  */
 
-namespace Codestartechnologies\WordpressPluginStarter\Traits;
+namespace HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Traits;
 
 /**
  * Prevent direct access to this file.
@@ -27,7 +27,7 @@ if ( ! trait_exists( 'Callbacks' ) ) {
      * This trait is used for handling callback arguements.
      *
      * @package WordpressPluginStarter
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     trait Callbacks {
         /**

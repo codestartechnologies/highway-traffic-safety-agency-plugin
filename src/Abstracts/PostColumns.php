@@ -6,14 +6,14 @@
  *
  * @package     WordpressPluginStarter
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since       1.0.0
  */
 
-namespace Codestartechnologies\WordpressPluginStarter\Abstracts;
+namespace HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts;
 
-use Codestartechnologies\WordpressPluginStarter\Interfaces\PostsColumn;
-use Codestartechnologies\WordpressPluginStarter\Traits\ViewLoader;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Interfaces\PostsColumn;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Traits\ViewLoader;
 
 /**
  * Exit if accessed directly
@@ -29,7 +29,7 @@ if ( ! class_exists( 'PostColumns' ) ) {
      * This class contains contracts that will be used to register post columns.
      *
      * @package WordpressPluginStarter
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     abstract class PostColumns implements PostsColumn {
         use ViewLoader;

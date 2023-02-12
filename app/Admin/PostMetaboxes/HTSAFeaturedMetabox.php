@@ -4,14 +4,15 @@
  *
  * This file contains HTSAFeaturedMetabox class that will register a custom metabox for post.
  *
+ * @package     HighwayTrafficSecurityAgencyPlugin
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/highway-traffic-security-agency-plugin
  * @since       1.0.0
  */
 
-namespace WPS_Plugin\App\Admin\PostMetaboxes;
+namespace HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\PostMetaboxes;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\PostMetaboxes;
 
 /**
  * Exit if accessed directly
@@ -26,7 +27,8 @@ if ( ! class_exists( 'HTSAFeaturedMetabox' ) ) {
      *
      * This class registers a custom metabox for post.
      *
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package HighwayTrafficSecurityAgencyPlugin
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class HTSAFeaturedMetabox extends PostMetaboxes {
         /**

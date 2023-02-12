@@ -7,11 +7,11 @@
  *
  * @package     WordpressPluginStarter
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since       1.0.0
  */
 
-namespace Codestartechnologies\WordpressPluginStarter\Interfaces;
+namespace HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Interfaces;
 
 /**
  * Prevent direct access to this file.
@@ -27,7 +27,7 @@ if ( ! interface_exists( 'FilterHook' ) ) {
      * Classes that make use of add_filter() and remove_filter() need to implement this interface.
      *
      * @package WordpressPluginStarter
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     interface FilterHook {
         /**

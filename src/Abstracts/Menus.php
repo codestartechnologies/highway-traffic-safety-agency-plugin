@@ -6,15 +6,15 @@
  *
  * @package     WordpressPluginStarter
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since       1.0.0
  */
 
-namespace Codestartechnologies\WordpressPluginStarter\Abstracts;
+namespace HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts;
 
-use Codestartechnologies\WordpressPluginStarter\Interfaces\ActionHook;
-use Codestartechnologies\WordpressPluginStarter\Interfaces\FilterHook;
-use Codestartechnologies\WordpressPluginStarter\Traits\ViewLoader;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Interfaces\ActionHook;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Interfaces\FilterHook;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Traits\ViewLoader;
 
 /**
  * Prevent direct access to this file.
@@ -30,7 +30,7 @@ if ( ! class_exists( 'Menus' ) ) {
      * This class contains contracts that will be used to register admin menu pages.
      *
      * @package WordpressPluginStarter
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     abstract class Menus implements ActionHook, FilterHook {
         use ViewLoader;

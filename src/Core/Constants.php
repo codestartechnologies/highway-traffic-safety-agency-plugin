@@ -11,7 +11,7 @@
  * @since      1.0.0
  */
 
-namespace Codestartechnologies\WordpressPluginStarter\Core;
+namespace HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Core;
 
 /**
  * Prevent direct access to this file.
@@ -27,7 +27,7 @@ if ( ! class_exists( 'Constants' ) ) {
      * This class defines needed constants that will be used in the theme development.
      *
      * @package WordpressPluginStarter
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class Constants {
         /**

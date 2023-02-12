@@ -4,14 +4,15 @@
  *
  * This file contains WPSPostMetabox class that will register a custom metabox for wps_post.
  *
+ * @package     WordpressPluginStarter
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since       1.0.0
  */
 
-namespace WPS_Plugin\App\Admin\PostMetaboxes;
+namespace HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\PostMetaboxes;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\PostMetaboxes;
 
 /**
  * Exit if accessed directly
@@ -26,7 +27,8 @@ if ( ! class_exists( 'WPSPostMetabox' ) ) {
      *
      * This class registers a custom metabox for wps_post.
      *
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package WordpressPluginStarter
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class WPSPostMetabox extends PostMetaboxes {
         /**

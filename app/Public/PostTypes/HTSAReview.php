@@ -4,14 +4,15 @@
  *
  * This file contains HTSAReview class that will register a post type.
  *
+ * @package     HighwayTrafficSecurityAgencyPlugin
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
  * @link        https://github.com/codestartechnologies/highway-traffic-security-agency-plugin
  * @since       1.0.0
  */
 
-namespace WPS_Plugin\App\Public\PostTypes;
+namespace HTSA_Plugin\WPS_Plugin\App\Public\PostTypes;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\PostTypes;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\PostTypes;
 
 /**
  * Exit if accessed directly
@@ -26,7 +27,8 @@ if ( ! class_exists( 'HTSAReview' ) ) {
      *
      * This class registers a custom post type.
      *
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package HighwayTrafficSecurityAgencyPlugin
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class HTSAReview extends PostTypes {
         /**

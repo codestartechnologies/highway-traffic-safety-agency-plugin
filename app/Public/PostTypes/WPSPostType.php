@@ -4,14 +4,15 @@
  *
  * This file contains WPSPostType class that will register a custom post type.
  *
+ * @package     WordpressPluginStarter
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since       1.0.0
  */
 
-namespace WPS_Plugin\App\Public\PostTypes;
+namespace HTSA_Plugin\WPS_Plugin\App\Public\PostTypes;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\PostTypes;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\PostTypes;
 
 /**
  * Exit if accessed directly
@@ -26,7 +27,8 @@ if ( ! class_exists( 'WPSPostType' ) ) {
      *
      * This class registers a custom post type.
      *
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package WordpressPluginStarter
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class WPSPostType extends PostTypes {
         /**

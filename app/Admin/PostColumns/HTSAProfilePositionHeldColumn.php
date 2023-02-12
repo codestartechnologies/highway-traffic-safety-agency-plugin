@@ -4,14 +4,15 @@
  *
  * This file contains HTSAProfilePositionHeldColumn class that will add "Featured" post column.
  *
+ * @package     HighwayTrafficSecurityAgencyPlugin
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/highway-traffic-security-agency-plugin
  * @since       1.0.0
  */
 
-namespace WPS_Plugin\App\Admin\PostColumns;
+namespace HTSA_Plugin\WPS_Plugin\App\Admin\PostColumns;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\PostColumns;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\PostColumns;
 
 /**
  * Exit if accessed directly
@@ -26,7 +27,8 @@ if ( ! class_exists( 'HTSAProfilePositionHeldColumn' ) ) {
      *
      * This class registers a custom post column.
      *
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package HighwayTrafficSecurityAgencyPlugin
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class HTSAProfilePositionHeldColumn extends PostColumns {
         /**

@@ -4,14 +4,15 @@
  *
  * This file contains WPSTaxonomyFormField class that will register a custom taxonomy form field.
  *
+ * @package     WordpressPluginStarter
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since       1.0.0
  */
 
-namespace WPS_Plugin\App\Admin\TaxonomyFormFields;
+namespace HTSA_Plugin\WPS_Plugin\App\Admin\TaxonomyFormFields;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\TaxonomyFormFields;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\TaxonomyFormFields;
 
 /**
  * Exit if accessed directly
@@ -26,7 +27,8 @@ if ( ! class_exists( 'WPSTaxonomyFormField' ) ) {
      *
      * This class registers a custom taxonomy form field.
      *
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package WordpressPluginStarter
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class WPSTaxonomyFormField extends TaxonomyFormFields {
 

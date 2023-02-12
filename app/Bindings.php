@@ -10,55 +10,55 @@
  * @since      1.0.0
  */
 
-namespace WPS_Plugin\App;
+namespace HTSA_Plugin\WPS_Plugin\App;
 
-use WPS_Plugin\App\Admin\AdminNotices\LicenseKeyNotice;
-use WPS_Plugin\App\Admin\AdminNotices\WPSAdminNotice;
-use WPS_Plugin\App\Admin\AjaxRequests\WPSAdminAjaxRequest;
-use WPS_Plugin\App\Admin\Menus\HTSAEmailSettingMenu;
-use WPS_Plugin\App\Admin\Menus\HTSAMenu;
-use WPS_Plugin\App\Admin\Menus\LicenseSettingMenu;
-use WPS_Plugin\App\Admin\Menus\WPSMenu;
-use WPS_Plugin\App\Admin\Menus\WPSPluginMenu;
-use WPS_Plugin\App\Admin\Menus\WPSSettingMenu;
-use WPS_Plugin\App\Admin\Menus\WPSSubMenu;
-use WPS_Plugin\App\Admin\NavMenuMetaboxes\WPSNavMenuMetabox;
-use WPS_Plugin\App\Admin\PostColumns\HTSAFeaturedPostColumn;
-use WPS_Plugin\App\Admin\PostColumns\HTSAOfficerThumbnailColumn;
-use WPS_Plugin\App\Admin\PostColumns\HTSAProfilePositionHeldColumn;
-use WPS_Plugin\App\Admin\PostColumns\HTSAProfileThumbnailColumn;
-use WPS_Plugin\App\Admin\PostColumns\HTSAReviewNameColumn;
-use WPS_Plugin\App\Admin\PostColumns\HTSAReviewRatingColumn;
-use WPS_Plugin\App\Admin\PostColumns\WPSPostColumn;
-use WPS_Plugin\App\Admin\PostMetaboxes\HTSABranchDirectionMetabox;
-use WPS_Plugin\App\Admin\PostMetaboxes\HTSAFeaturedMetabox;
-use WPS_Plugin\App\Admin\PostMetaboxes\HTSAOfficerContactMetabox;
-use WPS_Plugin\App\Admin\PostMetaboxes\HTSAPenaltyCurrencySymbolMetabox;
-use WPS_Plugin\App\Admin\PostMetaboxes\HTSAPenaltyVehicleCategoriesMetabox;
-use WPS_Plugin\App\Admin\PostMetaboxes\HTSAProfilePositionHeldMetabox;
-use WPS_Plugin\App\Admin\PostMetaboxes\HTSAProfileSocialHandlesMetabox;
-use WPS_Plugin\App\Admin\PostMetaboxes\HTSAReviewContentMetabox;
-use WPS_Plugin\App\Admin\PostMetaboxes\HTSAReviewNameMetabox;
-use WPS_Plugin\App\Admin\PostMetaboxes\HTSAReviewRatingMetabox;
-use WPS_Plugin\App\Admin\PostMetaboxes\WPSPostMetabox;
-use WPS_Plugin\App\Admin\Settings\HTSAEmailSetting;
-use WPS_Plugin\App\Admin\Settings\LicenseSetting;
-use WPS_Plugin\App\Admin\Settings\WPSSetting;
-use WPS_Plugin\App\Admin\TaxonomyFormFields\WPSTaxonomyFormField;
-use WPS_Plugin\App\Public\AjaxRequests\HTSAContactFormRequest;
-use WPS_Plugin\App\Public\AjaxRequests\WPSPublicAjaxRequest;
-use WPS_Plugin\App\Public\PostTypes\HTSABranch;
-use WPS_Plugin\App\Public\PostTypes\HTSAOfficers;
-use WPS_Plugin\App\Public\PostTypes\HTSAPenalty;
-use WPS_Plugin\App\Public\PostTypes\HTSAProfile;
-use WPS_Plugin\App\Public\PostTypes\HTSAReview;
-use WPS_Plugin\App\Public\PostTypes\WPSPostType;
-use WPS_Plugin\App\Public\Shortcodes\HTSAContactFormShortcode;
-use WPS_Plugin\App\Public\Shortcodes\HTSANewsletterFormShortcode;
-use WPS_Plugin\App\Public\Shortcodes\WPSShortcode;
-use WPS_Plugin\App\Public\Taxonomies\HTSADepartment;
-use WPS_Plugin\App\Public\Taxonomies\HTSALocation;
-use WPS_Plugin\App\Public\Taxonomies\WPSTaxonomy;
+use HTSA_Plugin\WPS_Plugin\App\Admin\AdminNotices\LicenseKeyNotice;
+use HTSA_Plugin\WPS_Plugin\App\Admin\AdminNotices\WPSAdminNotice;
+use HTSA_Plugin\WPS_Plugin\App\Admin\AjaxRequests\WPSAdminAjaxRequest;
+use HTSA_Plugin\WPS_Plugin\App\Admin\Menus\HTSAEmailSettingMenu;
+use HTSA_Plugin\WPS_Plugin\App\Admin\Menus\HTSAMenu;
+use HTSA_Plugin\WPS_Plugin\App\Admin\Menus\LicenseSettingMenu;
+use HTSA_Plugin\WPS_Plugin\App\Admin\Menus\WPSMenu;
+use HTSA_Plugin\WPS_Plugin\App\Admin\Menus\WPSPluginMenu;
+use HTSA_Plugin\WPS_Plugin\App\Admin\Menus\WPSSettingMenu;
+use HTSA_Plugin\WPS_Plugin\App\Admin\Menus\WPSSubMenu;
+use HTSA_Plugin\WPS_Plugin\App\Admin\NavMenuMetaboxes\WPSNavMenuMetabox;
+use HTSA_Plugin\WPS_Plugin\App\Admin\PostColumns\HTSAFeaturedPostColumn;
+use HTSA_Plugin\WPS_Plugin\App\Admin\PostColumns\HTSAOfficerThumbnailColumn;
+use HTSA_Plugin\WPS_Plugin\App\Admin\PostColumns\HTSAProfilePositionHeldColumn;
+use HTSA_Plugin\WPS_Plugin\App\Admin\PostColumns\HTSAProfileThumbnailColumn;
+use HTSA_Plugin\WPS_Plugin\App\Admin\PostColumns\HTSAReviewNameColumn;
+use HTSA_Plugin\WPS_Plugin\App\Admin\PostColumns\HTSAReviewRatingColumn;
+use HTSA_Plugin\WPS_Plugin\App\Admin\PostColumns\WPSPostColumn;
+use HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes\HTSABranchDirectionMetabox;
+use HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes\HTSAFeaturedMetabox;
+use HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes\HTSAOfficerContactMetabox;
+use HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes\HTSAPenaltyCurrencySymbolMetabox;
+use HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes\HTSAPenaltyVehicleCategoriesMetabox;
+use HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes\HTSAProfilePositionHeldMetabox;
+use HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes\HTSAProfileSocialHandlesMetabox;
+use HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes\HTSAReviewContentMetabox;
+use HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes\HTSAReviewNameMetabox;
+use HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes\HTSAReviewRatingMetabox;
+use HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes\WPSPostMetabox;
+use HTSA_Plugin\WPS_Plugin\App\Admin\Settings\HTSAEmailSetting;
+use HTSA_Plugin\WPS_Plugin\App\Admin\Settings\LicenseSetting;
+use HTSA_Plugin\WPS_Plugin\App\Admin\Settings\WPSSetting;
+use HTSA_Plugin\WPS_Plugin\App\Admin\TaxonomyFormFields\WPSTaxonomyFormField;
+use HTSA_Plugin\WPS_Plugin\App\Public\AjaxRequests\HTSAContactFormRequest;
+use HTSA_Plugin\WPS_Plugin\App\Public\AjaxRequests\WPSPublicAjaxRequest;
+use HTSA_Plugin\WPS_Plugin\App\Public\PostTypes\HTSABranch;
+use HTSA_Plugin\WPS_Plugin\App\Public\PostTypes\HTSAOfficers;
+use HTSA_Plugin\WPS_Plugin\App\Public\PostTypes\HTSAPenalty;
+use HTSA_Plugin\WPS_Plugin\App\Public\PostTypes\HTSAProfile;
+use HTSA_Plugin\WPS_Plugin\App\Public\PostTypes\HTSAReview;
+use HTSA_Plugin\WPS_Plugin\App\Public\PostTypes\WPSPostType;
+use HTSA_Plugin\WPS_Plugin\App\Public\Shortcodes\HTSAContactFormShortcode;
+use HTSA_Plugin\WPS_Plugin\App\Public\Shortcodes\HTSANewsletterFormShortcode;
+use HTSA_Plugin\WPS_Plugin\App\Public\Shortcodes\WPSShortcode;
+use HTSA_Plugin\WPS_Plugin\App\Public\Taxonomies\HTSADepartment;
+use HTSA_Plugin\WPS_Plugin\App\Public\Taxonomies\HTSALocation;
+use HTSA_Plugin\WPS_Plugin\App\Public\Taxonomies\WPSTaxonomy;
 
 /**
  * Prevent direct access to this file.
@@ -74,7 +74,7 @@ if ( ! class_exists( 'Bindings' ) ) {
      * This class returns classes that will be registered with the plugin.
      *
      * @package WordpressPluginStarter
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class Bindings {
         /**

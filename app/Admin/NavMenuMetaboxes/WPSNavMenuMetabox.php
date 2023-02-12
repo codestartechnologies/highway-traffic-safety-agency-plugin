@@ -4,14 +4,15 @@
  *
  * This file contains WPSNavMenuMetabox class that will register a custom navigation menu metabox with items.
  *
+ * @package     WordpressPluginStarter
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since       1.0.0
  */
 
-namespace WPS_Plugin\App\Admin\NavMenuMetaboxes;
+namespace HTSA_Plugin\WPS_Plugin\App\Admin\NavMenuMetaboxes;
 
-use Codestartechnologies\WordpressPluginStarter\Abstracts\NavMenuMetaboxes;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\NavMenuMetaboxes;
 
 /**
  * Exit if accessed directly
@@ -26,7 +27,8 @@ if ( ! class_exists( 'WPSNavMenuMetabox' ) ) {
      *
      * This class registers a custom navigation menu metabox with items.
      *
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @package WordpressPluginStarter
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class WPSNavMenuMetabox extends NavMenuMetaboxes {
         /**

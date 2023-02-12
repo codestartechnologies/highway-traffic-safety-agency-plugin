@@ -6,13 +6,13 @@
  *
  * @package     WordpressPluginStarter
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since       1.0.0
  */
 
-namespace Codestartechnologies\WordpressPluginStarter\Abstracts;
+namespace HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts;
 
-use Codestartechnologies\WordpressPluginStarter\Interfaces\ActionHook;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Interfaces\ActionHook;
 
 /**
  * Exit if accessed directly
@@ -28,7 +28,7 @@ if ( ! class_exists( 'PostTypes' ) ) {
      * This class contains contracts that will be used to register custom post types.
      *
      * @package WordpressPluginStarter
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     abstract class PostTypes implements ActionHook {
         /**

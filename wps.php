@@ -1,18 +1,18 @@
 <?php
 
-use WPS_Plugin\App\Admin\Hooks as AdminHooks;
-use WPS_Plugin\App\Bindings;
-use WPS_Plugin\App\Hooks;
-use WPS_Plugin\App\Public\Hooks as PublicHooks;
-use WPS_Plugin\App\Constants as AppConstants;
-use Codestartechnologies\WordpressPluginStarter\Core\Activator;
-use Codestartechnologies\WordpressPluginStarter\Core\Bootstrap;
-use Codestartechnologies\WordpressPluginStarter\Core\Constants;
-use Codestartechnologies\WordpressPluginStarter\Core\Deactivator;
-use Codestartechnologies\WordpressPluginStarter\Core\Router;
-use Codestartechnologies\WordpressPluginStarter\Core\Uninstaller;
+use HTSA_Plugin\WPS_Plugin\App\Admin\Hooks as AdminHooks;
+use HTSA_Plugin\WPS_Plugin\App\Bindings;
+use HTSA_Plugin\WPS_Plugin\App\Hooks;
+use HTSA_Plugin\WPS_Plugin\App\Public\Hooks as PublicHooks;
+use HTSA_Plugin\WPS_Plugin\App\Constants as AppConstants;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Core\Activator;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Core\Bootstrap;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Core\Constants;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Core\Deactivator;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Core\Router;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Core\Uninstaller;
 use Dotenv\Dotenv;
-use WPS_Plugin\App\HTSA\PluginUpdate;
+use HTSA_Plugin\WPS_Plugin\App\HTSA\PluginUpdate;
 
 /**
  * Exit if accessed directly
@@ -61,6 +61,9 @@ final class WPSPlugin {
      */
     private function __construct()
     {
+        /**
+         * Require autoloader files
+         */
         require_once trailingslashit( plugin_dir_path( WPS_FILE ) ) . 'vendor/autoload.php';
 
         require_once trailingslashit( plugin_dir_path( WPS_FILE ) ) . 'autoload.php';

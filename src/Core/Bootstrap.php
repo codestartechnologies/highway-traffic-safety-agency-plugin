@@ -11,29 +11,29 @@
  * @since      1.0.0
  */
 
-namespace Codestartechnologies\WordpressPluginStarter\Core;
+namespace HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Core;
 
-use WPS_Plugin\App\Admin\Hooks as AdminHooks;
-use WPS_Plugin\App\Hooks;
-use WPS_Plugin\App\Public\Hooks as PublicHooks;
-use Codestartechnologies\WordpressPluginStarter\Abstracts\AdminAjax;
-use Codestartechnologies\WordpressPluginStarter\Abstracts\AdminNotices;
-use Codestartechnologies\WordpressPluginStarter\Abstracts\Menus;
-use Codestartechnologies\WordpressPluginStarter\Abstracts\NavMenuMetaboxes;
-use Codestartechnologies\WordpressPluginStarter\Abstracts\OptionsMenus;
-use Codestartechnologies\WordpressPluginStarter\Abstracts\PluginMenus;
-use Codestartechnologies\WordpressPluginStarter\Abstracts\PostColumns;
-use Codestartechnologies\WordpressPluginStarter\Abstracts\PostMetaboxes;
-use Codestartechnologies\WordpressPluginStarter\Abstracts\PostTypes;
-use Codestartechnologies\WordpressPluginStarter\Abstracts\PublicAjax;
-use Codestartechnologies\WordpressPluginStarter\Abstracts\Settings;
-use Codestartechnologies\WordpressPluginStarter\Abstracts\Shortcodes;
-use Codestartechnologies\WordpressPluginStarter\Abstracts\SubMenus;
-use Codestartechnologies\WordpressPluginStarter\Abstracts\Taxonomies;
-use Codestartechnologies\WordpressPluginStarter\Abstracts\TaxonomyFormFields;
-use Codestartechnologies\WordpressPluginStarter\Interfaces\ActionHook;
-use Codestartechnologies\WordpressPluginStarter\Traits\Validator;
-use WPS_Plugin\App\HTSA\PluginUpdate;
+use HTSA_Plugin\WPS_Plugin\App\Admin\Hooks as AdminHooks;
+use HTSA_Plugin\WPS_Plugin\App\Hooks;
+use HTSA_Plugin\WPS_Plugin\App\Public\Hooks as PublicHooks;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\AdminAjax;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\AdminNotices;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\Menus;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\NavMenuMetaboxes;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\OptionsMenus;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\PluginMenus;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\PostColumns;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\PostMetaboxes;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\PostTypes;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\PublicAjax;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\Settings;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\Shortcodes;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\SubMenus;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\Taxonomies;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\TaxonomyFormFields;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Interfaces\ActionHook;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Traits\Validator;
+use HTSA_Plugin\WPS_Plugin\App\HTSA\PluginUpdate;
 
 /**
  * Prevent direct access to this file.
@@ -49,7 +49,7 @@ if ( ! class_exists( 'Bootstrap' ) ) {
      * This class handles and manages all functionalities needed by this plugin.
      *
      * @package WordpressPluginStarter
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class Bootstrap implements ActionHook {
         use Validator;

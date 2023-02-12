@@ -10,7 +10,7 @@
  * @since      1.0.0
  */
 
-namespace WPS_Plugin\App;
+namespace HTSA_Plugin\WPS_Plugin\App;
 
 /**
  * Prevent direct access to this file.
@@ -26,7 +26,7 @@ if ( ! class_exists( 'Constants' ) ) {
      * This class defines needed constants that will be used in your plugin development.
      *
      * @package WordpressPluginStarter
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class Constants {
         /**

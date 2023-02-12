@@ -11,10 +11,10 @@
  * @since      1.0.0
  */
 
-namespace WPS_Plugin\App\Admin;
+namespace HTSA_Plugin\WPS_Plugin\App\Admin;
 
-use Codestartechnologies\WordpressPluginStarter\Interfaces\ActionHook;
-use Codestartechnologies\WordpressPluginStarter\Interfaces\FilterHook;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Interfaces\ActionHook;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Interfaces\FilterHook;
 
 /**
  * Prevent direct access to this file.
@@ -30,7 +30,7 @@ if ( ! class_exists( 'Hooks' ) ) {
      * This class registers hooks that will run in admin area.
      *
      * @package WordpressPluginStarter
-     * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
      */
     final class Hooks implements ActionHook, FilterHook {
         /**
