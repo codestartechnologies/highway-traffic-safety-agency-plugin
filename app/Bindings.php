@@ -13,6 +13,7 @@
 namespace HTSA_Plugin\WPS_Plugin\App;
 
 use HTSA_Plugin\WPS_Plugin\App\Admin\AdminNotices\LicenseKeyNotice;
+use HTSA_Plugin\WPS_Plugin\App\Admin\AdminNotices\URLStructureNotice;
 use HTSA_Plugin\WPS_Plugin\App\Admin\AdminNotices\WPSAdminNotice;
 use HTSA_Plugin\WPS_Plugin\App\Admin\AjaxRequests\WPSAdminAjaxRequest;
 use HTSA_Plugin\WPS_Plugin\App\Admin\Menus\HTSAEmailSettingMenu;
@@ -230,6 +231,7 @@ if ( ! class_exists( 'Bindings' ) ) {
         public static array $admin_notices = array(
             // WPSAdminNotice::class,
             LicenseKeyNotice::class,
+            URLStructureNotice::class,
         );
 
         /**
