@@ -111,8 +111,8 @@ if ( ! class_exists( 'Constants' ) ) {
             /**
              * Vehicle Category Meta Key ID
              */
-            if ( ! defined( 'HTSA_PENALTY_VEHICLE_CATRGORIES_META_KEY' ) ) {
-                define( 'HTSA_PENALTY_VEHICLE_CATRGORIES_META_KEY', 'htsa_penalty_vehicle_categories' );
+            if ( ! defined( 'HTSA_PENALTY_VEHICLE_CATEGORIES_META_KEY' ) ) {
+                define( 'HTSA_PENALTY_VEHICLE_CATEGORIES_META_KEY', 'htsa_penalty_vehicle_categories' );
             }
 
             /**
