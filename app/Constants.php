@@ -116,13 +116,6 @@ if ( ! class_exists( 'Constants' ) ) {
             }
 
             /**
-             * Currency Symbol Meta Key ID
-             */
-            if ( ! defined( 'HTSA_PENALTY_CURRENCY_SYMBOL_META_KEY' ) ) {
-                define( 'HTSA_PENALTY_CURRENCY_SYMBOL_META_KEY', 'htsa_penalty_currency_symbol' );
-            }
-
-            /**
              * Review Name Meta Key ID
              */
             if ( ! defined( 'HTSA_REVIEW_NAME_META_KEY' ) ) {

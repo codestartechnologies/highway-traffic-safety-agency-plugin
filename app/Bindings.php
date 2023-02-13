@@ -33,7 +33,6 @@ use HTSA_Plugin\WPS_Plugin\App\Admin\PostColumns\WPSPostColumn;
 use HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes\HTSABranchDirectionMetabox;
 use HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes\HTSAFeaturedMetabox;
 use HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes\HTSAOfficerContactMetabox;
-use HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes\HTSAPenaltyCurrencySymbolMetabox;
 use HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes\HTSAPenaltyVehicleCategoriesMetabox;
 use HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes\HTSAProfilePositionHeldMetabox;
 use HTSA_Plugin\WPS_Plugin\App\Admin\PostMetaboxes\HTSAProfileSocialHandlesMetabox;
@@ -189,7 +188,6 @@ if ( ! class_exists( 'Bindings' ) ) {
             HTSAOfficerContactMetabox::class,
             HTSABranchDirectionMetabox::class,
             HTSAPenaltyVehicleCategoriesMetabox::class,
-            HTSAPenaltyCurrencySymbolMetabox::class,
             HTSAReviewNameMetabox::class,
             HTSAReviewRatingMetabox::class,
             HTSAReviewContentMetabox::class,
