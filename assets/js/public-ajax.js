@@ -30,36 +30,78 @@ jQuery( function ($) {
     // process contact form request
     jQuery( document ).on( 'submit', 'form[data-htsa-id="contactForm"]', function ( evt ) {
         evt.preventDefault();
-        let fields, btn;
-        fields = $( 'form[data-htsa-id="contactForm"] input, form[data-htsa-id="contactForm"] textarea' );
-        btn = $( 'form[data-htsa-id="contactForm"] button[type="submit"]' );
-        if ( fields.val() === '' ) {
-            alert( __( 'All fields are required', 'htsa-plugin' ) );
-        } else {
-            btn.hide().next().show();
+        evt.stopPropagation();
+
+        let form, fields, btn;
+        form = $( this );
+        fields = form.find( 'input, textarea' );
+        btn = form.find( 'button[type="submit"]' );
+
+        process_request(
+            form,
+            function () {
+                if ( fields.val() === '' ) {
+                    alert( __( 'All fields are required', 'htsa-plugin' ) );
+                    return false;
+                }
+
+                return true;
+            },
+            {
+                req_start: function() {
+                    btn.hide().next().show();
+                },
+                req_success: function( msg ) {
+                    alert( msg );
+                },
+                req_complete: function() {
+                    fields.val( '' );
+                },
+                req_failed: function() {
+                    alert( __( 'Contact form request could not be sent!', 'htsa-plugin' ) );
+                },
+                req_always: function() {
+                    btn.show().next().hide();
+                },
+            }
+        )
+    } );
+
+    // process request
+    function process_request( form, validation_cb, options ) {
+        let settings = $.extend( {
+            req_start: () => null,
+            req_success: ( msg ) => null,
+            req_complete: () => null,
+            req_failed: () => null,
+            req_always: () => null,
+        }, options );
+
+        if ( validation_cb() ) {
+            settings.req_start();
             $.post(
                 WPS_PUBLIC_AJAX_REQUEST.ajax_url,
                 {
                     _ajax_nonce: WPS_PUBLIC_AJAX_REQUEST.nonce,
                     action: WPS_PUBLIC_AJAX_REQUEST.action,
-                    data: $( 'form[data-htsa-id="contactForm"]' ).serialize()
+                    data: form.serialize()
                 },
                 function ( resp ) {
                     if ( resp.success ) {
-                        alert( resp.data.msg );
+                        settings.req_success( resp.data.msg );
                     }
                 }
             )
             .done( function () {
-                fields.val( '' );
+                settings.req_complete();
             } )
             .fail( function () {
-                alert( __( 'Contact form request could not be sent!', 'htsa-plugin' ) );
+                settings.req_failed();
             } )
             .always( function () {
-                btn.show().next().hide();
+                settings.req_always();
             } );
         }
-    } );
+    }
 
 } ) ;

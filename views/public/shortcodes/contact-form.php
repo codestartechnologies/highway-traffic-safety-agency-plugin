@@ -1,4 +1,4 @@
-<form action="" method="post" class="ui form" data-htsa-id="contactForm">
+<form action="#" method="post" class="ui form" data-htsa-id="contactForm">
     <div class="required field">
         <label for="htsaContactFormName"> <?php esc_html_e( 'Name', 'htsa-plugin' ); ?> </label>
         <input type="text" name="name" id="htsaContactFormName" class="border-secondary rounded-4" />
