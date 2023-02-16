@@ -95,6 +95,17 @@ if ( ! class_exists( 'PublicAjax' ) ) {
         protected bool $script_in_footer;
 
         /**
+         * The name for the constant that will hold the ajax request data
+         *
+         * Format: CONSTANT_NAME
+         *
+         * @access protected
+         * @var string
+         * @since 1.0.0
+         */
+        protected string $constant_identifier;
+
+        /**
          * Register add_action() and remove_action().
          *
          * @final
@@ -155,7 +166,7 @@ if ( ! class_exists( 'PublicAjax' ) ) {
                 'action'    => $this->ajax_action,
             ) );
 
-            return "const WPS_PUBLIC_AJAX_REQUEST = {$data};";
+            return "const {$this->constant_identifier} = {$data};";
         }
 
         /**

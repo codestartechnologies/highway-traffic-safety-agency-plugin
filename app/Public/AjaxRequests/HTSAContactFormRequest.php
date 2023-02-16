@@ -2,7 +2,7 @@
 /**
  * HTSAContactFormRequest class file.
  *
- * This file contains HTSAContactFormRequest class that will register a custom public ajax request.
+ * This file contains HTSAContactFormRequest class that will register an ajax request for contact form.
  *
  * @package     HighwayTrafficSecurityAgencyPlugin
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
@@ -38,13 +38,14 @@ if ( ! class_exists( 'HTSAContactFormRequest' ) ) {
          */
         public function __construct()
         {
-            $this->ajax_action          = 'wps_public_ajax_request';
-            $this->nonce_action         = 'wps_public_ajax_request_nonce';
-            $this->script_handle        = 'wps_public_ajax_js';
-            $this->script_src           = WPS_JS_BASE_URL . 'public-ajax.js';
-            $this->script_dependencies  = array( 'jquery' );
-            $this->script_version       = false;
+            $this->ajax_action          = 'htsa_contact_form_request';
+            $this->nonce_action         = 'htsa_contact_form_request_nonce';
+            $this->script_handle        = 'htsa_contact_form';
+            $this->script_src           = WPS_JS_BASE_URL . 'contact-form.js';
+            $this->script_dependencies  = array( 'jquery', 'htsa_helpers' );
+            $this->script_version       = HTSA_PLUGIN_VERSION;
             $this->script_in_footer     = true;
+            $this->constant_identifier  = 'HTSA_CONTACT_FORM_REQUEST';
         }
 
         /**
@@ -70,29 +71,29 @@ if ( ! class_exists( 'HTSAContactFormRequest' ) ) {
             // $mailer->debug_mode         = 'dev_client_server';
             $mailer->encryption_mode    = 'ssl';
             $mailer->is_html            = false;
-            $mailer->subject            = 'New Contact Request From ' . $name;
+            $mailer->subject            = sprintf( esc_html__( 'New Contact Request From %s', 'htsa-plugin' ), $name );
             $mailer->body               = $message;
             $mailer->alt_body           = esc_html( $message );
 
             $status = $mailer->from( $sender, get_bloginfo( 'name' ) )->to( $receiver )->reply_to( $email, $name )->send();
 
             if ( $status ) {
-                $response_msg = esc_html__( 'We have received your message, and will get back to you shortly.', 'htsa' );
+                $response_msg = esc_html__( 'We have received your message, and will get back to you shortly.', 'htsa-plugin' );
 
-                $message = 'We have received your message, and will get back to you shortly.';
+                $message = esc_html__( 'We have received your message, and will get back to you shortly.', 'htsa-plugin' );
 
                 $mailer                     = new Mailer();
                 // $mailer->debug_mode         = 'dev_client_server';
                 $mailer->encryption_mode    = 'ssl';
                 $mailer->is_html            = false;
-                $mailer->subject            = 'We have received your message!';
+                $mailer->subject            = esc_html__( 'We have received your message!', 'htsa-plugin' );
                 $mailer->body               = $message;
                 $mailer->alt_body           = esc_html( $message );
 
                 $mailer->from( $sender, get_bloginfo( 'name' ) )->to( $email )->send();
 
             } else {
-                $response_msg = esc_html__( 'An error prevented your message from being sent. Please refresh the page and try again.', 'htsa' );
+                $response_msg = esc_html__( 'An error prevented your message from being sent. Please refresh the page and try again.', 'htsa-plugin' );
             }
 
             wp_send_json_success( array( 'msg'  => $response_msg, ) );

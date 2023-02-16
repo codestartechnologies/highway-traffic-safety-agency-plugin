@@ -44,6 +44,7 @@ if ( ! class_exists( 'WPSPublicAjaxRequest' ) ) {
             $this->script_dependencies  = array( 'jquery' );
             $this->script_version       = false;
             $this->script_in_footer     = true;
+            $this->constant_identifier  = 'WPS_PUBLIC_AJAX_REQUEST';
         }
 
         /**
