@@ -121,6 +121,7 @@ if ( ! class_exists( 'Hooks' ) ) {
             //
             wp_set_script_translations( 'wps_public_ajax_js', 'htsa-plugin' );
             wp_set_script_translations( 'htsa_contact_form', 'htsa-plugin' );
+            wp_set_script_translations( 'htsa_newsletter_form', 'htsa-plugin' );
             wp_enqueue_script( 'htsa_helpers', WPS_JS_BASE_URL . 'helpers.js', array( 'jquery' ), HTSA_PLUGIN_VERSION, true );
         }
 

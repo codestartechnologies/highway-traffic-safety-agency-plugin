@@ -1,5 +1,5 @@
 <div class="htsa-bg-dark p-2">
-    <form action="#" class="ui inverted form" data-htsa-id="newsletterForm" onsubmit="return false;">
+    <form action="#" class="ui inverted form" data-htsa-id="newsletterForm">
         <div class="required field">
             <label for=""> <?php esc_html_e( 'Fullname', 'htsa-plugin' ); ?> </label>
             <input type="text" name="name" id="htsaNewsletterFormName" class="rounded-0" />

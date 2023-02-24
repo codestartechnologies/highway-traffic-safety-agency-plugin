@@ -16,6 +16,8 @@ use HTSA_Plugin\WPS_Plugin\App\Admin\AdminNotices\LicenseKeyNotice;
 use HTSA_Plugin\WPS_Plugin\App\Admin\AdminNotices\URLStructureNotice;
 use HTSA_Plugin\WPS_Plugin\App\Admin\AdminNotices\WPSAdminNotice;
 use HTSA_Plugin\WPS_Plugin\App\Admin\AjaxRequests\WPSAdminAjaxRequest;
+use HTSA_Plugin\WPS_Plugin\App\Admin\DatabaseTables\Newsletters as NewslettersTable;
+use HTSA_Plugin\WPS_Plugin\App\Admin\DatabaseTables\WPSUsersTable;
 use HTSA_Plugin\WPS_Plugin\App\Admin\Menus\HTSAEmailSettingMenu;
 use HTSA_Plugin\WPS_Plugin\App\Admin\Menus\HTSAMenu;
 use HTSA_Plugin\WPS_Plugin\App\Admin\Menus\LicenseSettingMenu;
@@ -46,6 +48,7 @@ use HTSA_Plugin\WPS_Plugin\App\Admin\Settings\LicenseSetting;
 use HTSA_Plugin\WPS_Plugin\App\Admin\Settings\WPSSetting;
 use HTSA_Plugin\WPS_Plugin\App\Admin\TaxonomyFormFields\WPSTaxonomyFormField;
 use HTSA_Plugin\WPS_Plugin\App\Public\AjaxRequests\HTSAContactFormRequest;
+use HTSA_Plugin\WPS_Plugin\App\Public\AjaxRequests\HTSANewsletterFormRequest;
 use HTSA_Plugin\WPS_Plugin\App\Public\AjaxRequests\WPSPublicAjaxRequest;
 use HTSA_Plugin\WPS_Plugin\App\Public\PostTypes\HTSABranch;
 use HTSA_Plugin\WPS_Plugin\App\Public\PostTypes\HTSAOfficers;
@@ -257,6 +260,7 @@ if ( ! class_exists( 'Bindings' ) ) {
         public static array $public_ajax_requests = array(
             // WPSPublicAjaxRequest::class,
             HTSAContactFormRequest::class,
+            HTSANewsletterFormRequest::class,
         );
 
         /**
@@ -287,6 +291,19 @@ if ( ! class_exists( 'Bindings' ) ) {
          */
         public static array $taxonomy_fields = array(
             // WPSTaxonomyFormField::class,
+        );
+
+        /**
+         * Bindings for classes that create database tables
+         *
+         * @static
+         * @access public
+         * @var array
+         * @since 1.0.0
+         */
+        public static array $database_tables = array(
+            // WPSUsersTable::class,
+            NewslettersTable::class,
         );
     }
 }

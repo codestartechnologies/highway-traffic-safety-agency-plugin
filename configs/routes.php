@@ -47,6 +47,16 @@ return array(
 
         ),
 
+        '/email-confirmation'  => array(
+
+            'view'      => 'pages.email-confirmation',
+
+            'title'     => esc_html__( 'Email Confirmation', 'htsa-plugin' ),
+
+            'capability' => null,
+
+        ),
+
     ),
 
 );

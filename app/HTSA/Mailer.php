@@ -157,15 +157,17 @@ if ( ! class_exists( 'Mailer' ) ) {
             // - SMTPS (implicit TLS on port 465) or
             // - STARTTLS (explicit TLS on port 587)
             $this->encryption = array(
-                'ssl'   => PHPMailer::ENCRYPTION_SMTPS,
-                'tls'   => PHPMailer::ENCRYPTION_STARTTLS,
+                'ssl'       => PHPMailer::ENCRYPTION_SMTPS,
+                'tls'       => PHPMailer::ENCRYPTION_STARTTLS,
+                'mailtrap'  => PHPMailer::ENCRYPTION_STARTTLS,
             );
 
             // - 465 for SMTP with implicit TLS, a.k.a. RFC8314 SMTPS or
             // - 587 for SMTP+STARTTLS
             $this->port = array(
-                'ssl'   => 465,
-                'tls'   => 587,
+                'ssl'       => 465,
+                'tls'       => 587,
+                'mailtrap'  => 2525,
             );
 
             //Create a new PHPMailer instance

@@ -56,21 +56,48 @@ if ( ! class_exists( 'Activator' ) ) {
         private array $taxonomies;
 
         /**
+         * DatabaseUpgrade class
+         *
+         * @access private
+         * @var DatabaseUpgrade
+         * @since 1.0.0
+         */
+        private DatabaseUpgrade $database_upgrade;
+
+        /**
+         * Activator constructor
+         *
+         * @param DatabaseUpgrade $database_upgrade
+         * @since 1.0.0
+         */
+        public function __construct( DatabaseUpgrade $database_upgrade )
+        {
+            $this->database_upgrade = $database_upgrade;
+        }
+
+        /**
          * Method that will run when plugin is activated
          *
          * @access public
          * @param array|null $post_types
-         * @param [type] $taxonomies
+         * @param array|null $taxonomies
          * @return void
          * @since 1.0.0
          */
         public function run( array $post_types = null, array $taxonomies = null ) : void
         {
+
             $this->setup( $post_types, $taxonomies );
-            $this->log_activator_info();
+
             $this->register_post_types();
+
             $this->register_taxonomies();
+
             flush_rewrite_rules();
+
+            $this->log_activation_message();
+
+            $this->database_upgrade->create_database_tables();
         }
 
         /**
@@ -90,28 +117,6 @@ if ( ! class_exists( 'Activator' ) ) {
 
             if ( ! is_null( $taxonomies ) ) {
                 $this->taxonomies = $this->validate( $taxonomies, Taxonomies::class )['valid'];
-            }
-        }
-
-        /**
-         * Log information about the user that activated the plugin.
-         *
-         * @access private
-         * @return void
-         * @since 1.0.0
-         */
-        private function log_activator_info() : void
-        {
-            $current_user = wp_get_current_user();
-
-            if ( is_object( $current_user ) ) {
-                $message = sprintf(
-                    esc_html__( 'The user with login of: %1$s and display name of %2$s, activated this plugin', 'wps' ),
-                    $current_user->user_login,
-                    $current_user->display_name
-                );
-
-                $this->log( __FILE__, $message, 'info' );
             }
         }
 
@@ -144,6 +149,28 @@ if ( ! class_exists( 'Activator' ) ) {
                 foreach ( $this->taxonomies as $taxonomy ) {
                     $taxonomy->register();
                 }
+            }
+        }
+
+        /**
+         * Log information about the user that activated the plugin.
+         *
+         * @access private
+         * @return void
+         * @since 1.0.0
+         */
+        private function log_activation_message() : void
+        {
+            $current_user = wp_get_current_user();
+
+            if ( is_object( $current_user ) ) {
+                $message = sprintf(
+                    esc_html__( 'The user with login of: %1$s and display name of %2$s, activated this plugin', 'wps' ),
+                    $current_user->user_login,
+                    $current_user->display_name
+                );
+
+                $this->log( __FILE__, $message, 'info' );
             }
         }
     }

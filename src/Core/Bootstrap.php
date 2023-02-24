@@ -64,6 +64,15 @@ if ( ! class_exists( 'Bootstrap' ) ) {
         protected Router $router;
 
         /**
+         * This class creates database tables needed by the plugin.
+         *
+         * @access protected
+         * @var DatabaseUpgrade
+         * @since 1.0.0
+         */
+        protected DatabaseUpgrade $database_upgrade;
+
+        /**
          * This class registers hooks that will run at the fornt-end and admin area.
          *
          * @access protected
@@ -239,6 +248,7 @@ if ( ! class_exists( 'Bootstrap' ) ) {
          *
          * @access public
          * @param Router|null $router
+         * @param DatabaseUpgrade $database_upgrade
          * @param Hooks|null $hooks
          * @param AdminHooks|null $admin_hooks
          * @param PublicHooks|null $public_hooks
@@ -262,6 +272,7 @@ if ( ! class_exists( 'Bootstrap' ) ) {
          */
         public function __construct(
             Router $router = null,
+            DatabaseUpgrade $database_upgrade = null,
             Hooks $hooks = null,
             AdminHooks $admin_hooks = null,
             PublicHooks $public_hooks = null,
@@ -284,23 +295,27 @@ if ( ! class_exists( 'Bootstrap' ) ) {
         )
         {
 
-            if ( ! is_null( $router ) ) {
+            if ( ! is_null( $router ) && ( $router instanceof Router ) ) {
                 $this->router = $router;
             }
 
-            if ( ! is_null( $hooks ) ) {
+            if ( ! is_null( $database_upgrade ) && ( $database_upgrade instanceof DatabaseUpgrade ) ) {
+                $this->database_upgrade = $database_upgrade;
+            }
+
+            if ( ! is_null( $hooks ) && ( $hooks instanceof Hooks ) ) {
                 $this->hooks = $hooks;
             }
 
-            if ( ! is_null( $admin_hooks ) ) {
+            if ( ! is_null( $admin_hooks ) && ( $admin_hooks instanceof AdminHooks ) ) {
                 $this->admin_hooks = $admin_hooks;
             }
 
-            if ( ! is_null( $public_hooks ) ) {
+            if ( ! is_null( $public_hooks ) && ( $public_hooks instanceof PublicHooks ) ) {
                 $this->public_hooks = $public_hooks;
             }
 
-            if ( ! is_null( $plugin_update ) ) {
+            if ( ! is_null( $plugin_update ) && ( $plugin_update instanceof PluginUpdate ) ) {
                 $this->plugin_update = $plugin_update;
             }
 
@@ -426,6 +441,8 @@ if ( ! class_exists( 'Bootstrap' ) ) {
 
                 add_action( 'load-nav-menus.php', array( $this, 'set_nav_menus_metaboxes' ) );
             }
+
+            add_action( 'admin_init', array( $this, 'action_admin_init' ) );
         }
 
         /**
@@ -703,6 +720,19 @@ if ( ! class_exists( 'Bootstrap' ) ) {
                 foreach ( $this->nav_menu_metaboxes as $metabox ) {
                     $metabox->metabox();
                 }
+            }
+        }
+
+        /**
+         * Fires as an admin screen or script is being initialized.
+         *
+         */
+        public function action_admin_init() : void {
+            // Handle database upgrade
+            if ( isset( $_GET['wps_database_upgrade'] ) && wp_verify_nonce( $_GET['_wpnonce'] ?? null, 'handle_db_upgrade' ) ) {
+                $this->database_upgrade->create_database_tables();
+                wp_safe_redirect( admin_url() );
+                exit;
             }
         }
     }

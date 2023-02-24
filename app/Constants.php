@@ -213,6 +213,19 @@ if ( ! class_exists( 'Constants' ) ) {
                 define( 'HTSA_PLUGIN_HTSA_MENU_CSS', WPS_CSS_BASE_URL . 'htsa-menu.css' );
             }
 
+            /**
+             * Database table prefix
+             */
+            if ( ! defined( 'HTSA_PLUGIN_DB_TABLE_PREFIX' ) ) {
+                define( 'HTSA_PLUGIN_DB_TABLE_PREFIX', 'htsa_' );
+            }
+
+            /**
+             * Database version
+             */
+            if ( ! defined( 'HTSA_PLUGIN_DB_VERSION' ) ) {
+                define( 'HTSA_PLUGIN_DB_VERSION', 1 );
+            }
         }
     }
 }
