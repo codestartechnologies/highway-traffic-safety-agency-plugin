@@ -380,7 +380,7 @@ final class WPSPlugin {
     public function run() : void
     {
         $this->bootstrap = new Bootstrap(
-            new Router( wps_config( 'routes.routes' ) ),
+            new Router(),
             $this->database_upgrade,
             new Hooks,
             new AdminHooks(),

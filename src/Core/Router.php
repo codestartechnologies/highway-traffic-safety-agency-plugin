@@ -49,12 +49,11 @@ if ( ! class_exists( 'Router' ) ) {
          * Router constructor
          *
          * @access public
-         * @param array $routes
          * @since 1.0.0
          */
-        public function __construct( array $routes = array() )
+        public function __construct()
         {
-            $this->set_routes( $routes );
+            $this->set_routes( wps_config( 'routes.routes' ) );
         }
 
         /**
