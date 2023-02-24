@@ -90,11 +90,10 @@ if ( ! class_exists( 'PostMetaboxes' ) ) {
          *
          * Used in add_post_meta() and update_post_meta()
          *
-         * @access protected
          * @var string
          * @since 1.0.0
          */
-        protected string $meta_key;
+        public string $meta_key;
 
         /**
          * Optional. Whether to return a single value. This parameter has no effect if $key is not specified. Default false.
@@ -250,20 +249,6 @@ if ( ! class_exists( 'PostMetaboxes' ) ) {
             return ( is_array( $_POST[ $this->meta_key ] ) )
                 ? wp_kses_post_deep( $_POST[ $this->meta_key ] )
                 : wp_strip_all_tags( $_POST[ $this->meta_key ] );
-        }
-
-        /**
-         * Deletes the registered post meta
-         *
-         * @final
-         * @static
-         * @access public
-         * @return void
-         * @since 1.0.0
-         */
-        final public static function delete() : void
-        {
-            delete_post_meta_by_key( self::$meta_key );
         }
     }
 }

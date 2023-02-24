@@ -33,11 +33,16 @@ if ( ! class_exists( 'HTSAOfficerContactMetabox' ) ) {
     final class HTSAOfficerContactMetabox extends PostMetaboxes {
         /**
          * Metadata key.
+         *
+         * @var string
+         * @since 1.0.0
          */
-        protected string $meta_key = HTSA_OFFICER_CONTACT_META_KEY;
+        public string $meta_key = HTSA_OFFICER_CONTACT_META_KEY;
 
         /**
          * HTSAOfficerContactMetabox constructor
+         *
+         * @since 1.0.0
          */
         public function __construct()
         {

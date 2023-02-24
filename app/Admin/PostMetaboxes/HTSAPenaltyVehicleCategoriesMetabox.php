@@ -33,11 +33,16 @@ if ( ! class_exists( 'HTSAPenaltyVehicleCategoriesMetabox' ) ) {
     final class HTSAPenaltyVehicleCategoriesMetabox extends PostMetaboxes {
         /**
          * Metadata key.
+         *
+         * @var string
+         * @since 1.0.0
          */
-        protected string $meta_key = HTSA_PENALTY_VEHICLE_CATEGORIES_META_KEY;
+        public string $meta_key = HTSA_PENALTY_VEHICLE_CATEGORIES_META_KEY;
 
         /**
          * HTSAPenaltyVehicleCategoriesMetabox constructor
+         *
+         * @since 1.0.0
          */
         public function __construct()
         {

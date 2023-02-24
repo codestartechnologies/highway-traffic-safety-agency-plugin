@@ -33,11 +33,16 @@ if ( ! class_exists( 'HTSAFeaturedMetabox' ) ) {
     final class HTSAFeaturedMetabox extends PostMetaboxes {
         /**
          * Metadata key.
+         *
+         * @var string
+         * @since 1.0.0
          */
-        protected string $meta_key = HTSA_FEATURED_META_KEY;
+        public string $meta_key = HTSA_FEATURED_META_KEY;
 
         /**
          * HTSAFeaturedMetabox constructor
+         *
+         * @since 1.0.0
          */
         public function __construct()
         {

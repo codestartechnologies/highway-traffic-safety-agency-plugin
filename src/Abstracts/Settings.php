@@ -87,26 +87,6 @@ if ( ! class_exists( 'Settings' ) ) {
         }
 
         /**
-         * Deletes settings from database.
-         *
-         * @final
-         * @static
-         * @since 1.0.0
-         * @return void
-         * @since 1.0.0
-         */
-        final public static function delete_settings() : void
-        {
-            if ( ! empty( self::get_settings() ) ) {
-                foreach ( self::get_settings() as $setting_key => $setting ) {
-                    if ( get_option( $setting['option_name'] ) ) {
-                        delete_option( $setting['option_name'] );
-                    }
-                }
-            }
-        }
-
-        /**
          * Registers a setting section
          *
          * @access private
@@ -163,7 +143,6 @@ if ( ! class_exists( 'Settings' ) ) {
 
             if ( ! empty( $this->get_fields() ) ) {
                 foreach ( $this->get_fields() as $field ) {
-                    $setting = 
                     $args = array(
                         'label_for'     => $field['id'],
                         'option_name'   => $settings[ $field['setting_key'] ]['option_name'],

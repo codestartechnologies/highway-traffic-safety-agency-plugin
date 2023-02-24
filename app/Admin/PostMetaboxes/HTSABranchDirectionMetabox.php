@@ -33,11 +33,16 @@ if ( ! class_exists( 'HTSABranchDirectionMetabox' ) ) {
     final class HTSABranchDirectionMetabox extends PostMetaboxes {
         /**
          * Metadata key.
+         *
+         * @var string
+         * @since 1.0.0
          */
-        protected string $meta_key = HTSA_BRANCH_DIRECTION_META_KEY;
+        public string $meta_key = HTSA_BRANCH_DIRECTION_META_KEY;
 
         /**
          * HTSABranchDirectionMetabox constructor
+         *
+         * @since 1.0.0
          */
         public function __construct()
         {

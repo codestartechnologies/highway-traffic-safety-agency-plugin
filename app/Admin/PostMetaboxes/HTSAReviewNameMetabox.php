@@ -33,11 +33,16 @@ if ( ! class_exists( 'HTSAReviewNameMetabox' ) ) {
     final class HTSAReviewNameMetabox extends PostMetaboxes {
         /**
          * Metadata key.
+         *
+         * @var string
+         * @since 1.0.0
          */
-        protected string $meta_key = HTSA_REVIEW_NAME_META_KEY;
+        public string $meta_key = HTSA_REVIEW_NAME_META_KEY;
 
         /**
          * HTSAReviewNameMetabox constructor
+         *
+         * @since 1.0.0
          */
         public function __construct()
         {

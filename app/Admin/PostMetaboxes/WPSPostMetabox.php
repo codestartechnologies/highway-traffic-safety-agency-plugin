@@ -33,11 +33,16 @@ if ( ! class_exists( 'WPSPostMetabox' ) ) {
     final class WPSPostMetabox extends PostMetaboxes {
         /**
          * Metadata key.
+         *
+         * @var string
+         * @since 1.0.0
          */
-        protected string $meta_key = 'wps_post_text';
+        public string $meta_key = 'wps_post_text';
 
         /**
          * WPSPostMetabox constructor
+         *
+         * @since 1.0.0
          */
         public function __construct()
         {
