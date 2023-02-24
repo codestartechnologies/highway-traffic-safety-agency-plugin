@@ -33,8 +33,18 @@ if ( ! class_exists( 'HTSAContactFormRequest' ) ) {
      */
     final class HTSAContactFormRequest extends PublicAjax {
         /**
+         * Mailer class
+         *
+         * @access private
+         * @var Mailer
+         * @since 1.0.0
+         */
+        private Mailer $mailer;
+
+        /**
          * HTSAContactFormRequest Class Constructor
          *
+         * @since 1.0.0
          */
         public function __construct()
         {
@@ -46,14 +56,16 @@ if ( ! class_exists( 'HTSAContactFormRequest' ) ) {
             $this->script_version       = HTSA_PLUGIN_VERSION;
             $this->script_in_footer     = true;
             $this->constant_identifier  = 'HTSA_CONTACT_FORM_REQUEST';
+            $this->mailer               = new Mailer();
         }
 
         /**
          * Method for handling the ajax request after ajax nonce action have been validated
          *
          * @return void
+         * @since 1.0.0
          */
-        public function handle_request(): void
+        public function handle_request() : void
         {
             $data = $_POST['data'] ?? null;
             $post_arr = array();
@@ -67,36 +79,58 @@ if ( ! class_exists( 'HTSAContactFormRequest' ) ) {
             $receiver = $db_receipents['htsa_email_receiver'] ?? '';
             $sender = $db_receipents['htsa_email_sender'] ?? '';
 
-            $mailer                     = new Mailer();
-            // $mailer->debug_mode         = 'dev_client_server';
-            $mailer->encryption_mode    = 'ssl';
-            $mailer->is_html            = false;
-            $mailer->subject            = sprintf( esc_html__( 'New Contact Request From %s', 'htsa-plugin' ), $name );
-            $mailer->body               = $message;
-            $mailer->alt_body           = esc_html( $message );
-
-            $status = $mailer->from( $sender, get_bloginfo( 'name' ) )->to( $receiver )->reply_to( $email, $name )->send();
-
-            if ( $status ) {
+            if ( $this->send_email_to_admins( $name, $message, $sender, $receiver, $email ) ) {
                 $response_msg = esc_html__( 'We have received your message, and will get back to you shortly.', 'htsa-plugin' );
-
-                $message = esc_html__( 'We have received your message, and will get back to you shortly.', 'htsa-plugin' );
-
-                $mailer                     = new Mailer();
-                // $mailer->debug_mode         = 'dev_client_server';
-                $mailer->encryption_mode    = 'ssl';
-                $mailer->is_html            = false;
-                $mailer->subject            = esc_html__( 'We have received your message!', 'htsa-plugin' );
-                $mailer->body               = $message;
-                $mailer->alt_body           = esc_html( $message );
-
-                $mailer->from( $sender, get_bloginfo( 'name' ) )->to( $email )->send();
-
+                $this->send_email_to_user( $sender, $email );
             } else {
                 $response_msg = esc_html__( 'An error prevented your message from being sent. Please refresh the page and try again.', 'htsa-plugin' );
             }
 
             wp_send_json_success( array( 'msg'  => $response_msg, ) );
+        }
+
+        /**
+         * Send email notification for contact request to site admins
+         *
+         * @access private
+         * @param string $name
+         * @param string $message
+         * @param string $sender
+         * @param string $receiver
+         * @param string $email
+         * @return boolean
+         * @since 1.0.0
+         */
+        private function send_email_to_admins( string $name, string $message, string $sender, string $receiver, string $email ) : bool
+        {
+            // $this->mailer->debug_mode         = 'dev_client_server';
+            $this->mailer->encryption_mode    = $_ENV['HTSA_PLUGIN_SMTP_ENCRYPTION_MODE'];
+            $this->mailer->is_html            = false;
+            $this->mailer->subject            = sprintf( esc_html__( 'New Contact Request From %s', 'htsa-plugin' ), $name );
+            $this->mailer->body               = $message;
+            $this->mailer->alt_body           = esc_html( $message );
+            return $this->mailer->from( $sender, get_bloginfo( 'name' ) )->to( $receiver )->reply_to( $email, $name )->send();
+        }
+
+        /**
+         * Send email notification to user
+         *
+         * @access private
+         * @param string $sender
+         * @param string $email
+         * @return boolean
+         * @since 1.0.0
+         */
+        private function send_email_to_user( string $sender, string $email ) : bool
+        {
+            $message = esc_html__( 'We have received your message, and will get back to you shortly.', 'htsa-plugin' );
+            // $this->mailer->debug_mode         = 'dev_client_server';
+            $this->mailer->encryption_mode    = $_ENV['HTSA_PLUGIN_SMTP_ENCRYPTION_MODE'];
+            $this->mailer->is_html            = false;
+            $this->mailer->subject            = esc_html__( 'We have received your message!', 'htsa-plugin' );
+            $this->mailer->body               = $message;
+            $this->mailer->alt_body           = esc_html( $message );
+            return $this->mailer->from( $sender, get_bloginfo( 'name' ) )->to( $email )->send();
         }
     }
 }

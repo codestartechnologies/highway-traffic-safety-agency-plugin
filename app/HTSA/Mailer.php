@@ -367,6 +367,14 @@ if ( ! class_exists( 'Mailer' ) ) {
 
                 //send the message
                 if ( $this->mail->send() ) {
+                    // reset mail settings
+                    $this->mail->clearAddresses();
+                    $this->mail->clearAllRecipients();
+                    $this->mail->clearAttachments();
+                    $this->mail->clearBCCs();
+                    $this->mail->clearCCs();
+                    $this->mail->clearCustomHeaders();
+                    $this->mail->clearReplyTos();
                     return true;
                 }
 
