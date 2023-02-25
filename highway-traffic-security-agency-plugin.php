@@ -31,8 +31,14 @@ along with Highway Traffic Security Agency Plugin. If not, see https://www.gnu.o
 /**
  * The full-path and file name of the plugin file
  */
+
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\WPSPlugin;
+
 if ( ! defined( 'WPS_FILE' ) ) {
     define( 'WPS_FILE', __FILE__ );
 }
 
 require_once trailingslashit( plugin_dir_path( __FILE__ ) ) . 'wps.php';
+
+$wps_plugin = WPSPlugin::get_instance();
+$wps_plugin->run();

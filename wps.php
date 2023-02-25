@@ -1,4 +1,17 @@
 <?php
+/**
+ * WPSPlugin Class
+ *
+ * This file contains WPSPlugin Class which is designed using singletone design pattern.
+ *
+ * @package     WordpressPluginStarter
+ * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
+ * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
+ * @license     GNU/AGPLv3
+ * @since       0.1.0
+ */
+
+namespace HTSA_Plugin\Codestartechnologies\WordpressPluginStarter;
 
 use Dotenv\Dotenv;
 use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Core\Activator;
@@ -28,17 +41,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * WPSPlugin Class
  *
- * This class is used to create a WordPress plugin. It is the main file of your plugin.
+ * This class is primary file of the plugin which is used from singletone design pattern.
  *
  * @package WordpressPluginStarter
  * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
- * @link https://github.com/codestartechnologies/wordpress-plugin-starter
- * @license GNU/AGPLv3
- * @since 0.1.0
  */
 final class WPSPlugin {
     /**
-     * The plugin instance
+     * WPSPlugin instance
+     *
+     * This property is used to create one object from WPSPlugin class in whole of program execution.
      *
      * @access private
      * @static
@@ -223,36 +235,60 @@ final class WPSPlugin {
     private function __construct()
     {
         /**
-         * Require autoloader files
+         * Require composer autoloader file for autoloading classes.
          */
         require_once trailingslashit( plugin_dir_path( WPS_FILE ) ) . 'vendor/autoload.php';
 
+        /**
+         * Require wordpress plugin starter autoloader file for autoloading classes.
+         */
         require_once trailingslashit( plugin_dir_path( WPS_FILE ) ) . 'autoload.php';
 
         /**
-         * Load .env inside the application
+         * Set up phpdotenv for use in the application.
          */
         $dotenv = Dotenv::createImmutable( __DIR__ );
         $dotenv->safeLoad();
 
+        /**
+         * Define constants required by wordpress plugin starter.
+         */
         Constants::define_core_constants();
 
+        /**
+         * Define constants required by the plugin.
+         */
         AppConstants::define_constants();
 
+        /**
+         * Initialize WPSPlugin class properties.
+         */
         $this->setup();
 
+        /**
+         * Initialize DatabaseUpgrade class for performing database upgrade when needed.
+         */
         $this->database_upgrade = new DatabaseUpgrade( $this->database_tables );
 
+        /**
+         * Sets the activation hook for a plugin.
+         */
         register_activation_hook( WPS_FILE, function () {
             $this->activate( new Activator( $this->database_upgrade ) );
             AppActivator::run();
         } );
 
+        /**
+         * Sets the deactivation hook for a plugin.
+         */
         register_deactivation_hook( WPS_FILE, function () {
             $this->deactivate( new Deactivator() );
             AppDeactivator::run();
         } );
 
+        /**
+         * Sets the uninstallation hook for a plugin.
+         */
         register_uninstall_hook( WPS_FILE, array( __CLASS__, 'uninstall' ) );
     }
 
@@ -405,6 +441,3 @@ final class WPSPlugin {
         $this->bootstrap->init();
     }
 }
-
-$wps_plugin = WPSPlugin::get_instance();
-$wps_plugin->run();
