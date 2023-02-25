@@ -103,5 +103,23 @@ if ( ! class_exists( 'DatabaseUpgrade' ) ) {
                 update_option( $this->last_db_version_option_name, $this->db_version );
             }
         }
+
+        /**
+         * Drop tables
+         *
+         * @return void
+         * @since 1.0.0
+         */
+        public function drop_database_tables() : void
+        {
+            global $wpdb;
+
+            if ( ! empty( $this->db_tables ) ) {
+                foreach ( $this->db_tables as $table ) {
+                    $table->set_wpdb( $wpdb );
+                    $table->destroy();
+                }
+            }
+        }
     }
 }

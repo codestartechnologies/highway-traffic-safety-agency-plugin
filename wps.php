@@ -74,10 +74,11 @@ final class WPSPlugin {
      * DatabaseUpgrade Class
      *
      * @access private
+     * @static
      * @var DatabaseUpgrade
      * @since 1.0.0
      */
-    private DatabaseUpgrade $database_upgrade;
+    private static DatabaseUpgrade $database_upgrade;
 
     /**
      * Post Types
@@ -385,7 +386,8 @@ final class WPSPlugin {
     {
         Uninstaller::run(
             self::$settings,
-            self::$post_metaboxes
+            self::$post_metaboxes,
+            self::$database_upgrade
         );
         AppUninstaller::run();
     }
