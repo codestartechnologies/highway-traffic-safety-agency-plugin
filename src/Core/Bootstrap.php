@@ -732,10 +732,12 @@ if ( ! class_exists( 'Bootstrap' ) ) {
             if (
                 isset( $_GET['wps_database_upgrade'] ) &&
                 isset( $_GET['_wpnonce'] ) &&
-                wp_verify_nonce( $_GET['_wpnonce'], 'handle_db_upgrade' ) &&
-                $this->database_upgrade->can_perform_upgrade()
+                wp_verify_nonce( $_GET['_wpnonce'], 'handle_db_upgrade' )
             ) {
-                $this->database_upgrade->run_upgrade();
+                if ( $this->database_upgrade->can_perform_upgrade() ) {
+                    $this->database_upgrade->run_upgrade();
+                }
+
                 wp_safe_redirect( admin_url() );
                 exit;
             }

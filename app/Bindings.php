@@ -15,6 +15,7 @@ namespace HTSA_Plugin\WPS_Plugin\App;
 use HTSA_Plugin\WPS_Plugin\App\Admin\AdminNotices\LicenseKeyNotice;
 use HTSA_Plugin\WPS_Plugin\App\Admin\AdminNotices\URLStructureNotice;
 use HTSA_Plugin\WPS_Plugin\App\Admin\AdminNotices\WPSAdminNotice;
+use HTSA_Plugin\WPS_Plugin\App\Admin\AdminNotices\WPSDatabaseUpgradeNotice;
 use HTSA_Plugin\WPS_Plugin\App\Admin\AjaxRequests\WPSAdminAjaxRequest;
 use HTSA_Plugin\WPS_Plugin\App\Admin\DatabaseTables\Newsletters as NewslettersTable;
 use HTSA_Plugin\WPS_Plugin\App\Admin\DatabaseTables\WPSUsersTable;
@@ -233,6 +234,7 @@ if ( ! class_exists( 'Bindings' ) ) {
          */
         public static array $admin_notices = array(
             // WPSAdminNotice::class,
+            WPSDatabaseUpgradeNotice::class,
             LicenseKeyNotice::class,
             URLStructureNotice::class,
         );
