@@ -13,6 +13,7 @@
 namespace HTSA_Plugin\WPS_Plugin\App\Admin\DatabaseTables;
 
 use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Abstracts\DatabaseTables;
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Traits\DatabaseTables as TraitsDatabaseTables;
 
 /**
  * Prevent direct access to this file.
@@ -30,6 +31,8 @@ if ( ! class_exists( 'Newsletters' ) ) {
      */
     final class Newsletters extends DatabaseTables
     {
+        use TraitsDatabaseTables;
+
         /**
          * Newsletters constructor
          *
@@ -54,12 +57,24 @@ if ( ! class_exists( 'Newsletters' ) ) {
                     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
                     `name` VARCHAR(50) NOT NULL,
                     `email` VARCHAR(50) NOT NULL,
-                    `valid` TINYINT NOT NULL DEFAULT '0',
+                    `valid` ENUM('0','1') NOT NULL DEFAULT '0',
                     `token` VARCHAR(250) NOT NULL,
                     PRIMARY KEY (`id`),
                     UNIQUE (`email`)
                 )
             ";
+        }
+
+        /**
+         * SQL query string for modifying the table column(s).
+         *
+         * @access protected
+         * @return string
+         * @since 1.0.0
+         */
+        protected function get_modify_column_query_string() : string
+        {
+            return "ALTER TABLE `{$this->table_name}` CHANGE `valid` `valid` TINYINT NOT NULL DEFAULT '0';";
         }
     }
 }

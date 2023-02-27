@@ -79,28 +79,51 @@ if ( ! class_exists( 'DatabaseUpgrade' ) ) {
         }
 
         /**
-         * Create tables
+         * Check if database needs an upgrade
+         *
+         * @return boolean
+         * @since 1.0.0
+         */
+        public function can_perform_upgrade() : bool
+        {
+            return ( intval( $this->db_version ) > intval( get_option( $this->last_db_version_option_name ) ) );
+        }
+
+        /**
+         * Create tables or modify/alter table columns
          *
          * @return void
          * @since 1.0.0
          */
-        public function create_database_tables() : void
+        public function run_upgrade() : void
+        {
+            $this->create_or_modify_database_tables( function( object $table ) {
+                if ( method_exists( $table, 'modify' ) ) {
+                    $table->modify();
+                }
+            } );
+
+            update_option( $this->last_db_version_option_name, $this->db_version );
+        }
+
+        /**
+         * Create tables or modify/alter table columns
+         *
+         * @access protected
+         * @param callable $callback
+         * @return void
+         * @since 1.0.0
+         */
+        protected function create_or_modify_database_tables( callable $callback = null ) : void
         {
             global $wpdb;
 
-            if (
-                ( intval( $this->db_version ) > intval( get_option( $this->last_db_version_option_name ) ) ) &&
-                isset( $this->db_tables )
-            ) {
+            if ( ! empty( $this->db_tables ) ) {
                 foreach ( $this->db_tables as $table ) {
                     $table->set_wpdb( $wpdb );
-
-                    if ( ! $table->exists() ) {
-                        $table->create();
-                    }
+                    $table->create();
+                    $callback( $table );
                 }
-
-                update_option( $this->last_db_version_option_name, $this->db_version );
             }
         }
 

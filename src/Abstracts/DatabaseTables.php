@@ -52,10 +52,11 @@ if ( ! class_exists( 'DatabaseTables' ) ) {
         /**
          * Setter for wpdb class
          *
+         * @final
          * @param wpdb $wpdb - instantiation of the wpdb class
          * @return void
          */
-        public function set_wpdb( wpdb $wpdb ) : void
+        final public function set_wpdb( wpdb $wpdb ) : void
         {
             $this->wpdb = $wpdb;
         }
@@ -63,10 +64,11 @@ if ( ! class_exists( 'DatabaseTables' ) ) {
         /**
          * Check if the table exists in the database
          *
+         * @final
          * @return boolean
          * @since 1.0.0
          */
-        public function exists() : bool
+        final public function exists() : bool
         {
             return \wps_db_table_exists( $this->table_name );
         }
@@ -74,10 +76,11 @@ if ( ! class_exists( 'DatabaseTables' ) ) {
         /**
          * Create the table
          *
+         * @final
          * @return boolean
          * @since 1.0.0
          */
-        public function create() : bool
+        final public function create() : bool
         {
             return $this->wpdb->query( $this->get_create_table_query_string() . ' ' . $this->wpdb->get_charset_collate() );
         }
@@ -85,10 +88,11 @@ if ( ! class_exists( 'DatabaseTables' ) ) {
         /**
          * Remove the table
          *
+         * @final
          * @return boolean
          * @since 1.0.0
          */
-        public function destroy() : bool
+        final public function destroy() : bool
         {
             return ( $this->exists() ) ? $this->wpdb->query( "DROP TABLE `{$this->table_name}`" ) : false;
         }

@@ -97,7 +97,7 @@ if ( ! class_exists( 'Activator' ) ) {
 
             $this->log_activation_message();
 
-            $this->database_upgrade->create_database_tables();
+            $this->database_upgrade->run_upgrade();
         }
 
         /**
