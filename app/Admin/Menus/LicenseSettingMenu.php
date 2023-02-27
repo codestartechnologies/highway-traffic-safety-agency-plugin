@@ -105,6 +105,7 @@ if ( ! class_exists( 'LicenseSettingMenu' ) ) {
                 $response = ( isset( $response->success ) ) ? $response->message : 'error';
                 htsa_plugin_store_session_data( 'htsa_plugin_license_api', $response, strtotime( '+2 minutes' ) );
                 wp_safe_redirect( admin_url( 'options-general.php?page=htsa-plugin-license-setting' ) );
+                exit;
             }
         }
 

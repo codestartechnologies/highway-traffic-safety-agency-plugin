@@ -39,7 +39,10 @@ if ( ! class_exists( 'Uninstaller' ) ) {
          */
         public static function run() : void
         {
-            // 
+            delete_option( 'htsa_plugin_license_valid' );
+            delete_option( 'htsa_plugin_license_activated' );
+            delete_option( 'htsa_plugin_license_deactivated' );
+            delete_option( 'htsa_db_version' );
         }
     }
 }
