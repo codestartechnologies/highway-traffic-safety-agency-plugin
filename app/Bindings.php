@@ -22,6 +22,7 @@ use HTSA_Plugin\WPS_Plugin\App\Admin\DatabaseTables\WPSUsersTable;
 use HTSA_Plugin\WPS_Plugin\App\Admin\Menus\HTSAEmailSettingMenu;
 use HTSA_Plugin\WPS_Plugin\App\Admin\Menus\HTSAMenu;
 use HTSA_Plugin\WPS_Plugin\App\Admin\Menus\LicenseSettingMenu;
+use HTSA_Plugin\WPS_Plugin\App\Admin\Menus\NewsletterSubscriptions as NewsletterSubscriptionsMenu;
 use HTSA_Plugin\WPS_Plugin\App\Admin\Menus\WPSMenu;
 use HTSA_Plugin\WPS_Plugin\App\Admin\Menus\WPSPluginMenu;
 use HTSA_Plugin\WPS_Plugin\App\Admin\Menus\WPSSettingMenu;
@@ -92,6 +93,7 @@ if ( ! class_exists( 'Bindings' ) ) {
         public static array $menus = array(
             // WPSMenu::class,
             HTSAMenu::class,
+            NewsletterSubscriptionsMenu::class,
         );
 
         /**

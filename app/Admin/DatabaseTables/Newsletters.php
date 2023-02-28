@@ -74,7 +74,10 @@ if ( ! class_exists( 'Newsletters' ) ) {
          */
         protected function get_modify_column_query_string() : string
         {
-            return "ALTER TABLE `{$this->table_name}` CHANGE `valid` `valid` TINYINT NOT NULL DEFAULT '0';";
+            $sql = "";
+            $sql .= "ALTER TABLE `{$this->table_name}` CHANGE `valid` `valid` TINYINT NOT NULL DEFAULT '0';";
+            $sql .= "ALTER TABLE `{$this->table_name}` ADD `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `token`;";
+            return $sql;
         }
     }
 }
