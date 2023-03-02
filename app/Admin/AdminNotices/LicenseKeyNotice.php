@@ -21,46 +21,45 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! class_exists( 'LicenseKeyNotice' ) ) {
+/**
+ * Class LicenseKeyNotice
+ *
+ * This class registers a custom admin notification.
+ *
+ * @package HighwayTrafficSecurityAgencyPlugin
+ * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+ */
+final class LicenseKeyNotice extends AdminNotices
+{
     /**
-     * Class LicenseKeyNotice
-     *
-     * This class registers a custom admin notification.
-     *
-     * @package HighwayTrafficSecurityAgencyPlugin
-     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * LicenseKeyNotice constructor
      */
-    final class LicenseKeyNotice extends AdminNotices {
-        /**
-         * LicenseKeyNotice constructor
-         */
-        public function __construct()
-        {
-            $this->type = 'error';
-            $this->dismissible = false;
-        }
+    public function __construct()
+    {
+        $this->type = 'error';
+        $this->dismissible = false;
+    }
 
-        /**
-         * The notification message
-         *
-         * @return string
-         */
-        public function get_message() : string
-        {
-            return sprintf(
-                __( '<b>%1$s</b>: Your license key is invalid/expired. <a href="%2$s">Update your license key settings</a> to enable updates for this plugin.', 'htsa-plugin' ),
-                HTSA_PLUGIN_NAME, admin_url( 'options-general.php?page=htsa-plugin-license-setting' )
-            );
-        }
+    /**
+     * The notification message
+     *
+     * @return string
+     */
+    public function get_message() : string
+    {
+        return sprintf(
+            __( '<b>%1$s</b>: Your license key is invalid/expired. <a href="%2$s">Update your license key settings</a> to enable updates for this plugin.', 'htsa-plugin' ),
+            HTSA_PLUGIN_NAME, admin_url( 'options-general.php?page=htsa-plugin-license-setting' )
+        );
+    }
 
-        /**
-         * Pre check before printing notification
-         *
-         * @return boolean
-         */
-        protected function can_show_notice() : bool
-        {
-            return ( '0' === get_option( 'htsa_plugin_license_valid' ) );
-        }
+    /**
+     * Pre check before printing notification
+     *
+     * @return boolean
+     */
+    protected function can_show_notice() : bool
+    {
+        return ( '0' === get_option( 'htsa_plugin_license_valid' ) );
     }
 }

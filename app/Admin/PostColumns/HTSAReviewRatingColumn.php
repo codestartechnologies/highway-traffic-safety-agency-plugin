@@ -21,27 +21,28 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! class_exists( 'HTSAReviewRatingColumn' ) ) {
+/**
+ * Class HTSAReviewRatingColumn
+ *
+ * This class registers a custom post column.
+ *
+ * @package HighwayTrafficSecurityAgencyPlugin
+ * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+ */
+final class HTSAReviewRatingColumn extends PostColumns
+{
     /**
-     * Class HTSAReviewRatingColumn
+     * HTSAReviewRatingColumn constructor
      *
-     * This class registers a custom post column.
-     *
-     * @package HighwayTrafficSecurityAgencyPlugin
-     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @since 1.0.0
      */
-    final class HTSAReviewRatingColumn extends PostColumns {
-        /**
-         * HTSAReviewRatingColumn constructor
-         */
-        public function __construct()
-        {
-            $this->post_type        = HTSA_REVIEWS_POST_TYPE;
-            $this->meta_key         = HTSA_REVIEW_RATING_META_KEY;
-            $this->is_single_key    = true;
-            $this->column_key       = HTSA_REVIEW_RATING_META_KEY;
-            $this->column_title     = esc_html__( 'Rating', 'htsa-plugin' );
-            $this->view             = 'post-columns.review-rating';
-        }
+    public function __construct()
+    {
+        $this->post_type        = HTSA_REVIEWS_POST_TYPE;
+        $this->meta_key         = HTSA_REVIEW_RATING_META_KEY;
+        $this->is_single_key    = true;
+        $this->column_key       = HTSA_REVIEW_RATING_META_KEY;
+        $this->column_title     = esc_html__( 'Rating', 'htsa-plugin' );
+        $this->view             = 'post-columns.review-rating';
     }
 }

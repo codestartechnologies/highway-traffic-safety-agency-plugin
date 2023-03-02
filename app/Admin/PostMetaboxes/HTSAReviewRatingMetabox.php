@@ -21,41 +21,40 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! class_exists( 'HTSAReviewRatingMetabox' ) ) {
+/**
+ * HTSAReviewRatingMetabox Class
+ *
+ * This class registers a custom metabox for post.
+ *
+ * @package HighwayTrafficSecurityAgencyPlugin
+ * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+ */
+final class HTSAReviewRatingMetabox extends PostMetaboxes
+{
     /**
-     * HTSAReviewRatingMetabox Class
+     * Metadata key.
      *
-     * This class registers a custom metabox for post.
-     *
-     * @package HighwayTrafficSecurityAgencyPlugin
-     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @var string
+     * @since 1.0.0
      */
-    final class HTSAReviewRatingMetabox extends PostMetaboxes {
-        /**
-         * Metadata key.
-         *
-         * @var string
-         * @since 1.0.0
-         */
-        public string $meta_key = HTSA_REVIEW_RATING_META_KEY;
+    public string $meta_key = HTSA_REVIEW_RATING_META_KEY;
 
-        /**
-         * HTSAReviewRatingMetabox constructor
-         *
-         * @since 1.0.0
-         */
-        public function __construct()
-        {
-            $this->id = 'htsa_review_rating_metabox';
-            $this->title = esc_html__( 'Rating', 'htsa-plugin' );
-            $this->screens = array( HTSA_REVIEWS_POST_TYPE, );
-            $this->context = 'side';
-            $this->priority = 'high';
-            $this->is_single_key = true;
-            $this->nonce_action = 'handle htsa review rating metabox';
-            $this->nonce_name = 'htsa_review_rating_metabox_nonce';
-            $this->is_unique_key = true;
-            $this->metabox_view = 'posts-meta-boxes.review-rating';
-        }
+    /**
+     * HTSAReviewRatingMetabox constructor
+     *
+     * @since 1.0.0
+     */
+    public function __construct()
+    {
+        $this->id = 'htsa_review_rating_metabox';
+        $this->title = esc_html__( 'Rating', 'htsa-plugin' );
+        $this->screens = array( HTSA_REVIEWS_POST_TYPE, );
+        $this->context = 'side';
+        $this->priority = 'high';
+        $this->is_single_key = true;
+        $this->nonce_action = 'handle htsa review rating metabox';
+        $this->nonce_name = 'htsa_review_rating_metabox_nonce';
+        $this->is_unique_key = true;
+        $this->metabox_view = 'posts-meta-boxes.review-rating';
     }
 }

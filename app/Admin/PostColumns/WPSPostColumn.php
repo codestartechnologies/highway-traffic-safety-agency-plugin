@@ -21,27 +21,28 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! class_exists( 'WPSPostColumn' ) ) {
+/**
+ * Class WPSPostColumn
+ *
+ * This class registers a custom post column.
+ *
+ * @package WordpressPluginStarter
+ * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+ */
+final class WPSPostColumn extends PostColumns
+{
     /**
-     * Class WPSPostColumn
+     * WPSPostColumn constructor
      *
-     * This class registers a custom post column.
-     *
-     * @package WordpressPluginStarter
-     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @since 1.0.0
      */
-    final class WPSPostColumn extends PostColumns {
-        /**
-         * WPSPostColumn constructor
-         */
-        public function __construct()
-        {
-            $this->post_type        = 'wps_post';
-            $this->meta_key         = 'wps_post_text';
-            $this->is_single_key    = true;
-            $this->column_key       = 'wps_post_text';
-            $this->column_title     = esc_html__( 'Custom Meta - Heading:', 'wps' );
-            $this->view             = 'post-columns.wps-post-column';
-        }
+    public function __construct()
+    {
+        $this->post_type        = 'wps_post';
+        $this->meta_key         = 'wps_post_text';
+        $this->is_single_key    = true;
+        $this->column_key       = 'wps_post_text';
+        $this->column_title     = esc_html__( 'Custom Meta - Heading:', 'wps' );
+        $this->view             = 'post-columns.wps-post-column';
     }
 }

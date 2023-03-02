@@ -21,32 +21,31 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! class_exists( 'WPSAdminNotice' ) ) {
+/**
+ * Class WPSAdminNotice
+ *
+ * This class registers a custom admin notification.
+ *
+ * @package WordpressPluginStarter
+ * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+ */
+final class WPSAdminNotice extends AdminNotices
+{
     /**
-     * Class WPSAdminNotice
-     *
-     * This class registers a custom admin notification.
-     *
-     * @package WordpressPluginStarter
-     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * WPSAdminNotice constructor
      */
-    final class WPSAdminNotice extends AdminNotices {
-        /**
-         * WPSAdminNotice constructor
-         */
-        public function __construct()
-        {
-            $this->type = 'info';
-        }
+    public function __construct()
+    {
+        $this->type = 'info';
+    }
 
-        /**
-         * The notification message
-         *
-         * @return array
-         */
-        public function get_message() : string
-        {
-            return esc_html__( 'Thanks for using WordPress Plugin Starter!', 'wps' );
-        }
+    /**
+     * The notification message
+     *
+     * @return array
+     */
+    public function get_message() : string
+    {
+        return esc_html__( 'Thanks for using WordPress Plugin Starter!', 'wps' );
     }
 }

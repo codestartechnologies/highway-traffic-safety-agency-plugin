@@ -22,62 +22,60 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! class_exists( 'Newsletters' ) ) {
+/**
+ * Newsletters Class
+ *
+ * @package HighwayTrafficSecurityAgencyPlugin
+ * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+ */
+final class Newsletters extends DatabaseTables
+{
+    use TraitsDatabaseTables;
+
     /**
-     * Newsletters Class
+     * Newsletters constructor
      *
-     * @package HighwayTrafficSecurityAgencyPlugin
-     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @since 1.0.0
      */
-    final class Newsletters extends DatabaseTables
+    public function __construct()
     {
-        use TraitsDatabaseTables;
+        $this->table_name = HTSA_PLUGIN_DB_TABLE_PREFIX . 'newsletters';
+    }
 
-        /**
-         * Newsletters constructor
-         *
-         * @since 1.0.0
-         */
-        public function __construct()
-        {
-            $this->table_name = HTSA_PLUGIN_DB_TABLE_PREFIX . 'newsletters';
-        }
+    /**
+     * SQL query string for creating the table.
+     *
+     * @access protected
+     * @return string
+     * @since 1.0.0
+     */
+    protected function get_create_table_query_string() : string
+    {
+        return "
+            CREATE TABLE IF NOT EXISTS `{$this->table_name}` (
+                `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+                `name` VARCHAR(50) NOT NULL,
+                `email` VARCHAR(50) NOT NULL,
+                `valid` ENUM('0','1') NOT NULL DEFAULT '0',
+                `token` VARCHAR(250) NOT NULL,
+                PRIMARY KEY (`id`),
+                UNIQUE (`email`)
+            )
+        ";
+    }
 
-        /**
-         * SQL query string for creating the table.
-         *
-         * @access protected
-         * @return string
-         * @since 1.0.0
-         */
-        protected function get_create_table_query_string() : string
-        {
-            return "
-                CREATE TABLE IF NOT EXISTS `{$this->table_name}` (
-                    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-                    `name` VARCHAR(50) NOT NULL,
-                    `email` VARCHAR(50) NOT NULL,
-                    `valid` ENUM('0','1') NOT NULL DEFAULT '0',
-                    `token` VARCHAR(250) NOT NULL,
-                    PRIMARY KEY (`id`),
-                    UNIQUE (`email`)
-                )
-            ";
-        }
-
-        /**
-         * SQL query string for modifying the table column(s).
-         *
-         * @access protected
-         * @return string
-         * @since 1.0.0
-         */
-        protected function get_modify_column_query_string() : string
-        {
-            $sql = "";
-            $sql .= "ALTER TABLE `{$this->table_name}` CHANGE `valid` `valid` TINYINT NOT NULL DEFAULT '0';";
-            $sql .= "ALTER TABLE `{$this->table_name}` ADD `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `token`;";
-            return $sql;
-        }
+    /**
+     * SQL query string for modifying the table column(s).
+     *
+     * @access protected
+     * @return string
+     * @since 1.0.0
+     */
+    protected function get_modify_column_query_string() : string
+    {
+        $sql = "";
+        $sql .= "ALTER TABLE `{$this->table_name}` CHANGE `valid` `valid` TINYINT NOT NULL DEFAULT '0';";
+        $sql .= "ALTER TABLE `{$this->table_name}` ADD `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `token`;";
+        return $sql;
     }
 }

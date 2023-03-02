@@ -20,36 +20,35 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! trait_exists( 'DatabaseTables' ) ) {
+/**
+ * Trait DatabaseTables
+ *
+ * This trait is used for modifying database table columns.
+ *
+ * @package WordpressPluginStarter
+ * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+ */
+trait DatabaseTables
+{
     /**
-     * Trait DatabaseTables
+     * Modify the table column(s)
      *
-     * This trait is used for modifying database table columns.
-     *
-     * @package WordpressPluginStarter
-     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @final
+     * @return integer|boolean
+     * @since 1.0.0
      */
-    trait DatabaseTables {
-        /**
-         * Modify the table column(s)
-         *
-         * @final
-         * @return integer|boolean
-         * @since 1.0.0
-         */
-        final public function modify() : int|bool
-        {
-            return $this->wpdb->query( $this->get_modify_column_query_string() );
-        }
-
-        /**
-         * SQL query string for modifying the table column(s).
-         *
-         * @access protected
-         * @abstract
-         * @return string
-         * @since 1.0.0
-         */
-        protected abstract function get_modify_column_query_string() : string;
+    final public function modify() : int|bool
+    {
+        return $this->wpdb->query( $this->get_modify_column_query_string() );
     }
+
+    /**
+     * SQL query string for modifying the table column(s).
+     *
+     * @access protected
+     * @abstract
+     * @return string
+     * @since 1.0.0
+     */
+    protected abstract function get_modify_column_query_string() : string;
 }

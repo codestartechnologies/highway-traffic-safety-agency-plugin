@@ -21,42 +21,41 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! class_exists( 'HTSAProfileSocialHandlesMetabox' ) ) {
+/**
+ * HTSAProfileSocialHandlesMetabox Class
+ *
+ * This class registers a custom metabox.
+ *
+ * @package HighwayTrafficSecurityAgencyPlugin
+ * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+ */
+final class HTSAProfileSocialHandlesMetabox extends PostMetaboxes
+{
     /**
-     * HTSAProfileSocialHandlesMetabox Class
+     * Metadata key.
      *
-     * This class registers a custom metabox.
-     *
-     * @package HighwayTrafficSecurityAgencyPlugin
-     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @var string
+     * @since 1.0.0
      */
-    final class HTSAProfileSocialHandlesMetabox extends PostMetaboxes {
-        /**
-         * Metadata key.
-         *
-         * @var string
-         * @since 1.0.0
-         */
-        public string $meta_key = HTSA_PROFILE_SOCIAL_HANDLES_META_KEY;
+    public string $meta_key = HTSA_PROFILE_SOCIAL_HANDLES_META_KEY;
 
-        /**
-         * HTSAProfileSocialHandlesMetabox constructor
-         *
-         * @since 1.0.0
-         */
-        public function __construct()
-        {
-            $this->id = 'htsa_profile_social_handles_metabox';
-            $this->title = esc_html__( 'Social Handles', 'htsa-plugin' );
-            $this->screens = array( HTSA_PROFILE_POST_TYPE, );
-            $this->context = 'side';
-            $this->priority = 'high';
-            // $this->meta_key = HTSA_PROFILE_SOCIAL_HANDLES_META_KEY;
-            $this->is_single_key = true;
-            $this->nonce_action = 'handle htsa profile social handles metabox';
-            $this->nonce_name = 'htsa_profile_social_handles_metabox_nonce';
-            $this->is_unique_key = true;
-            $this->metabox_view = 'posts-meta-boxes.profile-social-handles';
-        }
+    /**
+     * HTSAProfileSocialHandlesMetabox constructor
+     *
+     * @since 1.0.0
+     */
+    public function __construct()
+    {
+        $this->id = 'htsa_profile_social_handles_metabox';
+        $this->title = esc_html__( 'Social Handles', 'htsa-plugin' );
+        $this->screens = array( HTSA_PROFILE_POST_TYPE, );
+        $this->context = 'side';
+        $this->priority = 'high';
+        // $this->meta_key = HTSA_PROFILE_SOCIAL_HANDLES_META_KEY;
+        $this->is_single_key = true;
+        $this->nonce_action = 'handle htsa profile social handles metabox';
+        $this->nonce_name = 'htsa_profile_social_handles_metabox_nonce';
+        $this->is_unique_key = true;
+        $this->metabox_view = 'posts-meta-boxes.profile-social-handles';
     }
 }

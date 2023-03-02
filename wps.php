@@ -8,7 +8,7 @@
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
  * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  * @license     GNU/AGPLv3
- * @since       0.1.0
+ * @since       1.0.0
  */
 
 namespace HTSA_Plugin\Codestartechnologies\WordpressPluginStarter;
@@ -46,7 +46,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package WordpressPluginStarter
  * @author Chijindu Nzeako <chijindunzeako517@gmail.com>
  */
-final class WPSPlugin {
+final class WPSPlugin
+{
     /**
      * WPSPlugin instance
      *

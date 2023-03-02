@@ -21,42 +21,41 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! class_exists( 'HTSAFeaturedMetabox' ) ) {
+/**
+ * HTSAFeaturedMetabox Class
+ *
+ * This class registers a custom metabox for post.
+ *
+ * @package HighwayTrafficSecurityAgencyPlugin
+ * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+ */
+final class HTSAFeaturedMetabox extends PostMetaboxes
+{
     /**
-     * HTSAFeaturedMetabox Class
+     * Metadata key.
      *
-     * This class registers a custom metabox for post.
-     *
-     * @package HighwayTrafficSecurityAgencyPlugin
-     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @var string
+     * @since 1.0.0
      */
-    final class HTSAFeaturedMetabox extends PostMetaboxes {
-        /**
-         * Metadata key.
-         *
-         * @var string
-         * @since 1.0.0
-         */
-        public string $meta_key = HTSA_FEATURED_META_KEY;
+    public string $meta_key = HTSA_FEATURED_META_KEY;
 
-        /**
-         * HTSAFeaturedMetabox constructor
-         *
-         * @since 1.0.0
-         */
-        public function __construct()
-        {
-            $this->id = 'htsa_post_featured_metabox';
-            $this->title = esc_html__( 'Featured', 'htsa-plugin' );
-            $this->screens = array( 'post', );
-            $this->context = 'side';
-            $this->priority = 'high';
-            // $this->meta_key = HTSA_FEATURED_META_KEY;
-            $this->is_single_key = true;
-            $this->nonce_action = 'handle htsa post featured metabox';
-            $this->nonce_name = 'htsa_post_featured_metabox_nonce';
-            $this->is_unique_key = true;
-            $this->metabox_view = 'posts-meta-boxes.post-featured';
-        }
+    /**
+     * HTSAFeaturedMetabox constructor
+     *
+     * @since 1.0.0
+     */
+    public function __construct()
+    {
+        $this->id = 'htsa_post_featured_metabox';
+        $this->title = esc_html__( 'Featured', 'htsa-plugin' );
+        $this->screens = array( 'post', );
+        $this->context = 'side';
+        $this->priority = 'high';
+        // $this->meta_key = HTSA_FEATURED_META_KEY;
+        $this->is_single_key = true;
+        $this->nonce_action = 'handle htsa post featured metabox';
+        $this->nonce_name = 'htsa_post_featured_metabox_nonce';
+        $this->is_unique_key = true;
+        $this->metabox_view = 'posts-meta-boxes.post-featured';
     }
 }

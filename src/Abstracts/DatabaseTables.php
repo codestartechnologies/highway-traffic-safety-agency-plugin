@@ -22,89 +22,87 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! class_exists( 'DatabaseTables' ) ) {
+/**
+ * DatabaseTables Class
+ *
+ * @package WordpressPluginStarter
+ * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+ */
+abstract class DatabaseTables implements Tables
+{
     /**
-     * DatabaseTables Class
+     * The name for the table
      *
-     * @package WordpressPluginStarter
-     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @access protected
+     * @var string
+     * @since 1.0.0
      */
-    abstract class DatabaseTables implements Tables
+    protected string $table_name;
+
+    /**
+     * wpdb class
+     *
+     * @access protected
+     * @var wpdb
+     * @since 1.0.0
+     */
+    protected wpdb $wpdb;
+
+    /**
+     * Setter for wpdb class
+     *
+     * @final
+     * @param wpdb $wpdb - instantiation of the wpdb class
+     * @return void
+     */
+    final public function set_wpdb( wpdb $wpdb ) : void
     {
-        /**
-         * The name for the table
-         *
-         * @access protected
-         * @var string
-         * @since 1.0.0
-         */
-        protected string $table_name;
-
-        /**
-         * wpdb class
-         *
-         * @access protected
-         * @var wpdb
-         * @since 1.0.0
-         */
-        protected wpdb $wpdb;
-
-        /**
-         * Setter for wpdb class
-         *
-         * @final
-         * @param wpdb $wpdb - instantiation of the wpdb class
-         * @return void
-         */
-        final public function set_wpdb( wpdb $wpdb ) : void
-        {
-            $this->wpdb = $wpdb;
-        }
-
-        /**
-         * Check if the table exists in the database
-         *
-         * @final
-         * @return boolean
-         * @since 1.0.0
-         */
-        final public function exists() : bool
-        {
-            return \wps_db_table_exists( $this->table_name );
-        }
-
-        /**
-         * Create the table
-         *
-         * @final
-         * @return boolean
-         * @since 1.0.0
-         */
-        final public function create() : bool
-        {
-            return $this->wpdb->query( $this->get_create_table_query_string() . ' ' . $this->wpdb->get_charset_collate() );
-        }
-
-        /**
-         * Remove the table
-         *
-         * @final
-         * @return boolean
-         * @since 1.0.0
-         */
-        final public function destroy() : bool
-        {
-            return ( $this->exists() ) ? $this->wpdb->query( "DROP TABLE `{$this->table_name}`" ) : false;
-        }
-
-        /**
-         * SQL query string for creating the table.
-         *
-         * @access protected
-         * @abstract
-         * @return string
-         * @since 1.0.0
-         */
-        protected abstract function get_create_table_query_string() : string;
+        $this->wpdb = $wpdb;
     }
+
+    /**
+     * Check if the table exists in the database
+     *
+     * @final
+     * @return boolean
+     * @since 1.0.0
+     */
+    final public function exists() : bool
+    {
+        return \wps_db_table_exists( $this->table_name );
+    }
+
+    /**
+     * Create the table
+     *
+     * @final
+     * @return boolean
+     * @since 1.0.0
+     */
+    final public function create() : bool
+    {
+        return $this->wpdb->query( $this->get_create_table_query_string() . ' ' . $this->wpdb->get_charset_collate() );
+    }
+
+    /**
+     * Remove the table
+     *
+     * @final
+     * @return boolean
+     * @since 1.0.0
+     */
+    final public function destroy() : bool
+    {
+        return ( $this->exists() ) ? $this->wpdb->query( "DROP TABLE `{$this->table_name}`" ) : false;
+    }
+
+    /**
+     * SQL query string for creating the table.
+     *
+     * @access protected
+     * @abstract
+     * @return string
+     * @since 1.0.0
+     */
+    protected abstract function get_create_table_query_string() : string;
 }

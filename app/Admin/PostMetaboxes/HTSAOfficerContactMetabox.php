@@ -21,42 +21,41 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! class_exists( 'HTSAOfficerContactMetabox' ) ) {
+/**
+ * HTSAOfficerContactMetabox Class
+ *
+ * This class registers a custom metabox for post.
+ *
+ * @package HighwayTrafficSecurityAgencyPlugin
+ * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+ */
+final class HTSAOfficerContactMetabox extends PostMetaboxes
+{
     /**
-     * HTSAOfficerContactMetabox Class
+     * Metadata key.
      *
-     * This class registers a custom metabox for post.
-     *
-     * @package HighwayTrafficSecurityAgencyPlugin
-     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @var string
+     * @since 1.0.0
      */
-    final class HTSAOfficerContactMetabox extends PostMetaboxes {
-        /**
-         * Metadata key.
-         *
-         * @var string
-         * @since 1.0.0
-         */
-        public string $meta_key = HTSA_OFFICER_CONTACT_META_KEY;
+    public string $meta_key = HTSA_OFFICER_CONTACT_META_KEY;
 
-        /**
-         * HTSAOfficerContactMetabox constructor
-         *
-         * @since 1.0.0
-         */
-        public function __construct()
-        {
-            $this->id = 'htsa_officer_contact_metabox';
-            $this->title = esc_html__( 'Contact', 'htsa-plugin' );
-            $this->screens = array( HTSA_OFFICERS_POST_TYPE, );
-            $this->context = 'side';
-            $this->priority = 'high';
-            // $this->meta_key = HTSA_OFFICER_CONTACT_META_KEY;
-            $this->is_single_key = true;
-            $this->nonce_action = 'handle htsa officer contact metabox';
-            $this->nonce_name = 'htsa_officer_contact_metabox_nonce';
-            $this->is_unique_key = true;
-            $this->metabox_view = 'posts-meta-boxes.officer-contact';
-        }
+    /**
+     * HTSAOfficerContactMetabox constructor
+     *
+     * @since 1.0.0
+     */
+    public function __construct()
+    {
+        $this->id = 'htsa_officer_contact_metabox';
+        $this->title = esc_html__( 'Contact', 'htsa-plugin' );
+        $this->screens = array( HTSA_OFFICERS_POST_TYPE, );
+        $this->context = 'side';
+        $this->priority = 'high';
+        // $this->meta_key = HTSA_OFFICER_CONTACT_META_KEY;
+        $this->is_single_key = true;
+        $this->nonce_action = 'handle htsa officer contact metabox';
+        $this->nonce_name = 'htsa_officer_contact_metabox_nonce';
+        $this->is_unique_key = true;
+        $this->metabox_view = 'posts-meta-boxes.officer-contact';
     }
 }

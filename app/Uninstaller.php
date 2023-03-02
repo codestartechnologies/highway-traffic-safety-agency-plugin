@@ -20,29 +20,28 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! class_exists( 'Uninstaller' ) ) {
+/**
+ * Class Uninstaller
+ *
+ * This class handles functionalities that run when plugin is deleted.
+ *
+ * @package WordpressPluginStarter
+ * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+ */
+final class Uninstaller
+{
     /**
-     * Class Uninstaller
+     * Method that will run when plugin is deleted.
      *
-     * This class handles functionalities that run when plugin is deleted.
-     *
-     * @package WordpressPluginStarter
-     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @static
+     * @return void
+     * @since 1.0.0
      */
-    final class Uninstaller {
-        /**
-         * Method that will run when plugin is deleted.
-         *
-         * @static
-         * @return void
-         * @since 1.0.0
-         */
-        public static function run() : void
-        {
-            delete_option( 'htsa_plugin_license_valid' );
-            delete_option( 'htsa_plugin_license_activated' );
-            delete_option( 'htsa_plugin_license_deactivated' );
-            delete_option( 'htsa_db_version' );
-        }
+    public static function run() : void
+    {
+        delete_option( 'htsa_plugin_license_valid' );
+        delete_option( 'htsa_plugin_license_activated' );
+        delete_option( 'htsa_plugin_license_deactivated' );
+        delete_option( 'htsa_db_version' );
     }
 }

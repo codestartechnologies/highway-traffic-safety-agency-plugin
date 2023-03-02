@@ -20,27 +20,26 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! class_exists( 'Activator' ) ) {
+/**
+ * Class Activator
+ *
+ * This class is used to handle works that will run after plugin is activated.
+ *
+ * @package WordpressPluginStarter
+ * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+ */
+class Activator
+{
     /**
-     * Class Activator
+     * Plugin activation
      *
-     * This class is used to handle works that will run after plugin is activated.
+     * Set actions that will run when this plugin is activated.
      *
-     * @package WordpressPluginStarter
-     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @static
+     * @return void
+     * @since 1.0.0
      */
-    class Activator {
-        /**
-         * Plugin activation
-         *
-         * Set actions that will run when this plugin is activated.
-         *
-         * @static
-         * @return void
-         * @since 1.0.0
-         */
-        public static function run() : void {
-            // 
-        }
+    public static function run() : void {
+        // 
     }
 }

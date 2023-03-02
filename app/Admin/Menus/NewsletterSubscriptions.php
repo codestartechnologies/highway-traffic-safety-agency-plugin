@@ -30,7 +30,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package HighwayTrafficSecurityAgencyPlugin
  * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
  */
-final class NewsletterSubscriptions extends Menus {
+final class NewsletterSubscriptions extends Menus
+{
     /**
      * NewslettersListTable class
      *

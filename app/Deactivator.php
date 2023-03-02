@@ -20,26 +20,25 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! class_exists( 'Deactivator' ) ) {
+/**
+ * Class Deactivator
+ *
+ * This class handles functionalities that run when plugin is deactivated.
+ *
+ * @package WordpressPluginStarter
+ * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+ */
+final class Deactivator
+{
     /**
-     * Class Deactivator
+     * Method that will run when plugin is deactivated
      *
-     * This class handles functionalities that run when plugin is deactivated.
-     *
-     * @package WordpressPluginStarter
-     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @static
+     * @return void
+     * @since 1.0.0
      */
-    final class Deactivator {
-        /**
-         * Method that will run when plugin is deactivated
-         *
-         * @static
-         * @return void
-         * @since 1.0.0
-         */
-        public static function run() : void
-        {
-            // 
-        }
+    public static function run() : void
+    {
+        // 
     }
 }

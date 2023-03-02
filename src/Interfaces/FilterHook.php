@@ -20,23 +20,22 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! interface_exists( 'FilterHook' ) ) {
+/**
+ * Interface FilterHook
+ *
+ * Classes that make use of add_filter() and remove_filter() need to implement this interface.
+ *
+ * @package WordpressPluginStarter
+ * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+ */
+interface FilterHook
+{
     /**
-     * Interface FilterHook
+     * Register add_filter() and remove_filter().
      *
-     * Classes that make use of add_filter() and remove_filter() need to implement this interface.
-     *
-     * @package WordpressPluginStarter
-     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @access public
+     * @return void
+     * @since 1.0.0
      */
-    interface FilterHook {
-        /**
-         * Register add_filter() and remove_filter().
-         *
-         * @access public
-         * @return void
-         * @since 1.0.0
-         */
-        public function register_add_filter() : void;
-    }
+    public function register_add_filter() : void;
 }

@@ -21,43 +21,41 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! class_exists( 'WPSUsersTable' ) ) {
+/**
+ * WPSUsersTable Class
+ *
+ * @package WordpressPluginStarter
+ * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+ */
+final class WPSUsersTable extends DatabaseTables
+{
     /**
-     * WPSUsersTable Class
+     * WPSUsersTable constructor
      *
-     * @package WordpressPluginStarter
-     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @since 1.0.0
      */
-    final class WPSUsersTable extends DatabaseTables
+    public function __construct()
     {
-        /**
-         * WPSUsersTable constructor
-         *
-         * @since 1.0.0
-         */
-        public function __construct()
-        {
-            $prefix = 'wps_';
-            $this->table_name = $prefix . 'users';
-        }
+        $prefix = 'wps_';
+        $this->table_name = $prefix . 'users';
+    }
 
-        /**
-         * SQL query string for creating the table.
-         *
-         * @return string
-         * @since 1.0.0
-         */
-        protected function get_create_table_query_string() : string
-        {
-            return "
-                CREATE TABLE IF NOT EXISTS `{$this->table_name}` (
-                    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-                    `admin_name` VARCHAR(50) NOT NULL,
-                    `admin_email` VARCHAR(50) NOT NULL,
-                    `admin_password` VARCHAR(50) NOT NULL,
-                    PRIMARY KEY (`id`)
-                )
-            ";
-        }
+    /**
+     * SQL query string for creating the table.
+     *
+     * @return string
+     * @since 1.0.0
+     */
+    protected function get_create_table_query_string() : string
+    {
+        return "
+            CREATE TABLE IF NOT EXISTS `{$this->table_name}` (
+                `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+                `admin_name` VARCHAR(50) NOT NULL,
+                `admin_email` VARCHAR(50) NOT NULL,
+                `admin_password` VARCHAR(50) NOT NULL,
+                PRIMARY KEY (`id`)
+            )
+        ";
     }
 }

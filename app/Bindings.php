@@ -72,242 +72,241 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! class_exists( 'Bindings' ) ) {
+/**
+ * Class Bindings
+ *
+ * This class returns classes that will be registered with the plugin.
+ *
+ * @package WordpressPluginStarter
+ * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+ */
+final class Bindings
+{
     /**
-     * Class Bindings
+     * Bindings for classes that register admin menus
      *
-     * This class returns classes that will be registered with the plugin.
-     *
-     * @package WordpressPluginStarter
-     * @author  Chijindu Nzeako <chijindunzeako517@gmail.com>
+     * @static
+     * @access public
+     * @var array
+     * @since 1.0.0
      */
-    final class Bindings {
-        /**
-         * Bindings for classes that register admin menus
-         *
-         * @static
-         * @access public
-         * @var array
-         * @since 1.0.0
-         */
-        public static array $menus = array(
-            // WPSMenu::class,
-            HTSAMenu::class,
-            NewsletterSubscriptionsMenu::class,
-        );
+    public static array $menus = array(
+        // WPSMenu::class,
+        HTSAMenu::class,
+        NewsletterSubscriptionsMenu::class,
+    );
 
-        /**
-         * Bindings for classes that register submenus
-         *
-         * @static
-         * @access public
-         * @var array
-         * @since 1.0.0
-         */
-        public static array $sub_menus = array(
-            // WPSSubMenu::class,
-        );
+    /**
+     * Bindings for classes that register submenus
+     *
+     * @static
+     * @access public
+     * @var array
+     * @since 1.0.0
+     */
+    public static array $sub_menus = array(
+        // WPSSubMenu::class,
+    );
 
-        /**
-         * Bindings for classes that register setting menus
-         *
-         * @static
-         * @access public
-         * @var array
-         * @since 1.0.0
-         */
-        public static array $setting_menus = array(
-            // WPSSettingMenu::class,
-            HTSAEmailSettingMenu::class,
-            LicenseSettingMenu::class,
-        );
+    /**
+     * Bindings for classes that register setting menus
+     *
+     * @static
+     * @access public
+     * @var array
+     * @since 1.0.0
+     */
+    public static array $setting_menus = array(
+        // WPSSettingMenu::class,
+        HTSAEmailSettingMenu::class,
+        LicenseSettingMenu::class,
+    );
 
-        /**
-         * Bindings for classes that register plugin menus
-         *
-         * @static
-         * @access public
-         * @var array
-         * @since 1.0.0
-         */
-        public static array $plugin_menus = array(
-            // WPSPluginMenu::class,
-        );
+    /**
+     * Bindings for classes that register plugin menus
+     *
+     * @static
+     * @access public
+     * @var array
+     * @since 1.0.0
+     */
+    public static array $plugin_menus = array(
+        // WPSPluginMenu::class,
+    );
 
-        /**
-         * Bindings for classes that register post types
-         *
-         * @static
-         * @access public
-         * @var array
-         * @since 1.0.0
-         */
-        public static array $post_types = array(
-            // WPSPostType::class,
-            HTSAProfile::class,
-            HTSAOfficers::class,
-            HTSABranch::class,
-            HTSAPenalty::class,
-            HTSAReview::class,
-        );
+    /**
+     * Bindings for classes that register post types
+     *
+     * @static
+     * @access public
+     * @var array
+     * @since 1.0.0
+     */
+    public static array $post_types = array(
+        // WPSPostType::class,
+        HTSAProfile::class,
+        HTSAOfficers::class,
+        HTSABranch::class,
+        HTSAPenalty::class,
+        HTSAReview::class,
+    );
 
-        /**
-         * Bindings for classes that register taxonomies
-         *
-         * @static
-         * @access public
-         * @var array
-         * @since 1.0.0
-         */
-        public static array $taxonomies = array(
-            // WPSTaxonomy::class,
-            HTSADepartment::class,
-            HTSALocation::class,
-        );
+    /**
+     * Bindings for classes that register taxonomies
+     *
+     * @static
+     * @access public
+     * @var array
+     * @since 1.0.0
+     */
+    public static array $taxonomies = array(
+        // WPSTaxonomy::class,
+        HTSADepartment::class,
+        HTSALocation::class,
+    );
 
-        /**
-         * Bindings for classes that register shortcodes
-         *
-         * @static
-         * @access public
-         * @var array
-         * @since 1.0.0
-         */
-        public static array $shortcodes = array(
-            // WPSShortcode::class,
-            HTSAContactFormShortcode::class,
-            HTSANewsletterFormShortcode::class,
-        );
+    /**
+     * Bindings for classes that register shortcodes
+     *
+     * @static
+     * @access public
+     * @var array
+     * @since 1.0.0
+     */
+    public static array $shortcodes = array(
+        // WPSShortcode::class,
+        HTSAContactFormShortcode::class,
+        HTSANewsletterFormShortcode::class,
+    );
 
-        /**
-         * Bindings for classes that register post metaboxes
-         *
-         * @static
-         * @access public
-         * @var array
-         * @since 1.0.0
-         */
-        public static array $post_metaboxes = array(
-            // WPSPostMetabox::class,
-            HTSAFeaturedMetabox::class,
-            HTSAProfilePositionHeldMetabox::class,
-            HTSAProfileSocialHandlesMetabox::class,
-            HTSAOfficerContactMetabox::class,
-            HTSABranchDirectionMetabox::class,
-            HTSAPenaltyVehicleCategoriesMetabox::class,
-            HTSAReviewNameMetabox::class,
-            HTSAReviewRatingMetabox::class,
-            HTSAReviewContentMetabox::class,
-        );
+    /**
+     * Bindings for classes that register post metaboxes
+     *
+     * @static
+     * @access public
+     * @var array
+     * @since 1.0.0
+     */
+    public static array $post_metaboxes = array(
+        // WPSPostMetabox::class,
+        HTSAFeaturedMetabox::class,
+        HTSAProfilePositionHeldMetabox::class,
+        HTSAProfileSocialHandlesMetabox::class,
+        HTSAOfficerContactMetabox::class,
+        HTSABranchDirectionMetabox::class,
+        HTSAPenaltyVehicleCategoriesMetabox::class,
+        HTSAReviewNameMetabox::class,
+        HTSAReviewRatingMetabox::class,
+        HTSAReviewContentMetabox::class,
+    );
 
-        /**
-         * Bindings for classes that register nav menu metaboxes
-         *
-         * @static
-         * @access public
-         * @var array
-         * @since 1.0.0
-         */
-        public static array $nav_menu_metaboxes = array(
-            // WPSNavMenuMetabox::class,
-        );
+    /**
+     * Bindings for classes that register nav menu metaboxes
+     *
+     * @static
+     * @access public
+     * @var array
+     * @since 1.0.0
+     */
+    public static array $nav_menu_metaboxes = array(
+        // WPSNavMenuMetabox::class,
+    );
 
-        /**
-         * Bindings for classes that register settings
-         *
-         * @static
-         * @access public
-         * @var array
-         * @since 1.0.0
-         */
-        public static array $settings = array(
-            // WPSSetting::class,
-            HTSAEmailSetting::class,
-            LicenseSetting::class,
-        );
+    /**
+     * Bindings for classes that register settings
+     *
+     * @static
+     * @access public
+     * @var array
+     * @since 1.0.0
+     */
+    public static array $settings = array(
+        // WPSSetting::class,
+        HTSAEmailSetting::class,
+        LicenseSetting::class,
+    );
 
-        /**
-         * Bindings for classes that create admin notices
-         *
-         * @static
-         * @access public
-         * @var array
-         * @since 1.0.0
-         */
-        public static array $admin_notices = array(
-            // WPSAdminNotice::class,
-            WPSDatabaseUpgradeNotice::class,
-            LicenseKeyNotice::class,
-            URLStructureNotice::class,
-        );
+    /**
+     * Bindings for classes that create admin notices
+     *
+     * @static
+     * @access public
+     * @var array
+     * @since 1.0.0
+     */
+    public static array $admin_notices = array(
+        // WPSAdminNotice::class,
+        WPSDatabaseUpgradeNotice::class,
+        LicenseKeyNotice::class,
+        URLStructureNotice::class,
+    );
 
-        /**
-         * Bindings for classes that create admin ajax requests
-         *
-         * @static
-         * @access public
-         * @var array
-         * @since 1.0.0
-         */
-        public static array $admin_ajax_requests = array(
-            // WPSAdminAjaxRequest::class,
-        );
+    /**
+     * Bindings for classes that create admin ajax requests
+     *
+     * @static
+     * @access public
+     * @var array
+     * @since 1.0.0
+     */
+    public static array $admin_ajax_requests = array(
+        // WPSAdminAjaxRequest::class,
+    );
 
-        /**
-         * Bindings for classes that create public ajax requests
-         *
-         * @static
-         * @access public
-         * @var array
-         * @since 1.0.0
-         */
-        public static array $public_ajax_requests = array(
-            // WPSPublicAjaxRequest::class,
-            HTSAContactFormRequest::class,
-            HTSANewsletterFormRequest::class,
-        );
+    /**
+     * Bindings for classes that create public ajax requests
+     *
+     * @static
+     * @access public
+     * @var array
+     * @since 1.0.0
+     */
+    public static array $public_ajax_requests = array(
+        // WPSPublicAjaxRequest::class,
+        HTSAContactFormRequest::class,
+        HTSANewsletterFormRequest::class,
+    );
 
-        /**
-         * Bindings for classes that create post columns
-         *
-         * @static
-         * @access public
-         * @var array
-         * @since 1.0.0
-         */
-        public static array $post_columns = array(
-            // WPSPostColumn::class,
-            HTSAFeaturedPostColumn::class,
-            HTSAProfilePositionHeldColumn::class,
-            HTSAProfileThumbnailColumn::class,
-            HTSAOfficerThumbnailColumn::class,
-            HTSAReviewNameColumn::class,
-            HTSAReviewRatingColumn::class,
-        );
+    /**
+     * Bindings for classes that create post columns
+     *
+     * @static
+     * @access public
+     * @var array
+     * @since 1.0.0
+     */
+    public static array $post_columns = array(
+        // WPSPostColumn::class,
+        HTSAFeaturedPostColumn::class,
+        HTSAProfilePositionHeldColumn::class,
+        HTSAProfileThumbnailColumn::class,
+        HTSAOfficerThumbnailColumn::class,
+        HTSAReviewNameColumn::class,
+        HTSAReviewRatingColumn::class,
+    );
 
-        /**
-         * Bindings for classes that create taxonomy fields
-         *
-         * @static
-         * @access public
-         * @var array
-         * @since 1.0.0
-         */
-        public static array $taxonomy_fields = array(
-            // WPSTaxonomyFormField::class,
-        );
+    /**
+     * Bindings for classes that create taxonomy fields
+     *
+     * @static
+     * @access public
+     * @var array
+     * @since 1.0.0
+     */
+    public static array $taxonomy_fields = array(
+        // WPSTaxonomyFormField::class,
+    );
 
-        /**
-         * Bindings for classes that create database tables
-         *
-         * @static
-         * @access public
-         * @var array
-         * @since 1.0.0
-         */
-        public static array $database_tables = array(
-            // WPSUsersTable::class,
-            NewslettersTable::class,
-        );
-    }
+    /**
+     * Bindings for classes that create database tables
+     *
+     * @static
+     * @access public
+     * @var array
+     * @since 1.0.0
+     */
+    public static array $database_tables = array(
+        // WPSUsersTable::class,
+        NewslettersTable::class,
+    );
 }
