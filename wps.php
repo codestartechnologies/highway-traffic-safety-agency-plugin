@@ -75,11 +75,10 @@ final class WPSPlugin
      * DatabaseUpgrade Class
      *
      * @access private
-     * @static
      * @var DatabaseUpgrade
      * @since 1.0.0
      */
-    private static DatabaseUpgrade $database_upgrade;
+    private DatabaseUpgrade $database_upgrade;
 
     /**
      * Post Types
@@ -112,21 +111,19 @@ final class WPSPlugin
      * Settings
      *
      * @access private
-     * @static
      * @var array
      * @since 1.0.0
      */
-    private static array $settings;
+    private array $settings;
 
     /**
      * Post Meta boxes
      *
      * @access private
-     * @static
      * @var array
      * @since 1.0.0
      */
-    private static array $post_metaboxes;
+    private array $post_metaboxes;
 
     /**
      * Admin Menu Pages
@@ -354,8 +351,7 @@ final class WPSPlugin
     {
         $activator->run(
             $this->post_types,
-            $this->taxonomies,
-            $this->database_tables
+            $this->taxonomies
         );
     }
 
@@ -386,9 +382,9 @@ final class WPSPlugin
     public static function uninstall() : void
     {
         Uninstaller::run(
-            self::$settings,
-            self::$post_metaboxes,
-            self::$database_upgrade
+            self::boot( Bindings::$settings ),
+            self::boot( Bindings::$post_metaboxes ),
+            new DatabaseUpgrade( self::boot( Bindings::$database_tables ) )
         );
         AppUninstaller::run();
     }

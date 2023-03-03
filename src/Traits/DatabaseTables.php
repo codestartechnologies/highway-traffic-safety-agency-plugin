@@ -34,12 +34,16 @@ trait DatabaseTables
      * Modify the table column(s)
      *
      * @final
-     * @return integer|boolean
+     * @return void
      * @since 1.0.0
      */
-    final public function modify() : int|bool
+    final public function modify() : void
     {
-        return $this->wpdb->query( $this->get_modify_column_query_string() );
+        $queries = \explode( ";", $this->get_modify_column_query_string() );
+
+        foreach ( $queries as $query ) {
+            $this->wpdb->query( $query );
+        }
     }
 
     /**
