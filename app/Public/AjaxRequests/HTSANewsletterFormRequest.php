@@ -182,7 +182,7 @@ final class HTSANewsletterFormRequest extends PublicAjax
         $sender = $db_receipents['htsa_email_sender'] ?? '';
 
         // $this->mailer->debug_mode         = 'dev_client_server';
-        $this->mailer->encryption_mode    = $_ENV['HTSA_PLUGIN_SMTP_ENCRYPTION_MODE'];
+        $this->mailer->encryption_mode    = HTSA_PLUGIN_SMTP_ENCRYPTION_MODE;
         $this->mailer->is_html            = true;
         $this->mailer->subject            = sprintf( esc_html__( 'Confirm Your Email Address! - %s'), $site_name );
         $this->mailer->body               = $message;

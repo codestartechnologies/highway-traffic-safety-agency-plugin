@@ -103,6 +103,27 @@ final class Constants
         }
 
         /**
+         * Plugin author name
+         */
+        if ( ! defined( 'HTSA_PLUGIN_AUTHOR' ) ) {
+            define( 'HTSA_PLUGIN_AUTHOR', $_ENV['HTSA_PLUGIN_AUTHOR'] ?? 'Codestar Technologies' );
+        }
+
+        /**
+         * Plugin author uri
+         */
+        if ( ! defined( 'HTSA_PLUGIN_AUTHOR_URI' ) ) {
+            define( 'HTSA_PLUGIN_AUTHOR_URI', $_ENV['HTSA_PLUGIN_AUTHOR_URI'] ?? 'https://codestar.com.ng' );
+        }
+
+        /**
+         * Plugin SMTP encryption mode
+         */
+        if ( ! defined( 'HTSA_PLUGIN_SMTP_ENCRYPTION_MODE' ) ) {
+            define( 'HTSA_PLUGIN_SMTP_ENCRYPTION_MODE', $_ENV['HTSA_PLUGIN_SMTP_ENCRYPTION_MODE'] ?? 'ssl' );
+        }
+
+        /**
          * Featured Post Meta Key ID
          */
         if ( ! defined( 'HTSA_FEATURED_META_KEY' ) ) {

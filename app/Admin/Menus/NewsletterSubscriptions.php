@@ -93,7 +93,7 @@ final class NewsletterSubscriptions extends Menus
     {
         $text = sprintf(
             __( '%1$s developed by <a href="%2$s" target="_blank">%3$s</a>', 'htsa-plugin' ),
-            HTSA_PLUGIN_NAME, $_ENV['HTSA_PLUGIN_AUTHOR_URI'], $_ENV['HTSA_PLUGIN_AUTHOR']
+            HTSA_PLUGIN_NAME, HTSA_PLUGIN_AUTHOR_URI, HTSA_PLUGIN_AUTHOR
         );
 
         return $text;

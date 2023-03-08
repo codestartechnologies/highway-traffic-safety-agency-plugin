@@ -104,7 +104,7 @@ final class HTSAContactFormRequest extends PublicAjax
     private function send_email_to_admins( string $name, string $message, string $sender, string $receiver, string $email ) : bool
     {
         // $this->mailer->debug_mode         = 'dev_client_server';
-        $this->mailer->encryption_mode    = $_ENV['HTSA_PLUGIN_SMTP_ENCRYPTION_MODE'];
+        $this->mailer->encryption_mode    = HTSA_PLUGIN_SMTP_ENCRYPTION_MODE;
         $this->mailer->is_html            = false;
         $this->mailer->subject            = sprintf( esc_html__( 'New Contact Request From %s', 'htsa-plugin' ), $name );
         $this->mailer->body               = $message;
@@ -125,7 +125,7 @@ final class HTSAContactFormRequest extends PublicAjax
     {
         $message = esc_html__( 'We have received your message, and will get back to you shortly.', 'htsa-plugin' );
         // $this->mailer->debug_mode         = 'dev_client_server';
-        $this->mailer->encryption_mode    = $_ENV['HTSA_PLUGIN_SMTP_ENCRYPTION_MODE'];
+        $this->mailer->encryption_mode    = HTSA_PLUGIN_SMTP_ENCRYPTION_MODE;
         $this->mailer->is_html            = false;
         $this->mailer->subject            = esc_html__( 'We have received your message!', 'htsa-plugin' );
         $this->mailer->body               = $message;
