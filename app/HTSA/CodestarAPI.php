@@ -12,6 +12,8 @@
 
 namespace HTSA_Plugin\WPS_Plugin\App\HTSA;
 
+use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Traits\Logger;
+
 /**
  * Prevent direct access to this file.
  */
@@ -27,6 +29,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 final class CodestarAPI
 {
+
+    use Logger;
+
     /**
      * Gets license settings from database
      *
@@ -72,14 +77,13 @@ final class CodestarAPI
             return "invalid license setting";
         }
 
-        $endpoint = ( $_ENV['HTSA_PLUGIN_ENV'] === 'production' ) ? $_ENV['HTSA_PLUGIN_API_ENDPOINT_PROD'] : $_ENV['HTSA_PLUGIN_API_ENDPOINT_DEV'];
+        $endpoint = ( HTSA_PLUGIN_ENV === 'production' ) ? HTSA_PLUGIN_API_ENDPOINT_PROD : HTSA_PLUGIN_API_ENDPOINT_DEV;
         $url = trailingslashit( $endpoint ) . $action;
         $setting = self::get_license_setting();
         $access_key = $setting['access_key'];
 
         $args = array(
-            'sslverify'     => false,
-            'timeout'       => 45,
+            'timeout'       => 120,
             'redirection'   => 2,
             'headers'       => array(
                 'referer'           => home_url(),
@@ -87,7 +91,7 @@ final class CodestarAPI
             ),
         );
 
-        if ( $_ENV['HTSA_PLUGIN_ENV'] === 'production' ) {
+        if ( HTSA_PLUGIN_ENV === 'production' ) {
             if ( $method === 'GET' ) {
                 $url .= '?' . http_build_query( $params );
                 $response = wp_safe_remote_get( $url, $args );
@@ -96,6 +100,8 @@ final class CodestarAPI
                 $response = wp_safe_remote_post( $url, $args );
             }
         } else {
+            $args['sslverify'] = false;
+
             if ( $method === 'GET' ) {
                 $url .= '?' . http_build_query( $params );
                 $response = wp_remote_get( $url, $args );
@@ -106,11 +112,15 @@ final class CodestarAPI
         }
 
         if ( is_wp_error( $response ) ) {
-            return $response->get_error_message();
+            $data = $response->get_error_message();
+            self::log( __FILE__, $data );
+        } else {
+            $response_body = wp_remote_retrieve_body( $response );
+            $data = json_decode( $response_body );
+            self::log( __FILE__, $data->message, 'info' );
         }
 
-        $response_body = wp_remote_retrieve_body( $response );
-        return json_decode( $response_body );
+        return $data;
     }
 
     /**
@@ -138,7 +148,7 @@ final class CodestarAPI
         return self::call_api(
             'validate',
             array(
-                'product_id'    => $_ENV['HTSA_PLUGIN_API_PRODUCT_ID'],
+                'product_id'    => HTSA_PLUGIN_API_PRODUCT_ID,
                 'license_key' => self::get_license_setting()['license_key']
             ),
             'GET'
@@ -157,7 +167,7 @@ final class CodestarAPI
         return self::call_api(
             'activate',
             array(
-                'product_id'    => $_ENV['HTSA_PLUGIN_API_PRODUCT_ID'],
+                'product_id'    => HTSA_PLUGIN_API_PRODUCT_ID,
                 'license_key'   => self::get_license_setting()['license_key'],
                 'domain'        => str_replace( ['https://', 'http://'], "", home_url() ),
             ),
@@ -177,7 +187,7 @@ final class CodestarAPI
         return self::call_api(
             'deactivate',
             array(
-                'product_id'    => $_ENV['HTSA_PLUGIN_API_PRODUCT_ID'],
+                'product_id'    => HTSA_PLUGIN_API_PRODUCT_ID,
                 'license_key'   => self::get_license_setting()['license_key'],
                 'domain'        => str_replace( ['https://', 'http://'], "", home_url() ),
             ),
@@ -197,7 +207,7 @@ final class CodestarAPI
         return self::call_api(
             'product-info',
             array(
-                'product_id'    => $_ENV['HTSA_PLUGIN_API_PRODUCT_ID'],
+                'product_id'    => HTSA_PLUGIN_API_PRODUCT_ID,
                 'license_key'   => self::get_license_setting()['license_key'],
                 'domain'        => str_replace( ['https://', 'http://'], "", home_url() ),
             ),

@@ -75,6 +75,34 @@ final class Constants
         }
 
         /**
+         * Plugin environment
+         */
+        if ( ! defined( 'HTSA_PLUGIN_ENV' ) ) {
+            define( 'HTSA_PLUGIN_ENV', $_ENV['HTSA_PLUGIN_ENV'] ?? 'production' );
+        }
+
+        /**
+         * Plugin product slug identifier
+         */
+        if ( ! defined( 'HTSA_PLUGIN_API_PRODUCT_ID' ) ) {
+            define( 'HTSA_PLUGIN_API_PRODUCT_ID', $_ENV['HTSA_PLUGIN_API_PRODUCT_ID'] ?? 'highway-traffic-security-agency-plugin' );
+        }
+
+        /**
+         * Plugin api development endpoint
+         */
+        if ( ! defined( 'HTSA_PLUGIN_API_ENDPOINT_DEV' ) ) {
+            define( 'HTSA_PLUGIN_API_ENDPOINT_DEV', $_ENV['HTSA_PLUGIN_API_ENDPOINT_DEV'] ?? '' );
+        }
+
+        /**
+         * Plugin api production endpoint
+         */
+        if ( ! defined( 'HTSA_PLUGIN_API_ENDPOINT_PROD' ) ) {
+            define( 'HTSA_PLUGIN_API_ENDPOINT_PROD', $_ENV['HTSA_PLUGIN_API_ENDPOINT_PROD'] ?? 'https://codestar.com.ng/api/product-licenses/v1/' );
+        }
+
+        /**
          * Featured Post Meta Key ID
          */
         if ( ! defined( 'HTSA_FEATURED_META_KEY' ) ) {
