@@ -1,2 +1,2 @@
-# highway-traffic-security-agency-plugin
-A plugin for Highway Traffic Security Agency WordPress Theme
+# Highway Traffic Safety Agency Plugin
+A WordPress plugin for creating a highway/road traffic safety agency website.
