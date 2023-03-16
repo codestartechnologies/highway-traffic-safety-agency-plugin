@@ -328,11 +328,11 @@ final class Mailer {
     /**
      * Method for sending the email notification.
      *
-     * @access public
+     * @param bool $clear_settings  Wheather to clear email settings after email is sent.
      * @return bool                 Returns true if the email was sent or false if there was an error sending the email.
      * @since 1.0.0
      */
-    public function send() : bool
+    public function send( bool $clear_settings = true ) : bool
     {
         try {
             //Server settings
@@ -387,14 +387,12 @@ final class Mailer {
 
             //send the message
             if ( $this->mail->send() ) {
+
                 // reset mail settings
-                $this->mail->clearAddresses();
-                $this->mail->clearAllRecipients();
-                $this->mail->clearAttachments();
-                $this->mail->clearBCCs();
-                $this->mail->clearCCs();
-                $this->mail->clearCustomHeaders();
-                $this->mail->clearReplyTos();
+                if ( $clear_settings ) {
+                    $this->resetSMTP();
+                }
+
                 return true;
             }
 
@@ -411,5 +409,22 @@ final class Mailer {
         }
 
         return false;
+    }
+
+    /**
+     * Reset mail settings.
+     *
+     * @return void
+     * @since 1.0.0
+     */
+    public function resetSMTP() : void
+    {
+        $this->mail->clearAddresses();
+        $this->mail->clearAllRecipients();
+        $this->mail->clearAttachments();
+        $this->mail->clearBCCs();
+        $this->mail->clearCCs();
+        $this->mail->clearCustomHeaders();
+        $this->mail->clearReplyTos();
     }
 }

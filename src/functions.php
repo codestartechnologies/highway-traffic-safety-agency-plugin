@@ -4,7 +4,7 @@
  *
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
  * @license     https://www.gnu.org/licenses/agpl-3.0.txt GNU/AGPLv3
- * @link        https://codestar.com.ng
+ * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  */
 
 if ( ! function_exists( 'wps_is_theme_installed' ) ) {
@@ -81,8 +81,8 @@ if ( ! function_exists( 'wps_get_date' ) ) {
     /**
      * Returns a date in custom format
      *
-     * @param string $format
-     * @param string $date
+     * @param string $format    Date Format. E.g d/m/Y
+     * @param string $date      Date string. E.g 0000-00-00
      * @return string|null
      * @since 1.0.0
      */
@@ -96,7 +96,7 @@ if ( ! function_exists( 'wps_db_table_exists' ) ) {
     /**
      * Checks if a table exists in the database
      *
-     * @param string $table_name
+     * @param string $table_name Database table name to check for
      * @return boolean
      * @since 1.0.0
      */
@@ -106,5 +106,43 @@ if ( ! function_exists( 'wps_db_table_exists' ) ) {
         $database_name = DB_NAME ?? null;
         $query = "SELECT COUNT(*) FROM information_schema.TABLES WHERE TABLE_SCHEMA = '{$database_name}' AND TABLE_NAME = '{$table_name}'";
         return ( intval( $wpdb->get_var( $query ) ) > 0 );
+    }
+}
+
+if ( ! function_exists( 'wps_save_post_action_check' ) ) {
+    /**
+     * Validates actions performed inside "save_post" action hook.
+     *
+     * @param int $post_ID Post ID.
+     * @return boolean
+     * @since 1.0.0
+     */
+    function wps_save_post_action_check( int $post_ID ) : bool
+    {
+        return (
+            current_user_can( 'manage_options' ) &&
+            ! wp_is_post_autosave( $post_ID ) &&
+            ! wp_is_post_revision( $post_ID ) &&
+            ! ( is_multisite() && ms_is_switched() )
+        );
+    }
+}
+
+if ( ! function_exists( 'wps_log' ) ) {
+    /**
+     * Function for logging message to a file.
+     *
+     * @param string $log_message   Log Message.
+     * @param string $path          Path to the log file.
+     * @return void
+     * @since 1.0.0
+     */
+    function wps_log( string $log_message, string $path ) : void
+    {
+        if ( ! error_log( $log_message . PHP_EOL, 3, $path ) ) {
+            $resource = fopen( $path, 'a' );
+            fwrite( $resource, $log_message );
+            fclose( $resource );
+        }
     }
 }

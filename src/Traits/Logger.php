@@ -52,10 +52,7 @@ trait Logger
             date_default_timezone_set( $timezone_id );
             $message = sprintf( '[%1$s][%2$s][%3$s] %4$s', date( 'Y-m-d H:i:s' ), $type, $file, $message );
             $log_file = self::get_log_file()[ $type ];
-
-            if ( ! error_log( $message . PHP_EOL, 3, WPS_LOGS_PATH . $log_file ) ) {
-                self::write_log( $message . PHP_EOL, WPS_LOGS_PATH . $log_file );
-            }
+            wps_log( $message, WPS_LOGS_PATH . $log_file );
         }
     }
 
@@ -77,20 +74,4 @@ trait Logger
         );
     }
 
-    /**
-     * Fallback logger method
-     *
-     * @access private
-     * @static
-     * @param string $message
-     * @param string $path
-     * @return void
-     * @since 1.0.0
-     */
-    private static function write_log( string $message, string $path ) : void
-    {
-        $resource = fopen( $path, 'a' );
-        fwrite( $resource, $message );
-        fclose( $resource );
-    }
 }

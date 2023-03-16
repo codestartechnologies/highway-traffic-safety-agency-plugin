@@ -187,12 +187,16 @@ abstract class PostMetaboxes implements ActionHook
      */
     final public function save( int $post_ID, \WP_Post $post, bool $update ) : void
     {
-        if ( in_array( $post->post_type, $this->screens) && $this->validate_save( $post_ID ) ) {
-            if ( $update ) {
-                update_post_meta( $post_ID, $this->meta_key, $this->get_meta_value() );
-            } else {
-                add_post_meta( $post_ID, $this->meta_key, $this->get_meta_value(), $this->is_unique_key );
-            }
+        if (
+            ! $update ||
+            ( ! in_array( $post->post_type, $this->screens ) ) ||
+            ( ! $this->validate_save( $post_ID ) )
+        ) {
+            return;
+        }
+
+        if ( ! add_post_meta( $post_ID, $this->meta_key, $this->get_meta_value(), $this->is_unique_key ) ) {
+            update_post_meta( $post_ID, $this->meta_key, $this->get_meta_value() );
         }
     }
 

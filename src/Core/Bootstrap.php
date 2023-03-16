@@ -92,15 +92,6 @@ final class Bootstrap implements ActionHook
     protected AdminHooks $admin_hooks;
 
     /**
-     * This class registers hooks that will run in site frontend.
-     *
-     * @access protected
-     * @var PublicHooks
-     * @since 1.0.0
-     */
-    protected PublicHooks $public_hooks;
-
-    /**
      * Plugin Update
      *
      * @access protected
@@ -276,7 +267,6 @@ final class Bootstrap implements ActionHook
         DatabaseUpgrade $database_upgrade = null,
         Hooks $hooks = null,
         AdminHooks $admin_hooks = null,
-        PublicHooks $public_hooks = null,
         PluginUpdate $plugin_update = null,
         array $menu_pages = null,
         array $sub_menu_pages = null,
@@ -310,10 +300,6 @@ final class Bootstrap implements ActionHook
 
         if ( ! is_null( $admin_hooks ) && ( $admin_hooks instanceof AdminHooks ) ) {
             $this->admin_hooks = $admin_hooks;
-        }
-
-        if ( ! is_null( $public_hooks ) && ( $public_hooks instanceof PublicHooks ) ) {
-            $this->public_hooks = $public_hooks;
         }
 
         if ( ! is_null( $plugin_update ) && ( $plugin_update instanceof PluginUpdate ) ) {
@@ -404,6 +390,8 @@ final class Bootstrap implements ActionHook
 
         $this->set_ajax_handlers();
 
+        $this->set_routes();
+
         if ( is_admin() ) {
 
             $this->set_menus();
@@ -417,11 +405,6 @@ final class Bootstrap implements ActionHook
             $this->set_taxonomy_form_fields();
 
             $this->set_admin_hooks();
-        } else {
-
-            $this->set_public_hooks();
-
-            $this->set_routes();
         }
     }
 
@@ -546,6 +529,21 @@ final class Bootstrap implements ActionHook
     }
 
     /**
+     * Set custom routes that will accessible at the site front end
+     *
+     * @access private
+     * @return void
+     * @since 1.0.0
+     */
+    private function set_routes() : void
+    {
+        if ( isset( $this->router ) ) {
+            $this->router->register_add_action();
+            $this->router->register_add_filter();
+        }
+    }
+
+    /**
      * Method to set menu pages
      *
      * @access private
@@ -659,36 +657,6 @@ final class Bootstrap implements ActionHook
         if ( isset( $this->admin_hooks ) ) {
             $this->admin_hooks->register_add_action();
             $this->admin_hooks->register_add_filter();
-        }
-    }
-
-    /**
-     * Set hooks that will run only at the public site area
-     *
-     * @access private
-     * @return void
-     * @since 1.0.0
-     */
-    private function set_public_hooks() : void
-    {
-        if ( isset( $this->public_hooks ) ) {
-            $this->public_hooks->register_add_action();
-            $this->public_hooks->register_add_filter();
-        }
-    }
-
-    /**
-     * Set custom routes that will accessible at the site front end
-     *
-     * @access private
-     * @return void
-     * @since 1.0.0
-     */
-    private function set_routes() : void
-    {
-        if ( isset( $this->router ) ) {
-            $this->router->register_add_action();
-            $this->router->register_add_filter();
         }
     }
 

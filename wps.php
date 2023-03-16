@@ -24,7 +24,6 @@ use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Core\Uninstaller;
 use HTSA_Plugin\WPS_Plugin\App\Admin\Hooks as AdminHooks;
 use HTSA_Plugin\WPS_Plugin\App\Bindings;
 use HTSA_Plugin\WPS_Plugin\App\Hooks;
-use HTSA_Plugin\WPS_Plugin\App\Public\Hooks as PublicHooks;
 use HTSA_Plugin\WPS_Plugin\App\Constants as AppConstants;
 use HTSA_Plugin\WPS_Plugin\App\Activator as AppActivator;
 use HTSA_Plugin\WPS_Plugin\App\Deactivator as AppDeactivator;
@@ -419,7 +418,6 @@ final class WPSPlugin
             $this->database_upgrade,
             new Hooks,
             new AdminHooks(),
-            new PublicHooks(),
             new PluginUpdate(),
             $this->menus,
             $this->sub_menus,

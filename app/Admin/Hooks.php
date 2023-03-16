@@ -41,8 +41,8 @@ final class Hooks implements ActionHook, FilterHook
      */
     public function register_add_action() : void
     {
-        add_action( 'admin_enqueue_scripts', array( $this, 'action_admin_enqueue_scripts' ) );
         add_action( 'init', array( $this, 'action_init' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'action_admin_enqueue_scripts' ) );
     }
 
     /**
@@ -54,6 +54,21 @@ final class Hooks implements ActionHook, FilterHook
     public function register_add_filter() : void
     {
         add_filter( "manage_posts_columns", array( $this, 'filter_manage_posts_columns' ), 10, 2 );
+    }
+
+    /**
+     * "init" action hook callback
+     *
+     * Fires after WordPress has finished loading but before any headers are sent.
+     *
+     * @return void
+     * @since 1.0.0
+     */
+    public function action_init() : void
+    {
+        add_post_type_support( 'wps_post', 'page-attributes' );
+        remove_post_type_support( 'page', 'thumbnail' );
+        remove_post_type_support( 'page', 'comments' );
     }
 
     /**
@@ -106,21 +121,6 @@ final class Hooks implements ActionHook, FilterHook
         if ( $hook_suffix === 'toplevel_page_htsa-plugin-menu' ) {
             wp_enqueue_style( 'htsa-plugin-htsa-menu', HTSA_PLUGIN_HTSA_MENU_CSS, array(), HTSA_PLUGIN_VERSION );
         }
-    }
-
-    /**
-     * "init" action hook callback
-     *
-     * Fires after WordPress has finished loading but before any headers are sent.
-     *
-     * @return void
-     * @since 1.0.0
-     */
-    public function action_init() : void
-    {
-        add_post_type_support( 'wps_post', 'page-attributes' );
-        remove_post_type_support( 'page', 'thumbnail' );
-        remove_post_type_support( 'page', 'comments' );
     }
 
     /**

@@ -57,6 +57,16 @@ return array(
 
         ),
 
+        '/email-subscription'  => array(
+
+            'view'      => 'pages.email-subscription',
+
+            'title'     => esc_html__( 'Email Subscription', 'htsa-plugin' ),
+
+            'capability' => null,
+
+        ),
+
     ),
 
 );
