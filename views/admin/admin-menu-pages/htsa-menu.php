@@ -1,23 +1,25 @@
 <div class="wrap">
 
     <div class="d-flex htsa-panel-top">
+
         <div class="left">
             <h3> <?php echo HTSA_PLUGIN_NAME; ?> </h3>
             <h4> <?php esc_html_e( 'By Codestar Technologies', 'htsa-plugin' ); ?> </h4>
             <p>
                 <?php
-                    printf( __(
-                        'WordPress plugin for <a href="%1$s" target="_blank">Highway Traffic Security Agency</a> WordPress Theme.
-                        It registers post types, taxonomies, and shortcodes needed by the theme. You can <a href="%2$s" target="_blank">get
-                        support</a> when you\'ve purchased an active support plan on our website.',
-                        'htsa-plugin'
-                    ), HTSA_PLUGIN_RECOMMENDED_THEME_URL, HTSA_PLUGIN_SUPPORT_URL );
+                    printf( __( '
+                        WordPress plugin for developing websites relating to a highway/road traffic safety agency. It comes with custom post
+                        types, taxonomies, shortcodes, email sending feature, and custom route endpoints. It can be used along side <a href="%1$s" target="_blank">%2$s</a>.
+                        You can <a href="%3$s" target="_blank">get support</a> when you\'ve purchased an active support plan on our website.
+                    ', 'htsa-plugin' ), HTSA_PLUGIN_RECOMMENDED_THEME_URL, HTSA_PLUGIN_RECOMMENDED_THEME_NAME, HTSA_PLUGIN_SUPPORT_URL );
                 ?>
             </p>
         </div>
+
         <div class="right">
             <img src="<?php echo WPS_IMAGES_BASE_URL . 'banner.jpg'; ?>" alt="" />
         </div>
+
     </div>
 
     <div class="htsa-panel-content">
@@ -31,7 +33,7 @@
                     printf( __(
                         '
                             <p>
-                                This plugin registers <b>five (5)</b> custom post types. We recommend you have <b>Highway Traffic Security Agency</b>
+                                This plugin registers <b>five (5)</b> custom post types. We recommend you have <b>%s</b>
                                 WordPress theme installed and active, in order for all the features included in the post types to be visible.
                             </p>
                             <ul>
@@ -43,7 +45,7 @@
                             </ul>
                         ',
                         'htsa-plugin'
-                    ), site_url( 'profiles' ), site_url( 'officers' ), site_url( 'branches' ), site_url( 'penalties' ), site_url() );
+                    ), HTSA_PLUGIN_RECOMMENDED_THEME_NAME, site_url( 'profiles' ), site_url( 'officers' ), site_url( 'branches' ), site_url( 'penalties' ), site_url() );
                 ?>
 
             </div>
@@ -52,10 +54,10 @@
                 <h4> <?php esc_html_e( 'Shortcodes', 'htsa-plugin' ); ?> </h4>
 
                 <?php
-                    _e(
+                    printf( __(
                         '
                             <p>
-                                This plugin registers two shortcodes. We recommend you have <b>Highway Traffic Security Agency</b>
+                                This plugin registers two shortcodes. We recommend you have <b>%s</b>
                                 WordPress theme installed and active, in order for all the shortcodes to be styled properly.
                             </p>
                             <ul>
@@ -64,10 +66,12 @@
                             </ul>
                         ',
                         'htsa-plugin'
-                    );
+                    ), HTSA_PLUGIN_RECOMMENDED_THEME_NAME );
                 ?>
 
-                <a href="<?php echo site_url( 'htsa-shortcodes' ); ?>" target="_blank" class="link"> <?php esc_html_e( 'Preview available shortcodes', 'htsa-plugin' ); ?> </a>
+                <?php if ( wps_is_theme_active( HTSA_PLUGIN_RECOMMENDED_THEME_NAME ) ) : ?>
+                    <a href="<?php echo site_url( 'htsa-shortcodes' ); ?>" target="_blank" class="link"> <?php esc_html_e( 'Preview available shortcodes', 'htsa-plugin' ); ?> </a>
+                <?php endif; ?>
             </div>
 
             <div>
@@ -77,7 +81,7 @@
                     _e(
                         '
                             <p>
-                                This plugin comes with email setting for sending emails via Amazon Web Services Simple Email Service (SES).
+                                This plugin comes with email setting for sending emails via Simple Mail Transfer Protocol (SMTP).
                             </p>
                         ',
                         'htsa-plugin'

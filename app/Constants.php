@@ -43,7 +43,7 @@ final class Constants
          * Plugin name
          */
         if ( ! defined( 'HTSA_PLUGIN_NAME' ) ) {
-            define( 'HTSA_PLUGIN_NAME', 'Highway Traffic Security Agency Plugin' );
+            define( 'HTSA_PLUGIN_NAME', 'Highway Traffic Safety Agency Plugin' );
         }
 
         /**
@@ -57,7 +57,7 @@ final class Constants
          * Plugin version
          */
         if ( ! defined( 'HTSA_PLUGIN_VERSION' ) ) {
-            define( 'HTSA_PLUGIN_VERSION', '0.1.0' );
+            define( 'HTSA_PLUGIN_VERSION', '0.3.0' );
         }
 
         /**
@@ -72,6 +72,13 @@ final class Constants
          */
         if ( ! defined( 'HTSA_PLUGIN_RECOMMENDED_THEME_URL' ) ) {
             define( 'HTSA_PLUGIN_RECOMMENDED_THEME_URL', 'https://codestar.com.ng/shop/highway-traffic-security-agency' );
+        }
+
+        /**
+         * Plugin recommended theme name
+         */
+        if ( ! defined( 'HTSA_PLUGIN_RECOMMENDED_THEME_NAME' ) ) {
+            define( 'HTSA_PLUGIN_RECOMMENDED_THEME_NAME', 'Highway Traffic Safety Agency' );
         }
 
         /**
