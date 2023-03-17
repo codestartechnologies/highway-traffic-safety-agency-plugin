@@ -54,7 +54,7 @@ final class HTSAContactFormShortcode extends Shortcodes
      */
     public function can_display_shortcode() : bool
     {
-        return wps_is_theme_active( 'Highway Traffic Security Agency' );
+        return wps_is_theme_active( HTSA_PLUGIN_RECOMMENDED_THEME_NAME );
     }
 
     /**

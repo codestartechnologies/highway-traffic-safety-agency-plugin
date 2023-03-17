@@ -17,7 +17,7 @@
         </div>
 
         <div class="right">
-            <img src="<?php echo WPS_IMAGES_BASE_URL . 'banner.jpg'; ?>" alt="" />
+            <img src="<?php echo WPS_IMAGES_BASE_URL . 'banner.png'; ?>" alt="" />
         </div>
 
     </div>
