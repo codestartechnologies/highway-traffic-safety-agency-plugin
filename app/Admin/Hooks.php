@@ -42,6 +42,7 @@ final class Hooks implements ActionHook, FilterHook
     public function register_add_action() : void
     {
         add_action( 'init', array( $this, 'action_init' ) );
+        add_action( 'admin_init', array( $this, 'action_admin_init' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'action_admin_enqueue_scripts' ) );
     }
 
@@ -69,6 +70,44 @@ final class Hooks implements ActionHook, FilterHook
         add_post_type_support( 'wps_post', 'page-attributes' );
         remove_post_type_support( 'page', 'thumbnail' );
         remove_post_type_support( 'page', 'comments' );
+    }
+
+    /**
+     * Fires as an admin screen or script is being initialized.
+     *
+     * @return void
+     * @since 1.0.0
+     */
+    public function action_admin_init() : void
+    {
+        $this->delete_depreciated_meta_keys();
+    }
+
+    /**
+     * Deletes depreciated meta keys.
+     *
+     * @access private
+     * @return void
+     * @since 1.0.0
+     */
+    private function delete_depreciated_meta_keys() : void
+    {
+        if ( wp_doing_ajax() ) {
+            return;
+        }
+
+        global $wpdb;
+
+        $check = $wpdb->get_results( $wpdb->prepare(
+            "SELECT * FROM `{$wpdb->postmeta}` WHERE `meta_key` IN (%s,%s,%s);",
+            array( 'htsa_officer_zone', 'htsa_branch_location', 'htsa_penalty_currency_symbol', )
+        ) );
+
+        if ( $wpdb->num_rows > 0 ) {
+            delete_post_meta_by_key( 'htsa_officer_zone' );
+            delete_post_meta_by_key( 'htsa_branch_location' );
+            delete_post_meta_by_key( 'htsa_penalty_currency_symbol' );
+        }
     }
 
     /**
