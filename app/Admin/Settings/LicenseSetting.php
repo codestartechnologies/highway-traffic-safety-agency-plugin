@@ -6,6 +6,7 @@
  *
  * @package     HighwayTrafficSecurityAgencyPlugin
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
+ * @license     https://www.gnu.org/licenses/agpl-3.0.txt GNU/AGPLv3
  * @link        https://github.com/codestartechnologies/highway-traffic-security-agency-plugin
  * @since       1.0.0
  */
@@ -45,10 +46,14 @@ final class LicenseSetting extends Settings
     public function get_section() : array
     {
         return array(
-            'id'            => 'license_settings',
-            'title'         => sprintf( esc_html__( '%s License Settings', 'htsa-plugin' ), HTSA_PLUGIN_NAME ),
-            'page'          => 'htsa-plugin-license-setting',
-            'callback'      => null,
+
+            'license_settings' => array(
+                'id'            => 'htsa_license_settings',
+                'title'         => esc_html__( 'Plugin License Settings', 'htsa-plugin' ),
+                'page'          => 'htsa-plugin-license-setting',
+                'callback'      => null,
+            ),
+
         );
     }
 
@@ -89,12 +94,14 @@ final class LicenseSetting extends Settings
                 'title'         => esc_html__( 'Plugin License Key', 'htsa-plugin' ),
                 'callback'      => 'license_key_field_cb',
                 'setting_key'   => 'license_setting',
+                'section'       => 'license_settings',
             ),
             array(
                 'id'            => 'access_key',
                 'title'         => esc_html__( 'User Access Key', 'htsa-plugin' ),
                 'callback'      => 'access_key_field_cb',
                 'setting_key'   => 'license_setting',
+                'section'       => 'license_settings',
             ),
         );
     }

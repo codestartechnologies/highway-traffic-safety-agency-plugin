@@ -6,6 +6,7 @@
  *
  * @package     HighwayTrafficSecurityAgencyPlugin
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
+ * @license     https://www.gnu.org/licenses/agpl-3.0.txt GNU/AGPLv3
  * @link        https://github.com/codestartechnologies/highway-traffic-security-agency-plugin
  * @since       1.0.0
  */
@@ -45,10 +46,21 @@ final class HTSAEmailSetting extends Settings
     public function get_section() : array
     {
         return array(
-            'id'            => 'htsa_email_settings',
-            'title'         => esc_html__( 'Email Settings', 'htsa' ),
-            'page'          => 'htsa-email-setting',
-            'callback'      => null,
+
+            'smtp_settings' => array(
+                'id'            => 'htsa_smtp_settings',
+                'title'         => esc_html__( 'SMTP Settings', 'htsa' ),
+                'page'          => 'htsa-email-setting',
+                'callback'      => null,
+            ),
+
+            'user_settings' => array(
+                'id'            => 'htsa_user_settings',
+                'title'         => esc_html__( 'User Settings', 'htsa' ),
+                'page'          => 'htsa-email-setting',
+                'callback'      => null,
+            ),
+
         );
     }
 
@@ -98,6 +110,7 @@ final class HTSAEmailSetting extends Settings
                 'title'         => esc_html__( 'SMTP Host', 'htsa' ),
                 'callback'      => 'htsa_smtp_host_field',
                 'setting_key'   => 'smtp_server_credentials',
+                'section'       => 'smtp_settings',
             ),
 
             array(
@@ -105,6 +118,7 @@ final class HTSAEmailSetting extends Settings
                 'title'         => esc_html__( 'SMTP Username', 'htsa' ),
                 'callback'      => 'htsa_smtp_username_field',
                 'setting_key'   => 'smtp_server_credentials',
+                'section'       => 'smtp_settings',
             ),
 
             array(
@@ -112,6 +126,7 @@ final class HTSAEmailSetting extends Settings
                 'title'         => esc_html__( 'SMTP Password', 'htsa' ),
                 'callback'      => 'htsa_smtp_password_field',
                 'setting_key'   => 'smtp_server_credentials',
+                'section'       => 'smtp_settings',
             ),
 
             array(
@@ -119,6 +134,7 @@ final class HTSAEmailSetting extends Settings
                 'title'         => esc_html__( 'Default Sender Address', 'htsa' ),
                 'callback'      => 'htsa_email_sender',
                 'setting_key'   => 'smtp_receipents',
+                'section'       => 'user_settings',
             ),
 
             array(
@@ -126,6 +142,7 @@ final class HTSAEmailSetting extends Settings
                 'title'         => esc_html__( 'Default Sender Name', 'htsa' ),
                 'callback'      => 'htsa_email_sender_name',
                 'setting_key'   => 'smtp_receipents',
+                'section'       => 'user_settings',
             ),
 
             array(
@@ -133,6 +150,7 @@ final class HTSAEmailSetting extends Settings
                 'title'         => esc_html__( 'Default Receiver Address', 'htsa' ),
                 'callback'      => 'htsa_email_receiver',
                 'setting_key'   => 'smtp_receipents',
+                'section'       => 'user_settings',
             ),
 
         );

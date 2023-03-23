@@ -6,6 +6,7 @@
  *
  * @package     WordpressPluginStarter
  * @author      Chijindu Nzeako <chijindunzeako517@gmail.com>
+ * @license     https://www.gnu.org/licenses/agpl-3.0.txt GNU/AGPLv3
  * @link        https://github.com/codestartechnologies/wordpress-plugin-starter
  * @since       1.0.0
  */
@@ -96,14 +97,17 @@ abstract class Settings implements ActionHook
      */
     private function init_section() : void
     {
-        $section = $this->get_section();
-        if ( ! empty( $section ) ) {
-            add_settings_section(
-                $section['id'],
-                $section['title'],
-                $this->get_valid_callback( $section['callback'] ),
-                $section['page']
-            );
+        $sections = $this->get_section();
+
+        if ( ! empty( $sections ) ) {
+            foreach ( $sections as $section_key => $section) {
+                add_settings_section(
+                    $section['id'],
+                    $section['title'],
+                    $this->get_valid_callback( $section['callback'] ),
+                    $section['page']
+                );
+            }
         }
     }
 
@@ -117,9 +121,10 @@ abstract class Settings implements ActionHook
     private function init_settings() : void
     {
         $page = $this->get_section()['page'] ?? null;
+        $settings = $this->get_settings();
 
-        if ( ! empty( $this->get_settings() ) ) {
-            foreach ( $this->get_settings() as $setting_key => $setting ) {
+        if ( ! empty( $settings ) ) {
+            foreach ( $settings as $setting_key => $setting ) {
                 $args = wp_parse_args( $setting['args'], $this->default_args_for_register_setting() );
                 register_setting(
                     $page,
@@ -139,11 +144,12 @@ abstract class Settings implements ActionHook
      */
     private function init_fields() : void
     {
-        $section = $this->get_section();
+        $sections = $this->get_section();
         $settings = $this->get_settings();
+        $fields = $this->get_fields();
 
-        if ( ! empty( $this->get_fields() ) ) {
-            foreach ( $this->get_fields() as $field ) {
+        if ( ! empty( $fields ) ) {
+            foreach ( $fields as $field ) {
                 $args = array(
                     'label_for'     => $field['id'],
                     'option_name'   => $settings[ $field['setting_key'] ]['option_name'],
@@ -152,8 +158,8 @@ abstract class Settings implements ActionHook
                     $field['id'],
                     $field['title'],
                     $this->get_valid_callback( array( $this, $field['callback'] ) ),
-                    $section['page'],
-                    $section['id'],
+                    $sections[ $field['section'] ]['page'],
+                    $sections[ $field['section'] ]['id'],
                     $args
                 );
             }
