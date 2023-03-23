@@ -125,7 +125,7 @@ final class Hooks implements ActionHook, FilterHook
 
         // var_dump( $hook_suffix, $screen );
 
-        if ( $screen->post_type === 'wps_post' && $screen->taxonomy === 'wps_post_category' && $screen->base === 'edit-tags' ) {
+        /* if ( $screen->post_type === 'wps_post' && $screen->taxonomy === 'wps_post_category' && $screen->base === 'edit-tags' ) {
 
             wp_register_style( 'css-handle', 'path-to-css', array(), false, 'all' );
 
@@ -144,7 +144,7 @@ final class Hooks implements ActionHook, FilterHook
             $data = 'jQuery( function ( $ ) { $.each( jQuery( ".wps-textarea" ), function ( index, editor ) { wp.editor.initialize( jQuery( editor ).attr( "id" ), { tinymce: true } ); } ); } );';
             wp_add_inline_script( 'editor', $data );
 
-        }
+        } */
 
         $post_types_with_editor_arr = array(
             HTSA_BRANCHES_POST_TYPE,

@@ -96,7 +96,7 @@ class Hooks implements ActionHook, FilterHook
                 $query->set( 'order', 'ASC' );
             }
 
-            if ( is_post_type_archive( 'wps_post' ) ) {
+            /* if ( is_post_type_archive( 'wps_post' ) ) {
 
                 $tax_array = array();
 
@@ -120,7 +120,7 @@ class Hooks implements ActionHook, FilterHook
                     $query->set( 'meta_compare', '=' );
                 }
 
-            }
+            } */
 
         }
     }

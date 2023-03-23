@@ -380,8 +380,6 @@ final class Bootstrap implements ActionHook
 
         $this->set_plugin_updater();
 
-        $this->set_hooks();
-
         $this->set_post_types();
 
         $this->set_taxonomies();
@@ -391,6 +389,8 @@ final class Bootstrap implements ActionHook
         $this->set_ajax_handlers();
 
         $this->set_routes();
+
+        $this->set_hooks();
 
         if ( is_admin() ) {
 
@@ -440,21 +440,6 @@ final class Bootstrap implements ActionHook
     {
         if ( isset( $this->plugin_update ) ) {
             $this->plugin_update->register_add_filter();
-        }
-    }
-
-    /**
-     * Set hooks that will run at both the admin and public site area
-     *
-     * @access private
-     * @return void
-     * @since 1.0.0
-     */
-    private function set_hooks() : void
-    {
-        if ( isset( $this->hooks ) ) {
-            $this->hooks->register_add_action();
-            $this->hooks->register_add_filter();
         }
     }
 
@@ -540,6 +525,21 @@ final class Bootstrap implements ActionHook
         if ( isset( $this->router ) ) {
             $this->router->register_add_action();
             $this->router->register_add_filter();
+        }
+    }
+
+    /**
+     * Set hooks that will run at both the admin and public site area
+     *
+     * @access private
+     * @return void
+     * @since 1.0.0
+     */
+    private function set_hooks() : void
+    {
+        if ( isset( $this->hooks ) ) {
+            $this->hooks->register_add_action();
+            $this->hooks->register_add_filter();
         }
     }
 
