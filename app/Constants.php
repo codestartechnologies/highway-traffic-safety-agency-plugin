@@ -284,11 +284,5 @@ final class Constants
             define( 'HTSA_PLUGIN_DB_VERSION', 1 );
         }
 
-        /**
-         * Secret phrase that will hashed and checked when user request to unsubscribe from email notifications
-         */
-        if ( ! defined( 'HTSA_EMAIL_VALIDATE_SECRET' ) ) {
-            define( 'HTSA_EMAIL_VALIDATE_SECRET', '8aae62a$60f9@a21dbdeebac8559f_cff7de5fd7408' );
-        }
     }
 }

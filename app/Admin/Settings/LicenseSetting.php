@@ -76,6 +76,7 @@ final class LicenseSetting extends Settings
                     'description'  => sprintf( esc_html__( '%s setting.', 'htsa-plugin' ), HTSA_PLUGIN_NAME ),
                 ),
                 'update_cb'     => null,
+                'page'          => 'htsa-plugin-license-setting',
             ),
         );
     }

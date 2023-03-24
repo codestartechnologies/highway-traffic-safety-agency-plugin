@@ -61,6 +61,13 @@ final class HTSAEmailSetting extends Settings
                 'callback'      => null,
             ),
 
+            'secret_settings' => array(
+                'id'            => 'htsa_email_secret_hash_settings',
+                'title'         => esc_html__( 'Email Secret Settings', 'htsa' ),
+                'page'          => 'htsa-email-setting',
+                'callback'      => null,
+            ),
+
         );
     }
 
@@ -83,6 +90,7 @@ final class HTSAEmailSetting extends Settings
                 'args'          => array(
                     'description'  => esc_html__( 'SMTP Host', 'htsa' ),
                 ),
+                'page'          => 'htsa-email-setting',
             ),
 
             'smtp_receipents' => array(
@@ -90,6 +98,15 @@ final class HTSAEmailSetting extends Settings
                 'args'          => array(
                     'description'  => esc_html__( 'SMTP Username', 'htsa' ),
                 ),
+                'page'          => 'htsa-email-setting',
+            ),
+
+            'hash_phrase' => array(
+                'option_name'   => 'htsa_smtp_secret_phrase',
+                'args'          => array(
+                    'description'  => esc_html__( 'Secret Phrase For Hashing Token', 'htsa' ),
+                ),
+                'page'          => 'htsa-email-setting',
             ),
 
         );
@@ -151,6 +168,14 @@ final class HTSAEmailSetting extends Settings
                 'callback'      => 'htsa_email_receiver',
                 'setting_key'   => 'smtp_receipents',
                 'section'       => 'user_settings',
+            ),
+
+            array(
+                'id'            => 'htsa_email_hash_phrase',
+                'title'         => esc_html__( 'Secret Phrase Used In Hashing Unsubscribe Link Token (must not be shared to the public)', 'htsa' ),
+                'callback'      => 'htsa_email_hash_phrase',
+                'setting_key'   => 'hash_phrase',
+                'section'       => 'secret_settings',
             ),
 
         );
@@ -235,6 +260,18 @@ final class HTSAEmailSetting extends Settings
      * @since 1.0.0
      */
     public function htsa_email_receiver( array $args ) : void
+    {
+        $this->load_view( 'settings.email-settings.input-field', $args, 'admin', false );
+    }
+
+    /**
+     * Function that fills the field with the desired form inputs. The function should echo its output.
+     *
+     * @param array $args   An array of arguements passed to add_settings_field()
+     * @return void
+     * @since 1.0.0
+     */
+    public function htsa_email_hash_phrase( array $args ) : void
     {
         $this->load_view( 'settings.email-settings.input-field', $args, 'admin', false );
     }

@@ -89,9 +89,11 @@ final class Newsletter
         }
 
         $site_name = get_bloginfo( 'name' );
-        $db_receipents = get_option( 'htsa_smtp_receipents' );
+        $db_receipents = get_option( 'htsa_smtp_receipents', array() );
+        $secret_phrase = get_option( 'htsa_smtp_secret_phrase', array() );
         $sender = $db_receipents['htsa_email_sender'] ?? '';
-        $site_token = password_hash( HTSA_EMAIL_VALIDATE_SECRET, PASSWORD_DEFAULT );
+        $secret_phrase = $secret_phrase['htsa_email_hash_phrase'] ?? '';
+        $site_token = password_hash( $secret_phrase, PASSWORD_DEFAULT );
 
         $this->mailer->encryption_mode    = HTSA_PLUGIN_SMTP_ENCRYPTION_MODE;
         $this->mailer->is_html            = true;

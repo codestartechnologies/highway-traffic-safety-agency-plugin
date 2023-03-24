@@ -24,9 +24,11 @@ if ( isset( $_GET['action'] ) && in_array( $_GET['action'], array( 'unsubscribe'
       $token_arr = explode( '|', $token );
       $md5_hash = $token_arr[0] ?? null;
       $site_hash = $token_arr[1] ?? null;
+      $secret_phrase = get_option( 'htsa_smtp_secret_phrase', array() );
+      $secret_phrase = $secret_phrase['htsa_email_hash_phrase'] ?? '';
 
       // Verify token is correct
-      if ( ( md5( $subscriber->id . $subscriber->created_at ) !== $md5_hash ) || ( ! password_verify( HTSA_EMAIL_VALIDATE_SECRET, $site_hash ) ) ) {
+      if ( ( md5( $subscriber->id . $subscriber->created_at ) !== $md5_hash ) || ( ! password_verify( $secret_phrase, $site_hash ) ) ) {
         $check_message = 'Signature token is invalid!';
       } else {
         // Remove subscription from database

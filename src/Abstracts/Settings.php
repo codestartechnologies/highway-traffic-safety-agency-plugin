@@ -120,14 +120,13 @@ abstract class Settings implements ActionHook
      */
     private function init_settings() : void
     {
-        $page = $this->get_section()['page'] ?? null;
         $settings = $this->get_settings();
 
         if ( ! empty( $settings ) ) {
             foreach ( $settings as $setting_key => $setting ) {
                 $args = wp_parse_args( $setting['args'], $this->default_args_for_register_setting() );
                 register_setting(
-                    $page,
+                    $setting['page'],
                     $setting['option_name'],
                     $args
                 );
