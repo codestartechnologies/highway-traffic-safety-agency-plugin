@@ -57,6 +57,20 @@ if ( ! class_exists( 'WPSAutoLoader' ) ) {
         );
 
         /**
+         * PHPmailer files
+         *
+         * @access protected
+         * @static
+         * @var array
+         * @since 1.0.0
+         */
+        protected static array $phpmailer_files = array(
+            "Exception.php",
+            "PHPMailer.php",
+            "SMTP.php",
+        );
+
+        /**
          * handles autoloading for classes and files
          *
          * @static
@@ -65,15 +79,9 @@ if ( ! class_exists( 'WPSAutoLoader' ) ) {
          */
         public static function autoload() : void
         {
+            self::autoload_phpmailer_files();
+            self::autoload_wps_files();
             spl_autoload_register( array( __CLASS__, 'wps_autoloader' ) );
-
-            $path = trailingslashit( plugin_dir_path( __FILE__ ) );
-
-            foreach ( self::$file_autoloads as $file ) {
-                if ( is_readable( $path . $file ) ) {
-                    require_once( $path . $file );
-                }
-            }
         }
 
         /**
@@ -85,6 +93,11 @@ if ( ! class_exists( 'WPSAutoLoader' ) ) {
          * @since 1.0.0
          */
         public static function wps_autoloader( string $class ) : void
+        {
+            self::autoload_wps_classes( $class );
+        }
+
+        private static function autoload_wps_classes( string $class ) : void
         {
             $prefix = isset( self::$prefix ) ? self::$prefix . "\\" : '';
 
@@ -99,6 +112,28 @@ if ( ! class_exists( 'WPSAutoLoader' ) ) {
                     if ( is_readable( $path ) ) {
                         require_once( $path );
                     }
+                }
+            }
+        }
+
+        private static function autoload_wps_files() : void
+        {
+            $path = trailingslashit( plugin_dir_path( __FILE__ ) );
+
+            foreach ( self::$file_autoloads as $file ) {
+                if ( is_readable( $path . $file ) ) {
+                    require_once( $path . $file );
+                }
+            }
+        }
+
+        private static function autoload_phpmailer_files() : void
+        {
+            $path = trailingslashit( ABSPATH . WPINC ) . 'PHPMailer/';
+
+            foreach ( self::$phpmailer_files as $file ) {
+                if ( is_readable( $path . $file ) ) {
+                    require_once( $path . $file );
                 }
             }
         }
