@@ -77,10 +77,12 @@ final class Newsletter
      * Method for sending email notification to subscribers.
      *
      * @param \WP_Post $post
+     * @param string $title
+     * @param string $content
      * @return void
      * @since 1.0.0
      */
-    public function send_newsletters( \WP_Post $post ) : void
+    public function send_newsletters( \WP_Post $post, string $title, string $content ) : void
     {
         $subscribers = $this->get_subscribers();
 
@@ -97,14 +99,13 @@ final class Newsletter
 
         $this->mailer->encryption_mode    = HTSA_PLUGIN_SMTP_ENCRYPTION_MODE;
         $this->mailer->is_html            = true;
-        $this->mailer->subject            = $post->post_title . ' - ' . $site_name;
+        $this->mailer->subject            = $title . ' - ' . $site_name;
         $this->mailer->from( $sender, $site_name );
 
         foreach ( $subscribers as $subscriber ) {
             $token                      = urlencode( md5( $subscriber->id . $subscriber->created_at ) . '|' .  $site_token );
             $unsubscribe_url            = site_url( 'email-subscription?action=unsubscribe&email=' . $subscriber->email. '&token=' . $token );
-            $message                    = $this->get_email_body( $post, $unsubscribe_url );
-
+            $message                    = $this->generate_email_content( $post, $content, $unsubscribe_url );
             $this->mailer->body         = $message;
             $this->mailer->alt_body     = wp_strip_all_tags( $message );
             $this->mailer->to( $subscriber->email );
@@ -124,19 +125,20 @@ final class Newsletter
     }
 
     /**
-     * Generate the email notfication.
+     * Generate content for the email.
      *
+     * @param string $content
      * @param \WP_Post $post
      * @param string $unsubscribe_url
      * @return string
      * @since 1.0.0
      */
-    private function get_email_body( \WP_Post $post, string $unsubscribe_url ) : string
+    private function generate_email_content( \WP_Post $post, string $content, string $unsubscribe_url ) : string
     {
         $site_name = get_bloginfo( 'name' );
         $site_logo_url = ( has_custom_logo() ) ? wp_get_attachment_url( get_theme_mod( 'custom_logo' ) ) : null;
         $post_thumbnail_url = get_the_post_thumbnail_url( $post->ID, 'large' );
-        $post_content = wp_trim_words( wp_strip_all_tags( strip_shortcodes( $post->post_content ) ), 100 );
+        $post_content = wp_trim_words( wp_strip_all_tags( strip_shortcodes( $content ) ), 60 );
         $post_url = get_the_permalink( $post->ID );
 
         $template = '<div style="margin: auto;max-width: 600px;font-family: Arial, Helvetica, sans-serif;">';
@@ -152,8 +154,7 @@ final class Newsletter
         $template .= '</a>';
         $template .= '</div>';
         $template .= '<div style="color: #fcf1e0;font-size: 15px;text-align: center;padding: 7px;background-color: #0f0f13;">';
-        $template .= esc_html__( 'Not interested? ', 'htsa-plugin' );
-        $template .= sprintf( __( '<a href="%s" style="color: #ffff00;font-size: 14px;">Unsubscribe</a> to this newsletter.', 'htsa-plugin' ), $unsubscribe_url );
+        $template .= sprintf( __( 'Click <a href="%s" style="color: #ffff00;font-size: 14px;">here</a> to unsubscribe from this newsletter.', 'htsa-plugin' ), $unsubscribe_url );
         $template .= '</div></div></div>';
         return $template;
     }

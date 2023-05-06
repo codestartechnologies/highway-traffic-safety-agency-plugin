@@ -15,7 +15,7 @@ namespace HTSA_Plugin\WPS_Plugin\App;
 
 use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Interfaces\ActionHook;
 use HTSA_Plugin\Codestartechnologies\WordpressPluginStarter\Interfaces\FilterHook;
-use HTSA_Plugin\WPS_Plugin\App\HTSA\Newsletter;
+use HTSA_Plugin\WPS_Plugin\App\HTSA\HooksService;
 
 /**
  * Prevent direct access to this file.
@@ -34,6 +34,15 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Hooks implements ActionHook, FilterHook
 {
+    /**
+     * HooksService class
+     *
+     * @access protected
+     * @var HooksService
+     * @since 1.0.2
+     */
+    protected HooksService $hooks_service;
+
     /**
      * Register add_action() and remove_action().
      *
@@ -95,33 +104,6 @@ class Hooks implements ActionHook, FilterHook
             if ( is_search() || is_post_type_archive( array( HTSA_PENALTIES_POST_TYPE, HTSA_BRANCHES_POST_TYPE ) ) ) {
                 $query->set( 'order', 'ASC' );
             }
-
-            /* if ( is_post_type_archive( 'wps_post' ) ) {
-
-                $tax_array = array();
-
-                $tax_array['relation'] = 'AND';
-
-                if ( isset( $_GET['category'] ) && ! empty( $_GET['category'] ) ) {
-                    $tax_array[] = array(
-                        'taxonomy'  => 'wps_post_category',
-                        'field'     => 'slug',
-                        'terms'     => sanitize_text_field( $_GET['category'] ),
-                    );
-                }
-
-                $query->set( 'tax_query', $tax_array );
-
-                $author = $_GET['author'] ?? null;
-
-                if ( ! empty( $author ) ) {
-                    $query->set( 'meta_key', 'wps_post_author_name' );
-                    $query->set( 'meta_value', sanitize_text_field( $author ) );
-                    $query->set( 'meta_compare', '=' );
-                }
-
-            } */
-
         }
     }
 
@@ -152,17 +134,15 @@ class Hooks implements ActionHook, FilterHook
      */
     public function action_transition_post_status( string $new_status, string $old_status, \WP_Post $post ) : void
     {
-        if (
-            ( ! wps_save_post_action_check( $post->ID ) ) ||
-            ( 'publish' !== $new_status ) ||
-            ( ! in_array( $old_status, array( 'auto-draft', 'draft', 'pending', ), true ) )
-        ) {
+        if ( $this->hooks_service->newsletters_post_status_failed( $new_status, $old_status, $post ) ) {
             return;
         }
 
         // send email
-        $newsletters = new Newsletter();
-        $newsletters->send_newsletters( $post );
+
+        if ( 'post' === $post->post_type ) {
+            $this->hooks_service->send_posts_newsletters( $post );
+        }
     }
 
     /**
@@ -195,4 +175,14 @@ class Hooks implements ActionHook, FilterHook
         return $content;
     }
 
+    /**
+     * Hooks constructor
+     *
+     * @return void
+     * @since 1.0.2
+     */
+    public function __construct()
+    {
+        $this->hooks_service = new HooksService();
+    }
 }

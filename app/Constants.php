@@ -57,7 +57,7 @@ final class Constants
          * Plugin version
          */
         if ( ! defined( 'HTSA_PLUGIN_VERSION' ) ) {
-            define( 'HTSA_PLUGIN_VERSION', '1.0.1' );
+            define( 'HTSA_PLUGIN_VERSION', '1.0.2' );
         }
 
         /**

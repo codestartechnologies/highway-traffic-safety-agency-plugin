@@ -3,7 +3,7 @@
 Plugin Name:        Highway Traffic Safety Agency Plugin
 Plugin URI:         https://codestar.com.ng/shop/highway-traffic-security-agency-plugin
 Description:        WordPress plugin for developing websites relating to a highway/road traffic safety agency. It comes with custom post types, taxonomies, shortcodes, email sending feature, and custom route endpoints. It can be used along side <a href="https://codestar.com.ng/shop/highway-traffic-security-agency">Highway Traffic Safety Agency WordPress Theme</a>.
-Version:            1.0.1
+Version:            1.0.2
 Requires at least:  5.6
 Requires PHP:       8.0
 Author:             Codestar Technologies
